@@ -1,0 +1,43 @@
+.fc {
+    background-color: $default-white;
+    border: 1px solid $border-color;
+
+    button {
+        background-color: $default-white;
+        background-image: none;
+        height: 37px;
+        padding: 0 15px;
+        color: #007bff;
+
+        &.fc-state-default {
+            border-color: $border-color;
+            box-shadow: none;
+        }
+
+        &.fc-state-active {
+            box-shadow: none;
+            background-color: $border-color;
+        }
+    }
+}
+
+.fc-day {
+    cursor: pointer;
+}
+
+.fc-toolbar {
+    padding: 0 20px 0;
+}
+
+.fc-event-container {
+    .fc-event {
+        background-color: $default-info;
+        line-height: 1.4;
+        padding: 0 10px;
+        cursor: pointer;
+    }
+
+    .fc-day-grid-event {
+        margin: 1px 5px 5px;
+    }
+}
