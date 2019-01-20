@@ -75,8 +75,9 @@ class MunicipalityController extends Controller
     public function edit(Municipality $municipality)
     {
         $departments = Department::pluck('name', 'id')->prepend('Seleccione un departamento', "");
-        return view('municipalities.show', compact('municipality, departments'));
+        return view('municipalities.edit', compact('municipality', 'departments'));
     }
+
 
     /**
      * Update the specified resource in storage.

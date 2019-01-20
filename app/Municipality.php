@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Municipality extends Model
 {
     protected $fillable = [
-        'name', 'prime', 'legal'
+        'name', 'prime', 'legal', 'department_id'
     ];
 
     protected $dates = [
@@ -21,6 +21,7 @@ class Municipality extends Model
             'name' => 'required|string|max:255',
             'prime' => 'required|boolean',
             'legal' => 'required|boolean',
+            'department_id' => 'required|numeric'
         ];
     }
 

@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('page-header')
-	Municipio <small>Editar</small>
+	Municipio <small>Visualizar</small>
 @stop
 
 @section('content')

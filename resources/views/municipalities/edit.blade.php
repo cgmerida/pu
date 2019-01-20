@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('page-header')
-	Departamento <small>{{ trans('app.update_item') }}</small>
+	Municipio <small>{{ trans('app.update_item') }}</small>
 @stop
 
 @section('content')
