@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Caffeinated\Shinobi\Models\Role;
 use App\Department;
 
 class DepartmentController extends Controller
