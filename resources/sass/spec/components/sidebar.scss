@@ -32,6 +32,8 @@
     .sidebar-inner {
       .sidebar-logo {
         border-bottom: 1px solid transparent;
+        background-color: #0E166B;
+        color: white;
         padding: 0;
 
         a {
@@ -145,7 +147,7 @@
     }
 
     .logo-text {
-      color: $grey-900;
+      color: white;
     }
   }
 
