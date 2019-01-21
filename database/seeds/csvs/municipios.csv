@@ -1,0 +1,339 @@
+﻿department_id;name;legal
+Alta Verapaz;Cahabón;0
+Alta Verapaz;Chahal;0
+Alta Verapaz;Chisec;0
+Alta Verapaz;Cobán;1
+Alta Verapaz;Fray Bartolomé de las Casas;0
+Alta Verapaz;Lanquín;0
+Alta Verapaz;Panzós;0
+Alta Verapaz;Raxruhá;0
+Alta Verapaz;San Cristóbal Verapaz;1
+Alta Verapaz;San Juan Chamelco;1
+Alta Verapaz;San Pedro Carchá;0
+Alta Verapaz;Santa Catalina La Tinta;0
+Alta Verapaz;Santa Cruz Verapaz;0
+Alta Verapaz;Senahú;0
+Alta Verapaz;Tactic;0
+Alta Verapaz;Tamahú;1
+Alta Verapaz;Tucurú;1
+Baja Verapaz;Cubulco;0
+Baja Verapaz;El Chol;0
+Baja Verapaz;Granados;1
+Baja Verapaz;Purulhá;0
+Baja Verapaz;Rabinal;1
+Baja Verapaz;Salamá;1
+Baja Verapaz;San Jerónimo;1
+Baja Verapaz;San Miguel Chicaj;1
+Chimaltenango;Acatenango;0
+Chimaltenango;Chimaltenango;0
+Chimaltenango;Comalapa;0
+Chimaltenango;El Tejar;0
+Chimaltenango;Parramos;0
+Chimaltenango;Patzicía;0
+Chimaltenango;Patzún;0
+Chimaltenango;Pochuta;0
+Chimaltenango;San Andrés Itzapa;0
+Chimaltenango;San José Poaquil;0
+Chimaltenango;San Martín Jilotepeque;0
+Chimaltenango;Santa Apolonia;0
+Chimaltenango;Santa Cruz Balanyá;0
+Chimaltenango;Tecpán Guatemala;0
+Chimaltenango;Yepocapa;0
+Chimaltenango;Zaragoza;0
+Chiquimula;Camotán;0
+Chiquimula;Chiquimula;0
+Chiquimula;Concepción Las Minas;0
+Chiquimula;Esquipulas;0
+Chiquimula;Ipala;0
+Chiquimula;Jocotán;0
+Chiquimula;Olopa;0
+Chiquimula;Quetzaltepeque;0
+Chiquimula;San Jacinto;0
+Chiquimula;San José La Arada;0
+Chiquimula;San Juan La Ermita;0
+El Progreso;El Jícaro;0
+El Progreso;Guastatoya;0
+El Progreso;Morazán;0
+El Progreso;San Agustín Acasaguastlán;0
+El Progreso;San Antonio La Paz;0
+El Progreso;San Cristóbal Acasaguastlán;0
+El Progreso;Sanarate;0
+El Progreso;Sansare;0
+Escuintla;Escuintla;0
+Escuintla;Guanagazapa;1
+Escuintla;Iztapa;0
+Escuintla;La Democracia;0
+Escuintla;La Gomera;1
+Escuintla;Masagua;1
+Escuintla;Nueva Concepción;1
+Escuintla;Palín;0
+Escuintla;San José;0
+Escuintla;San Vicente Pacaya;1
+Escuintla;Santa Lucía Cotzumalguapa;0
+Escuintla;Siquinalá;1
+Escuintla;Tiquisate;0
+Guatemala;Amatitlán;1
+Guatemala;Chinautla;1
+Guatemala;Chuarrancho;0
+Guatemala;Fraijanes;0
+Guatemala;Guatemala;0
+Guatemala;Mixco;1
+Guatemala;Palencia;0
+Guatemala;Petapa;0
+Guatemala;San José del Golfo;0
+Guatemala;San José Pinula;0
+Guatemala;San Juan Sacatepéquez;0
+Guatemala;San Pedro Ayampuc;0
+Guatemala;San Pedro Sacatepéquez;1
+Guatemala;San Raymundo;0
+Guatemala;Santa Catarina Pinula;1
+Guatemala;Villa Canales;1
+Guatemala;Villa Nueva;0
+Huehuetenango;Aguacatán;0
+Huehuetenango;Chiantla;0
+Huehuetenango;Colotenango;0
+Huehuetenango;Concepción Huista;0
+Huehuetenango;Cuilco;0
+Huehuetenango;Huehuetenango;1
+Huehuetenango;Ixtahuacán;1
+Huehuetenango;Jacaltenango;0
+Huehuetenango;La Democracia;0
+Huehuetenango;La Libertad;0
+Huehuetenango;Malacatancito;0
+Huehuetenango;Nentón;0
+Huehuetenango;San Antonio Huista;0
+Huehuetenango;San Gaspar Ixchil;0
+Huehuetenango;San Juan Atitlán;0
+Huehuetenango;San Juan Ixcoy;0
+Huehuetenango;San Mateo Ixtatán;0
+Huehuetenango;San Miguel Acatán;0
+Huehuetenango;San Pedro Necta;0
+Huehuetenango;San Rafael La Independencia;0
+Huehuetenango;San Rafael Petzal;1
+Huehuetenango;San Sebastián Coatán;0
+Huehuetenango;San Sebastián Huehuetenango;0
+Huehuetenango;Santa Ana Huista;0
+Huehuetenango;Santa Bárbara;0
+Huehuetenango;Santa Cruz Barillas;0
+Huehuetenango;Santa Eulalia;0
+Huehuetenango;Santiago Chimaltenango;0
+Huehuetenango;Soloma;0
+Huehuetenango;Tectitán;0
+Huehuetenango;Todos Santos Cuchumatán;0
+Huehuetenango;Union Cantinil;1
+Izabal;El Estor;1
+Izabal;Livingston;1
+Izabal;Los Amates;1
+Izabal;Morales;1
+Izabal;Puerto Barrios;1
+Jalapa;Jalapa;1
+Jalapa;Mataquescuintla;1
+Jalapa;Monjas;1
+Jalapa;San Carlos Alzatate;1
+Jalapa;San Luis Jilotepeque;0
+Jalapa;San Manuel Chaparrón;0
+Jalapa;San Pedro Pinula;1
+Jutiapa;Agua Blanca;1
+Jutiapa;Asunción Mita;0
+Jutiapa;Atescatempa;0
+Jutiapa;Comapa;0
+Jutiapa;Conguaco;0
+Jutiapa;El Adelanto;0
+Jutiapa;El Progreso;0
+Jutiapa;Jalpatagua;0
+Jutiapa;Jerez;0
+Jutiapa;Jutiapa;1
+Jutiapa;Moyuta;1
+Jutiapa;Pasaco;1
+Jutiapa;Quesada;1
+Jutiapa;San José Acatempa;0
+Jutiapa;Santa Catarina Mita;0
+Jutiapa;Yupiltepeque;0
+Jutiapa;Zapotitlán;0
+Petén;Dolores;0
+Petén;El Chal;0
+Petén;Flores;0
+Petén;La Libertad;0
+Petén;Las Cruces;0
+Petén;Melchor de Mencos;0
+Petén;Poptún;0
+Petén;San Andrés;0
+Petén;San Benito;0
+Petén;San Francisco;0
+Petén;San José;0
+Petén;San Luis;0
+Petén;Santa Ana;0
+Petén;Sayaxché;0
+Quetzaltenango;Almolonga;0
+Quetzaltenango;Cabricán;0
+Quetzaltenango;Cajolá;0
+Quetzaltenango;Cantel;0
+Quetzaltenango;Coatepeque;0
+Quetzaltenango;Colomba;0
+Quetzaltenango;Concepción Chiquirichapa;0
+Quetzaltenango;El Palmar;0
+Quetzaltenango;Flores Costa Cuca;0
+Quetzaltenango;Génova;0
+Quetzaltenango;Huitán;0
+Quetzaltenango;La Esperanza;0
+Quetzaltenango;Olintepeque;0
+Quetzaltenango;Ostuncalco;0
+Quetzaltenango;Palestina de los Altos;0
+Quetzaltenango;Quetzaltenango;0
+Quetzaltenango;Salcajá;0
+Quetzaltenango;San Carlos Sija;0
+Quetzaltenango;San Francisco La Unión;0
+Quetzaltenango;San Martín Sacatepéquez;0
+Quetzaltenango;San Mateo;0
+Quetzaltenango;San Miguel Sigüila;0
+Quetzaltenango;Sibilia;0
+Quetzaltenango;Zunil;0
+Quiché;Canillá;0
+Quiché;Chajul;0
+Quiché;Chicamán;0
+Quiché;Chichicastenango;0
+Quiché;Chinique;0
+Quiché;Cunén;0
+Quiché;Joyabaj;0
+Quiché;Nebaj;0
+Quiché;Pachulum;0
+Quiché;Patzité;0
+Quiché;Quiché;0
+Quiché;Sacapulas;0
+Quiché;San Andrés Sajcabajá;0
+Quiché;San Antonio Ilotenango;0
+Quiché;San Bartolomé Jocotenango;0
+Quiché;San Juan Cotzal;0
+Quiché;San Luis Ixcán;0
+Quiché;San Pedro Jocopilas;0
+Quiché;Santa Cruz del Quiché;0
+Quiché;Uspantán;0
+Quiché;Zacualpa;0
+Retalhuleu;Champerico;1
+Retalhuleu;El Asintal;0
+Retalhuleu;Nuevo San Carlos;1
+Retalhuleu;Retalhuleu;1
+Retalhuleu;San Andrés Villa Seca;1
+Retalhuleu;San Felipe;0
+Retalhuleu;San Martín Zapotitlán;0
+Retalhuleu;San Sebastián;0
+Retalhuleu;Santa Cruz Muluá;0
+Sacatepéquez;Alotenango;1
+Sacatepéquez;Antigua Guatemala;0
+Sacatepéquez;Ciudad Vieja;1
+Sacatepéquez;Jocotenango;1
+Sacatepéquez;Magdalena Milpas Altas;0
+Sacatepéquez;Pastores;0
+Sacatepéquez;San Antonio Aguas Calientes;0
+Sacatepéquez;San Bartolomé Milpas Altas;0
+Sacatepéquez;San Lucas Sacatepéquez;0
+Sacatepéquez;San Miguel Dueñas;1
+Sacatepéquez;Santa Catarina Barahona;0
+Sacatepéquez;Santa Lucía Milpas Altas;1
+Sacatepéquez;Santa María de Jesús;0
+Sacatepéquez;Santiago Sacatepéquez;0
+Sacatepéquez;Santo Domingo Xenacoj;0
+Sacatepéquez;Sumpango;0
+San Marcos;Ayutla;0
+San Marcos;Catarina;0
+San Marcos;Comitancillo;1
+San Marcos;Concepción Tutuapa;0
+San Marcos;El Quetzal;0
+San Marcos;El Rodeo;0
+San Marcos;El Tumbador;0
+San Marcos;Esquipulas Palo Gordo;0
+San Marcos;Ixchiguán;0
+San Marcos;La Blanca;0
+San Marcos;La Reforma;0
+San Marcos;Malacatán;0
+San Marcos;Nuevo Progreso;0
+San Marcos;Ocós;0
+San Marcos;Pajapita;0
+San Marcos;Río Blanco;0
+San Marcos;San Antonio Sacatepéquez;0
+San Marcos;San Cristóbal Cucho;1
+San Marcos;San José Ojetenam;0
+San Marcos;San Lorenzo;0
+San Marcos;San Marcos;0
+San Marcos;San Miguel Ixtahuacán;0
+San Marcos;San Pablo;0
+San Marcos;San Pedro Sacatepéquez;0
+San Marcos;San Rafael Pie de La Cuesta;1
+San Marcos;Sibinal;0
+San Marcos;Sipacapa;0
+San Marcos;Tacaná;0
+San Marcos;Tajumulco;0
+San Marcos;Tejutla;0
+Santa Rosa;Barberena;0
+Santa Rosa;Casillas;0
+Santa Rosa;Chiquimulilla;1
+Santa Rosa;Cuilapa;1
+Santa Rosa;Guazacapán;1
+Santa Rosa;Nueva Santa Rosa;0
+Santa Rosa;Oratorio;1
+Santa Rosa;Pueblo Nuevo Viñas;0
+Santa Rosa;San Juan Tecuaco;0
+Santa Rosa;San Rafael Las Flores;0
+Santa Rosa;Santa Cruz Naranjo;0
+Santa Rosa;Santa María Ixhuatán;1
+Santa Rosa;Santa Rosa de Lima;0
+Santa Rosa;Taxisco;0
+Sololá;Concepción;0
+Sololá;Nahualá;0
+Sololá;Panajachel;0
+Sololá;San Andrés Semetabaj;0
+Sololá;San Antonio Palopó;0
+Sololá;San José Chacayá;0
+Sololá;San Juan La Laguna;0
+Sololá;San Lucas Tolimán;0
+Sololá;San Marcos La Laguna;0
+Sololá;San Pablo La Laguna;0
+Sololá;San Pedro La Laguna;0
+Sololá;Santa Catarina Ixtahuacán;0
+Sololá;Santa Catarina Palopó;0
+Sololá;Santa Clara La Laguna;0
+Sololá;Santa Cruz La Laguna;0
+Sololá;Santa Lucía Utatlán;0
+Sololá;Santa María Visitación;0
+Sololá;Santiago Atitlán;0
+Sololá;Sololá;0
+Suchitepéquez;Chicacao;0
+Suchitepéquez;Cuyotenango;0
+Suchitepéquez;Mazatenango;0
+Suchitepéquez;Patulul;0
+Suchitepéquez;Pueblo Nuevo;0
+Suchitepéquez;Río Bravo;0
+Suchitepéquez;Samayac;0
+Suchitepéquez;San Antonio Suchitepéquez;0
+Suchitepéquez;San Bernardino;0
+Suchitepéquez;San Francisco Zapotitlán;0
+Suchitepéquez;San Gabriel;0
+Suchitepéquez;San José El Ídolo;0
+Suchitepéquez;San José La Maquina;0
+Suchitepéquez;San Juan Bautista;0
+Suchitepéquez;San Lorenzo;0
+Suchitepéquez;San Miguel Panán;0
+Suchitepéquez;San Pablo Jocopilas;0
+Suchitepéquez;Santa Bárbara;0
+Suchitepéquez;Santo Domingo Suchitepéquez;0
+Suchitepéquez;Santo Tomás la Unión;0
+Suchitepéquez;Zunilito;0
+Totonicapán;Momostenango;0
+Totonicapán;San Andrés Xecul;0
+Totonicapán;San Bartolo;0
+Totonicapán;San Cristóbal Totonicapán;0
+Totonicapán;San Francisco El Alto;0
+Totonicapán;Santa Lucía La Reforma;0
+Totonicapán;Santa María Chiquimula;0
+Totonicapán;Totonicapán;0
+Zacapa;Cabañas;0
+Zacapa;Estanzuela;0
+Zacapa;Gualán;1
+Zacapa;Huité;0
+Zacapa;La Unión;1
+Zacapa;Río Hondo;0
+Zacapa;San Diego;0
+Zacapa;San Jorge;0
+Zacapa;Teculután;0
+Zacapa;Usumatlán;1
+Zacapa;Zacapa;1
