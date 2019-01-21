@@ -15,8 +15,7 @@ class CreateCandidatesTable extends Migration
     {
         Schema::create('candidates', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->string('name');
             $table->enum('position', ['Alcalde', 'Nacional', 'Distrito']);
             $table->integer('department_id')->unsigned()->nullable();
             $table->integer('municipality_id')->unsigned()->nullable();

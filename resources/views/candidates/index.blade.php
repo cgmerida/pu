@@ -22,8 +22,7 @@
         <table id="dataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
+                    <th>Nombre</th>
                     <th>Posición</th>
                     <th>Departamento</th>
                     <th>Municipio</th>
@@ -33,8 +32,7 @@
             
             <tfoot>
                 <tr>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
+                    <th>Nombre</th>
                     <th>Posición</th>
                     <th>Departamento</th>
                     <th>Municipio</th>
@@ -52,8 +50,7 @@
         $('#dataTable').DataTable({
             ajax: '/api/candidates',
             columns: [
-                {data: 'first_name'},
-                {data: 'last_name'},
+                {data: 'name'},
                 {data: 'position'},
                 {data: 'department.name'},
                 {data: 'municipality.name'},
