@@ -17,6 +17,7 @@ class CreateDepartmentsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->boolean('prime')->default(false);
+            $table->boolean('legal')->default(false);
             $table->timestamps();
         });
     }
