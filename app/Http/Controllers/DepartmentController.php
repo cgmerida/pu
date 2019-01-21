@@ -13,7 +13,7 @@ class DepartmentController extends Controller
         $this->middleware('permission:departments.create')->only(['create', 'store']);
         $this->middleware('permission:departments.edit')->only(['edit', 'update']);
         $this->middleware('permission:departments.show')->only('show');
-        $this->middleware('permission:departments.destroy')->only('destroy'); 
+        $this->middleware('permission:departments.destroy')->only('destroy');
     }
 
     /**
@@ -60,6 +60,18 @@ class DepartmentController extends Controller
     public function show(Department $department)
     {
         return view('departments.show', compact('department'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function municipalities(Department $department)
+    {
+        return $department->municipalities()->select('id', 'name')->get()
+            ->prepend(['id' => null, 'name' => 'Seleccione un municipio']);
     }
 
     /**
