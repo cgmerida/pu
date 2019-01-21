@@ -8,7 +8,7 @@ class Candidate extends Model
 {
 
     protected $fillable = [
-        'first_name', 'last_name', 'position',
+        'name', 'position',
         'department_id', 'municipality_id'
     ];
 
@@ -20,8 +20,7 @@ class Candidate extends Model
     public static function rules()
     {
         return [
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'position' => 'required|string|max:255',
             'department_id' => 'required|numeric',
             'municipality_id' => 'required|numeric',
@@ -46,5 +45,10 @@ class Candidate extends Model
     public function municipality()
     {
         return $this->belongsTo(Municipality::class);
+    }
+
+    public function setNameAttribute($value = '')
+    {
+        $this->attributes['name'] = ucwords($value);
     }
 }
