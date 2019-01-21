@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Candidate;
 use Illuminate\Http\Request;
+use App\Department;
 
 class CandidateController extends Controller
 {
@@ -14,7 +15,7 @@ class CandidateController extends Controller
      */
     public function index()
     {
-        //
+        return view('candidates.index');
     }
 
     /**
@@ -24,7 +25,13 @@ class CandidateController extends Controller
      */
     public function create()
     {
-        //
+        $positions = Candidate::positions();
+
+        $departments = Department::pluck('name', 'id')->prepend('Seleccione un departamento');
+
+        $municipalities = [0 => 'Seleccione un departamento antes'];
+
+        return view('candidates.create', compact('departments', 'municipalities', 'positions'));
     }
 
     /**
@@ -35,7 +42,11 @@ class CandidateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, Candidate::rules());
+
+        Candidate::create($request->all());
+
+        return redirect()->route('candidates.index')->withSuccess(trans('app.success_store'));
     }
 
     /**
@@ -46,7 +57,13 @@ class CandidateController extends Controller
      */
     public function show(Candidate $candidate)
     {
-        //
+        $positions = Candidate::positions();
+
+        $departments = Department::pluck('name', 'id')->prepend('Seleccione un departamento');
+
+        $municipalities = $candidate->municipality()->pluck('name', 'id');
+
+        return view('candidates.show', compact('candidate', 'departments', 'municipalities', 'positions'));
     }
 
     /**
@@ -57,7 +74,13 @@ class CandidateController extends Controller
      */
     public function edit(Candidate $candidate)
     {
-        //
+        $positions = Candidate::positions();
+
+        $departments = Department::pluck('name', 'id')->prepend('Seleccione un departamento');
+
+        $municipalities = $candidate->municipality()->pluck('name', 'id');
+        
+        return view('candidates.edit', compact('candidate', 'departments', 'municipalities', 'positions'));
     }
 
     /**
@@ -69,7 +92,11 @@ class CandidateController extends Controller
      */
     public function update(Request $request, Candidate $candidate)
     {
-        //
+        $this->validate($request, Candidate::rules());
+
+        Candidate::update($request->all());
+
+        return redirect()->route('candidates.index')->withSuccess(trans('app.success_update'));
     }
 
     /**
@@ -80,6 +107,8 @@ class CandidateController extends Controller
      */
     public function destroy(Candidate $candidate)
     {
-        //
+        $candidate->delete();
+
+        return back()->withSuccess(trans('app.success_destroy'));
     }
 }

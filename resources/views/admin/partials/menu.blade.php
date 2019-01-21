@@ -50,3 +50,14 @@
     </a>
 </li>
 @endcan
+
+@can('candidates.index')
+<li class="nav-item">
+    <a class='sidebar-link' href="{{ route('candidates.index') }}">
+        <span class="icon-holder">
+            <i class="c-light-blue-500 fa fa-male"></i>
+        </span>
+        <span class="title">Candidatos</span>
+    </a>
+</li>
+@endcan

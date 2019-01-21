@@ -27,5 +27,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::view('admin', 'admin.dashboard.index')->name('admin.dash');
     
     Route::resource('departments', 'DepartmentController');
+    Route::get('departments/{department}/municipalities', 'DepartmentController@municipalities');
     Route::resource('municipalities', 'MunicipalityController');
+    Route::resource('candidates', 'CandidateController');
 });

@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 // });
 
 Route::get('users', function () {
-    return datatables(App\User::latest('updated_at')->get())
+    return datatables(App\User::get())
         ->addColumn('actions', 'users.partials.actions')
         ->rawColumns(['actions'])
         ->toJson();
@@ -39,8 +39,15 @@ Route::get('departments', function () {
 });
 
 Route::get('municipalities', function () {
-    return datatables(App\Municipality::latest('updated_at')->with('department')->get())
+    return datatables(App\Municipality::with('department')->get())
         ->addColumn('actions', 'municipalities.partials.actions')
+        ->rawColumns(['actions'])
+        ->toJson();
+});
+
+Route::get('candidates', function () {
+    return datatables(App\Candidate::with('department', 'municipality')->get())
+        ->addColumn('actions', 'candidates.partials.actions')
         ->rawColumns(['actions'])
         ->toJson();
 });
