@@ -22,20 +22,20 @@
         <table id="dataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Posición</th>
                     <th>Departamento</th>
                     <th>Municipio</th>
+                    <th>Nombre</th>
+                    <th>Posición</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             
             <tfoot>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Posición</th>
                     <th>Departamento</th>
                     <th>Municipio</th>
+                    <th>Nombre</th>
+                    <th>Posición</th>
                     <th>Acciones</th>
                 </tr>
             </tfoot>
@@ -50,10 +50,10 @@
         $('#dataTable').DataTable({
             ajax: '/api/candidates',
             columns: [
-                {data: 'name'},
-                {data: 'position'},
                 {data: 'department.name'},
                 {data: 'municipality.name'},
+                {data: 'name'},
+                {data: 'position'},
                 {data: 'actions'}
             ]
         });
