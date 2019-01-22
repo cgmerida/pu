@@ -19,8 +19,8 @@ class Municipality extends Model
     {
         return [
             'name' => 'required|string|max:255',
-            'prime' => 'required|boolean',
-            'legal' => 'required|boolean',
+            'prime' => 'boolean',
+            'legal' => 'boolean',
             'department_id' => 'required|numeric'
         ];
     }
