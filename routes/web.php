@@ -24,10 +24,16 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('roles', 'RoleController');
     Route::resource('users', 'UserController');
-    Route::view('admin', 'admin.dashboard.index')->name('admin.dash');
     
     Route::resource('departments', 'DepartmentController');
     Route::get('departments/{department}/municipalities', 'DepartmentController@municipalities');
     Route::resource('municipalities', 'MunicipalityController');
     Route::resource('candidates', 'CandidateController');
+
+    Route::get('admin', 'DashboardController@index')->name('admin.dash');
+    Route::get('dashboard/departments/legals', 'DashboardController@departmentsLegal');
+    Route::get('dashboard/municipalities/{department}/legals', 'DashboardController@municipalitiesLegal');
+
+    Route::get('dashboard/department/{department}/stadistics', 'DashboardController@deptoStadistics');
+    Route::get('dashboard/stadistics', 'DashboardController@paisStadistics');
 });
