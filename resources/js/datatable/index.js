@@ -20,7 +20,8 @@ import "datatables";
 
 $.extend($.fn.dataTable.defaults, {
     responsive: true,
-    dom: "Bfrtip",
+    // dom: "fBlrtip",
+    dom: '<"btns_wrapper"B><"top"fl>rt<"bottom"ip>',
     serverSide: true,
     processing: true,
     fixedColumns: true,
