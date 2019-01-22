@@ -39,4 +39,9 @@ class Municipality extends Model
     {
         return $this->belongsTo(Department::class);
     }
+    
+    public function candidates()
+    {
+        return $this->hasMany(Candidate::class);
+    }
 }
