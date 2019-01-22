@@ -10,19 +10,20 @@
 
 @section('content')
 
-    <div class="mB-20">
+    {{-- <div class="mB-20">
         @can('departments.create')
         <a href="{{ route('departments.create') }}" class="btn btn-info">
             {{ trans('app.add_button') }}
         </a>
         @endcan
-    </div>
+    </div> --}}
 
     <div class="bgc-white bd bdrs-3 p-20 mB-20">
         <table id="dataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th>Nombre</th>
+                    <th>Legal</th>
                     <th>Prime</th>
                     <th>Acciones</th>
                 </tr>
@@ -31,6 +32,7 @@
             <tfoot>
                 <tr>
                     <th>Nombre</th>
+                    <th>Legal</th>
                     <th>Prime</th>
                     <th>Acciones</th>
                 </tr>
@@ -47,6 +49,7 @@
             ajax: '/api/departments',
             columns: [
                 {data: 'name'},
+                {data: 'legal'},
                 {data: 'prime'},
                 {data: 'actions'}
             ]
