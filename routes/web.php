@@ -36,4 +36,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('dashboard/department/{department}/stadistics', 'DashboardController@deptoStadistics');
     Route::get('dashboard/stadistics', 'DashboardController@paisStadistics');
+
+    Route::get('mayors', 'CandidateController@mayors')->name('candidates.mayors');
+    Route::get('mayors/{department}/{muni_id}', 'CandidateController@getMayors')->where('depto_id', '[0-9]+')->where('muni_id', '[0-9]+');;
 });
