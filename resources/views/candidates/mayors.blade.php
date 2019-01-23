@@ -82,10 +82,10 @@
 					}
 				},
 				columns: [
-					{data: 'name'},
+					{data: 'department.name'},
 					{data: 'name'},
 					{data: 'legal'},
-					{data: 'name'},
+					{data: 'candidates.name'},
 					{data: 'actions'}
 				]
 			});

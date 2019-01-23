@@ -1,7 +1,9 @@
 
 <ul class="list-inline">
+
+    {{ $var }}
     
-    @can('candidates.show')
+    {{-- @can('candidates.show')
     <li class="list-inline-item">
         <a href="{{ route('candidates.show', $id) }}"
         title="Ver" class="btn btn-sm btn-outline-secondary">
@@ -35,5 +37,5 @@
             
         {!! Form::close() !!}
     </li>
-    @endcan
+    @endcan --}}
 </ul>

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Candidate;
-use Illuminate\Http\Request;
 use App\Department;
 use App\Municipality;
+use Illuminate\Http\Request;
 
 class CandidateController extends Controller
 {
@@ -124,13 +124,37 @@ class CandidateController extends Controller
 
     public function getMayors(Department $department, $muni_id)
     {
-        $search = (int)$muni_id === 0 ?
-            $department->municipalities()->with('candidates')->get():
-            $department->with('municipalities', 'municipalities.candidates')->where('municipalities.id', $muni_id)->get();
-            
+        $search = (int) $muni_id === 0 ?
+        $department->municipalities()->with([
+            'department' => function ($query) {
+                $query->select('id', 'name');
+            },
+            'candidates',
+        ])->get() :
+        $department->municipalities()->where('id', $muni_id)->with([
+            'department' => function ($query) {
+                $query->select('id', 'name');
+            },
+            'candidates',
+        ])->get();
+
         return datatables($search)
-            ->addColumn('actions', 'candidates.partials.actions')
+            ->editColumn('candidates.name', function ($search) {
+                if (!empty($search->candidates[0])) {
+                    return $search->candidates[0]->name;
+                }
+                return 'Sin Candidato';
+            })
+            ->addColumn('actions', function ($search) {
+                $var = null;
+                if (!empty($search->candidates[0])) {
+                    $var = $search->candidates[0]->id;
+                }
+                $var = 0;
+                return view('candidates.partials.mayors-action', compact('var'));
+            })
+            // ->addColumn('actions', 'candidates.partials.mayors-action')
             ->rawColumns(['actions'])
-            ->toJson();
+            ->make(true);
     }
 }
