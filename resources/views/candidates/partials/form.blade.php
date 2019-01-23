@@ -4,7 +4,7 @@
 			
 			{!! Form::mySelect('department_id', 'Departamento', $departments) !!}
 			
-			{!! Form::mySelect('municipality_id', 'Departamento', $municipalities) !!}
+			{!! Form::mySelect('municipality_id', 'Municipio', $municipalities) !!}
 			
 			{!! Form::myInput('text', 'name', 'Nombre Completo del candidato') !!}
 			
