@@ -84,92 +84,105 @@
 				columns: [
 					{data: 'department.name'},
 					{data: 'name'},
-					{data: 'legal'},
-					{data: 'candidates.name'},
+					{data: 'legal', className: 'dt-body-right'},
+					{data: 'mayor.name'},
 					{data: 'actions', orderable: false, searchable: false}
-				]
+                ], 
+                order: [[ 2, "desc" ]]
 			});
 		}
         
         function swallError(mensaje) {
             swal("¡Error!", `<small class=text-danger>${mensaje}</small>`, "error");
         }
-        function editName(id) {
-            console.log(`mayors/${id}`);
+
+        function createMayor(depto, muni) {
+            const body = {
+                department_id: depto,
+                municipality_id: muni
+            };
+
+            mySwall('Crear Nuevo Candidato', 'Crear', 'post', body, 'mayors/');
+        }
+
+        function editName(url) {
+            const body = {
+                _method: "PUT",
+                name: name
+            };
+
+            mySwall('Ingrese el nuevo Candidato', 'Actualizar', 'post', body, url);
+        }
+
+        function deleteMayor(url) {
             swal.fire({
-                title: 'Ingrese el Nuevo Candidato',
-                input: 'text',
-                inputAttributes: {
-                    autocapitalize: 'off'
-                },
+                title: "¿Estás Seguro?",
+                text: "¿Estás seguro de querer continuar?",
+                type: "error",
                 showCancelButton: true,
-                confirmButtonText: 'Actualizar',
-                showLoaderOnConfirm: true,
-                preConfirm: (name) => {
-                    return fetch(`mayors/${id}`,{
+                confirmButtonClass: "btn btn-outline-danger",
+                cancelButtonClass: "btn btn-outline-primary",
+                confirmButtonText: "Si, estoy seguro",
+                cancelButtonText: "Cancelar",
+                showLoaderOnConfirm: true
+            }).then(res => {
+                if (res.value) {
+                    return fetch(url, {
                         headers: {
                             "Content-Type": "application/json",
                             "Accept": "application/json",
                             "X-Requested-With": "XMLHttpRequest",
                             "X-CSRF-Token": $('meta[name="csrf-token"]').attr('content')
                         },
-                        method: "post",
+                        method: 'post',
                         credentials: "same-origin",
                         body: JSON.stringify({
-                            _method: "PUT",
-                            name: name
+                            _method: "DELETE",
                         })}
                     )
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error(response.statusText)
-                            console.log(response);
-                        }
-                        return response.json()
-                    })
-                    .catch(error => {
-                        swal.showValidationMessage(`fallo la petición: ${error}`)
-                    })
-                },
-                allowOutsideClick: () => !swal.isLoading()
-            })
-            .then((result) => {
-                if (result.value) {
-                    if (resutl.value.status == 'exito'){
-                        searchDatatable();
-                        swal.fire(result.value.message, `Nombre fue cambiado a ${result.value.mayor.name}`, 'success')
-                        console.log(`Fue actualizado el candidato no. ${result.value.mayor.name.id}`)
-                    }
                 }
             })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(response.statusText)
+                    console.log(response);
+                }
+                return response.json();
+            })
+            .then(result => {
+                if (result.status == 'exito'){
+                    searchDatatable();
+                    swal.fire(result.status, result.message,'success')
+                }
+            })
+            .catch(error => {
+                swal.showValidationMessage(`fallo la petición: ${error}`)
+            })
         }
-        function createMayor(depto, muni) {
+
+        function mySwall(title, btn_txt, method, body, url){
             swal.fire({
-                title: 'Crear Nuevo Candidato',
+                title: title,
                 input: 'text',
                 inputAttributes: {
                     autocapitalize: 'off'
                 },
                 showCancelButton: true,
-                confirmButtonText: 'Crear',
+                confirmButtonText: btn_txt,
                 showLoaderOnConfirm: true,
                 preConfirm: (name) => {
-                    return fetch(`mayors/`,{
+                    body.name = name;
+                    return fetch(url, {
                         headers: {
                             "Content-Type": "application/json",
                             "Accept": "application/json",
                             "X-Requested-With": "XMLHttpRequest",
                             "X-CSRF-Token": $('meta[name="csrf-token"]').attr('content')
                         },
-                        method: "post",
+                        method: method,
                         credentials: "same-origin",
-                        body: JSON.stringify({
-                            name: name,
-                            department_id: depto,
-                            municipality_id: muni,
-                            position: 'Alcalde'
-                        })}
-                    )
+                        body: JSON.stringify(body)
+                    })
                     .then(response => {
                         if (!response.ok) {
                             throw new Error(response.statusText)
@@ -187,15 +200,11 @@
                 if (result.value) {
                     if (result.value.status == 'exito'){
                         searchDatatable();
-                        swal.fire(
-                            result.value.message,
-                            `Fue creado ${result.value.mayor.name} 
-                            en ${result.value.mayor.depto}, ${result.value.mayor.muni}`,
-                            'success'
-                            )
+                        swal.fire(result.value.status, result.value.message,'success')
                     }
                 }
             })
         }
     </script>
+    
 @endsection
