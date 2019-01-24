@@ -39,8 +39,8 @@ class Department extends Model
         return $this->hasMany(Municipality::class);
     }
 
-    public function candidates()
+    public function mayors()
     {
-        return $this->hasMany(Candidate::class);
+        return $this->hasMany(Mayor::class);
     }
 }

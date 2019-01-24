@@ -19,6 +19,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(MunicipalitiesTableSeeder::class);
 
-        $this->call(CandidatesTableSeeder::class);
+        $this->call(MayorsTableSeeder::class);
     }
 }

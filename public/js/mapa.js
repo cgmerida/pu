@@ -109,13 +109,13 @@ function crearPais(tipo, data) {
             useHTML: true,
             formatter: function () {
                 txt = "";
-                if (this.point.candidates_count != null) {
+                if (this.point.mayors_count != null) {
                     txt = `Candidatos: <span class='fw-900'>
-                        ${(this.point.candidates_count ? this.point.candidates_count : 0)}
+                        ${(this.point.mayors_count ? this.point.mayors_count : 0)}
                     </span>`;
                 } else {
                     txt = `Candidato : <span class='fw-900'>
-                        ${(this.point.candidates.length > 0 ? this.point.candidates[0].name : 'Sin Candidato')}
+                        ${(this.point.mayor != null ? this.point.mayor.name : 'Sin Candidato')}
                     </span>`;
                 }
                 return `<div class=fsz-def><span style="color:${this.point.color}">\u25CF</span>
@@ -149,7 +149,7 @@ function crearPais(tipo, data) {
                     from: -1,
                     to: 0,
                     name: `No ${(tipo == 'legals') ? 'Legal': 'Prime'}`,
-                    color: "#ccc"
+                    color: "#f5ef18"
                 },
                 {
                     from: 1,

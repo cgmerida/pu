@@ -29,7 +29,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('departments/{department}/municipalities', 'DepartmentController@municipalities');
 
     Route::resource('municipalities', 'MunicipalityController');
-    Route::resource('candidates', 'CandidateController');
+    // Route::resource('candidates', 'CandidateController');
 
     Route::resource('mayors', 'MayorController');
     Route::get('mayors/{department}/{muni_id}', 'MayorController@getMayors')

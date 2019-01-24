@@ -4,12 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Candidate extends Model
+class Mayor extends Model
 {
 
     protected $fillable = [
-        'name', 'position',
-        'department_id', 'municipality_id'
+        'name', 'department_id', 'municipality_id'
     ];
 
     protected $dates = [
@@ -21,20 +20,14 @@ class Candidate extends Model
     {
         return [
             'name' => 'required|string|max:255',
-            'position' => 'required|string|max:255',
             'department_id' => 'required|numeric',
             'municipality_id' => 'required|numeric',
         ];
     }
 
-    public static function positions()
+    public function setNameAttribute($value = '')
     {
-        return [
-            0 => 'Seleccione una posición',
-            'Alcalde' => 'Alcalde',
-            'Nacional' => 'Nacional',
-            'Distrito' => 'Distrito'
-        ];
+        $this->attributes['name'] = ucwords(strtolower($value));
     }
 
     public function department()
@@ -45,10 +38,5 @@ class Candidate extends Model
     public function municipality()
     {
         return $this->belongsTo(Municipality::class);
-    }
-
-    public function setNameAttribute($value = '')
-    {
-        $this->attributes['name'] = ucwords(strtolower($value));
     }
 }

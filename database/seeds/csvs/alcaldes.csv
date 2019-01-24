@@ -1,0 +1,162 @@
+﻿department_id;municipality_id;name
+Alta Verapaz;Cahabón;PROFESORA ANA MARIA REYES
+Alta Verapaz;Cobán;ING. FABRICIO HIDALGO
+Alta Verapaz;Lanquín;GILMA DOMINGA ASIG POP
+Alta Verapaz;Panzós;PROF. JOSE ALFREDO MUCU
+Alta Verapaz;San Cristóbal Verapaz;JUAN AUGUSTO CAL CAL
+Alta Verapaz;Santa Catalina La Tinta;OSCAR GARCIA CHAMAN ex. Alc.
+Alta Verapaz;Senahú;ARIEL CAAL
+Alta Verapaz;Tamahú;HUGO GUZMAN
+Alta Verapaz;Tucurú;HENRY ARTOLA
+Baja Verapaz;El Chol;ANIBAL SARMIENTO
+Baja Verapaz;Granados;FRANS CARDONA
+Baja Verapaz;Rabinal;MANUEL APARICIO JERONIMO
+Baja Verapaz;San Jerónimo;TIN CUELLAR-CARLOS E. SOLIS CONSEJ
+Baja Verapaz;San Miguel Chicaj;EDGAR ADAN IXTECOC    ALC. ACT
+Chimaltenango;Chimaltenango;AXEL SIMAJ ALC. ACT.
+Chimaltenango;Comalapa;JUSTO RUFINO SIMILOX ALC.ACT. 
+Chimaltenango;Pochuta;ALC. ACT.
+Chimaltenango;Santa Apolonia;ALC. ACT.
+Chimaltenango;Tecpán Guatemala;LOLO-CANDIDA CORADO
+Chimaltenango;Yepocapa;ALC. ACT.
+El Progreso;El Jícaro;MELVIN MAURICIO CARRANZA M.
+El Progreso;Guastatoya;ARNOLDO SOTO CARANZA
+El Progreso;Morazán;JOSE MANUEL BETANCURTH
+El Progreso;San Agustín Acasaguastlán;MYNOR PERFECTO SANTOS
+El Progreso;San Antonio La Paz;MYNOR MONZON
+El Progreso;San Cristóbal Acasaguastlán;GIDO GODINEZ
+El Progreso;Sansare;CARLOS AUGUSTO RODRIGUEZ RUANO
+Escuintla;Guanagazapa;ASBIDIO TECUN FLORIAN
+Escuintla;Palín;MARIO VITELIO YANTUCHI   ALC. ACT. 
+Escuintla;San Vicente Pacaya;CARLOS GONZALEZ
+Escuintla;Santa Lucía Cotzumalguapa;ROLANDO GUZMAN  ALC. ACT.
+Guatemala;Santa Catarina Pinula;SEBASTIAN SIERRO
+Guatemala;Villa Nueva;ESAU BURGOS
+Huehuetenango;Aguacatán;PATRICIO MENDEZ
+Huehuetenango;Santa Cruz Barillas;ALEJANDRO RUIZ CALDERON
+Huehuetenango;Chiantla;FRANCISCO ROMAN JACINTO
+Huehuetenango;Colotenango;LUIS VELASQUEZ
+Huehuetenango;Concepción Huista;RAMON VARGAS
+Huehuetenango;Cuilco;ORLANDO GALVEZ
+Huehuetenango;Huehuetenango;RODERICO MARTINEZ
+Huehuetenango;Ixtahuacán;DIEGO VELASQUEZ
+Huehuetenango;Jacaltenango;CLAUDIO CAMPOSECO
+Huehuetenango;La Democracia;FRANCISCO ISAI HIDALGO ARGUETA
+Huehuetenango;La Libertad;LUCIO MORALES
+Huehuetenango;Malacatancito;LEOPOLDO SAMAYOA RAMOS
+Huehuetenango;Nentón;YEFRY DIAZ
+Huehuetenango;San Antonio Huista;LUIS RICARDO GARCIA COTA
+Huehuetenango;San Juan Ixcoy;JUAN GARCIA
+Huehuetenango;San Mateo Ixtatán;FILIMON CARRILLO
+Huehuetenango;San Miguel Acatán;BARTOLO MATIAS
+Huehuetenango;San Pedro Necta;CARLOS GONZALES SANCHEZ
+Huehuetenango;San Sebastián Coatán;JOSE MENDOZA
+Huehuetenango;Santa Ana Huista;DIMAS MORALES
+Huehuetenango;Santa Bárbara;ALFREDO SALES
+Huehuetenango;Santa Eulalia;DIEGO MARCOS
+Huehuetenango;Santiago Chimaltenango;MACARIO JIMENEZ
+Huehuetenango;Todos Santos Cuchumatán;CRUZ JERONIMO RAMIREZ
+Izabal;EL Estor;HUGO WOLER
+Jalapa;Jalapa;NORMA HAYDE CRUZ RUEDAS
+Jalapa;San Carlos Alzatate;SANTOS ARTURO NAJERA LIMA
+Jutiapa;Jerez;MISAEL ASENCIO LOPEZ
+Jutiapa;Quesada;OSCAR RONOBEL LOAYSA LOPEZ
+Petén;Dolores;VITALINO DUARTE
+Petén;El Chal;MARCOS FABIAN
+Petén;Flores;ALEXIA DE MARIN
+Petén;La Libertad;MYNOR SUAREZ
+Petén;Las Cruces;RUBEN SOSA
+Petén;Melchor De Mencos;MOISES REYNOSO
+Petén;Poptún;JOSE ANTONIO CAC
+Petén;San Benito;EFRAIN AGUILAR
+Petén;San José;JUAN CANTE
+Petén;San Luis;OMAR CAAL
+Petén;Sayaxché;ERNESTO ROSADO
+Quetzaltenango;Cajolá;MANUEL BAIR
+Quetzaltenango;Cantel;MIGUEL TIXAL
+Quetzaltenango;La Esperanza;MIGUEL OROXON
+Quetzaltenango;Ostuncalco;LIC. ROMEO
+Quetzaltenango;Quetzaltenango;RONY CASTILLO
+Quetzaltenango;San Mateo;HECTOR IXCOT
+Quiché;Chajul;PABLO SANCHEZ
+Quiché;Chichicastenango;LUIS TOJ RIVERA
+Quiché;San Luis Ixcán;GERMAN QUIB CAAL
+Quiché;Nebaj;DANIEL VELASCO
+Quiché;San Juan Cotzal;TOMAS DE LA CRUZ
+Quiché;San Pedro Jocopilas;JUAN BATEN
+Quiché;Uspantán;ROGELIO NATARENO
+Quiché;Zacualpa;MIGUEL TIQUIRAN OLMOS
+Retalhuleu;Champerico;SAMUEL BENITES
+Retalhuleu;El Asintal;WALTER SANCHEZ HERNANDEZ
+Retalhuleu;Retalhuleu;ANIBAL CALDERON
+Retalhuleu;San Andrés Villa Seca;MELVIN ARODY BARRIOS MORALES
+Retalhuleu;San Sebastián;JUSTO CHOJOLAN IQUIC
+Sacatepéquez;Alotenango;LUIS CIVIL
+Sacatepéquez;Antigua Guatemala;MANUEL ESTRADA
+Sacatepéquez;Ciudad Vieja;MARCO TULIO VASQUEZ
+Sacatepéquez;Jocotenango;EBER GUDIEL
+Sacatepéquez;Magdalena Milpas Altas;AMILCAR ESCOBAR MARROQUIN
+Sacatepéquez;Pastores;CESAR VALLE
+Sacatepéquez;San Antonio Aguas Calientes;SERGIO ENRIQUE PEREZ
+Sacatepéquez;San Bartolomé Milpas Altas;ROSALIO ASPUAC
+Sacatepéquez;San Lucas Sacatepéquez;HUGO ZAMORA
+Sacatepéquez;San Miguel Dueñas;OTILIO BARRIENTOS
+Sacatepéquez;Santa Catarina Barahona;SALOMON HERNANDEZ
+Sacatepéquez;Santa María de Jesús;MARIO PEREZ PIO
+Sacatepéquez;Santiago Sacatepéquez;HECTOR FRANCISCO SACTIC
+Sacatepéquez;Santo Domingo Xenacoj;PASCUAL CHOCOYO
+San Marcos;Catarina;JORGE MARIO CASTILLO
+San Marcos;Comitancillo;ESTUARDO R. DE LEON MARROQUIN 
+San Marcos;El Quetzal;SABINO ALVARADO
+San Marcos;El Tumbador;DIANA GALVAN
+San Marcos;La Reforma;OCTAVIO CARDONA
+San Marcos;San Antonio Sacatepéquez;ROELMER CARDONA
+San Marcos;San Cristóbal Cucho;MISAEL FLORENTIN VASQUEZ
+San Marcos;San José Ojetenam;AMBROSIO ROBLERO
+San Marcos;San Lorenzo;MAXIMILIANO MARROQUIN
+San Marcos;San Marcos;GUILLERMO ROBERTO CIFUENTES
+San Marcos;San Pedro Sacatepéquez;RONALD CARDONA
+San Marcos;San Rafael Pie de La Cuesta;MANUEL ALBERTO RODAS
+San Marcos;Sipacapa;RAMIRO BAUTISTA
+San Marcos;Tajumulco;ISMAEL GOMEZ
+San Marcos;Tejutla;SELVIN ARRIVILLAGA  ALC. ACT.
+Santa Rosa;Chiquimulilla;LUIS VILLEGAS
+Santa Rosa;Pueblo Nuevo Viñas;ROCAEL YUMAN
+Santa Rosa;Taxisco;ANIBAL LANUZA
+Sololá;Panajachel;GASPAR ZAPETA
+Sololá;San Andrés Semetabaj;JOSE RUFINO CUMEZ COROXON
+Sololá;San Antonio Palopó;JORGE PEREZ MARTIN
+Sololá;San José Chacayá;MARCELINO ROQUEL GARCIA
+Sololá;San Juan La Laguna;BENEDICTO IXTAMER
+Sololá;San Lucas Tolimán;ADILIO AMILCAR AZAÑON DE LEON
+Sololá;San Marcos La Laguna;EDWIN CUA
+Sololá;San Pablo La Laguna;BENJAMIN UJPAN PETZEY
+Sololá;San Pedro La Laguna;FRANCISCO GONZALEZ MENDEZ
+Sololá;Santa Catarina Palopó;OSCAR MATZER
+Sololá;Santa Clara La Laguna;ALBERTO ZAPETA
+Sololá;Santa Lucía Utatlán;DOLMO HERIBERTO SULUGUI
+Sololá;Santiago Atitlán;JOSE RAMIREZ
+Suchitepéquez;Chicacao;MIGUEL NATARENO DE LA CRUZ
+Suchitepéquez;Mazatenango;GERMAN CAAL
+Suchitepéquez;Patulul;GERMAN RUIZ
+Suchitepéquez;Pueblo Nuevo;CELSO GARCIA
+Suchitepéquez;Río Bravo;EVER GARCIA
+Suchitepéquez;Samayac;JORGE LUIS LOPEZ GOLON
+Suchitepéquez;San Bernardino;RONY ANIBAL REYES
+Suchitepéquez;San Francisco Zapotitlán;JULIO DE LEON MALDONADO
+Suchitepéquez;San Gabriel;CRISTOBAL SALSA
+Suchitepéquez;San José El Ídolo;DELMI NERGIDIA PINEDA VELA
+Suchitepéquez;San Juan Bautista;RUBIDIA ALELI AVALOS AJU
+Suchitepéquez;San Lorenzo;HENRI ESTUARDO AYALA DARDON
+Suchitepéquez;San Miguel Panán;GERMAN JUAREZ
+Suchitepéquez;San Pablo Jocopilas;LUIS OVALLE
+Suchitepéquez;Santo Tomás la Unión;NESTOR RAUL CHACA SALAS
+Suchitepéquez;Santo Domingo Suchitepéquez;JORGE ARESTI
+Totonicapán;San Andrés Xecul;MARTIN SAQUIC POROJ
+Totonicapán;San Bartolo;AMARILDO CHUN CHAMPET
+Totonicapán;San Cristóbal Totonicapán;MARCOS FRANCISCO MEJIA SOSA
+Totonicapán;San Francisco El Alto;ALEXANDER ALVARADO
+Totonicapán;Santa Lucía La Reforma;JUAN ANTONIO LUX
+Totonicapán;Santa María Chiquimula;JUAN JUSTO LUX
+Zacapa;La Unión;MANRIQUE DUQUE
+Zacapa;Zacapa;ALCALDESA ACTUAL

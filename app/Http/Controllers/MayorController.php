@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Candidate;
+use App\Mayor;
 use App\Department;
 use App\Municipality;
 use Illuminate\Http\Request;
@@ -31,9 +31,9 @@ class MayorController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, Candidate::rules());
+        $this->validate($request, Mayor::rules());
 
-        $mayor = Candidate::create($request->all());
+        $mayor = Mayor::create($request->all());
 
         $mayor->depto = $mayor->department->name;
         $mayor->muni = $mayor->municipality->name;
@@ -48,28 +48,26 @@ class MayorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Candidate  $candidate
+     * @param  \App\Mayor  $mayor
      * @return \Illuminate\Http\Response
      */
-    public function show(Candidate $candidate)
+    public function show(Mayor $mayor)
     {
-        $positions = Candidate::positions();
-
         $departments = Department::pluck('name', 'id')->prepend('Seleccione un departamento');
 
-        $municipalities = $candidate->municipality()->pluck('name', 'id');
+        $municipalities = $mayor->municipality()->pluck('name', 'id');
 
-        return view('mayors.show', compact('candidate', 'departments', 'municipalities', 'positions'));
+        return view('mayors.show', compact('mayor', 'departments', 'municipalities'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Candidate  $candidate
+     * @param  \App\Mayor  $mayor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Candidate $mayor)
+    public function update(Request $request, Mayor $mayor)
     {
         $mayor->name = $request->name;
 
@@ -85,14 +83,17 @@ class MayorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Candidate  $candidate
+     * @param  \App\Mayor  $mayor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Candidate $candidate)
+    public function destroy(Mayor $mayor)
     {
-        $candidate->delete();
+        $mayor->delete();
 
-        return back()->withSuccess(trans('app.success_destroy'));
+        return response()->json([
+            'status' => 'exito',
+            'message' => 'Se elimino correctamente'
+        ], 200);
     }
 
     public function getMayors(Department $department, $muni_id)
@@ -102,32 +103,32 @@ class MayorController extends Controller
             'department' => function ($query) {
                 $query->select('id', 'name');
             },
-            'candidates',
+            'mayor',
         ])->get() :
             $department->municipalities()->where('id', $muni_id)->with([
             'department' => function ($query) {
                 $query->select('id', 'name');
             },
-            'candidates',
+            'mayor',
         ])->get();
 
         return datatables($municipalities)
-            ->editColumn('candidates.name', function ($municipalities) {
-                if (!empty($municipalities->candidates[0])) {
-                    return $municipalities->candidates[0]->name;
+            ->editColumn('mayor.name', function ($municipalities) {
+                if ($municipalities->mayor) {
+                    return $municipalities->mayor->name;
                 }
                 return 'Sin Candidato';
             })
             ->addColumn('actions', function ($municipalities) {
-                $candidate_id = 0;
+                $mayor_id = 0;
                 $depto = $municipalities->department->id;
                 $muni = $municipalities->id;
-                if (!empty($municipalities->candidates[0])) {
-                    $candidate_id = $municipalities->candidates[0]->id;
+                if ($municipalities->mayor) {
+                    $mayor_id = $municipalities->mayor->id;
                 }
-                return view('mayors.partials.actions', compact('candidate_id', 'depto', 'muni'));
+                return view('mayors.partials.actions', compact('mayor_id', 'depto', 'muni'));
             })
-            // ->addColumn('actions', 'candidates.partials.mayors-action')
+            // ->addColumn('actions', 'mayors.partials.mayors-action')
             ->rawColumns(['actions'])
             ->make(true);
     }

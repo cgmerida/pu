@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCandidatesTable extends Migration
+class CreateMayorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateCandidatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('candidates', function (Blueprint $table) {
+        Schema::create('mayors', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->enum('position', ['Alcalde', 'Nacional', 'Distrito']);
             $table->integer('department_id')->unsigned()->nullable();
             $table->integer('municipality_id')->unsigned()->nullable();
 

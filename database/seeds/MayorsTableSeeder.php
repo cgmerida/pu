@@ -4,7 +4,7 @@ use Flynsarmy\CsvSeeder\CsvSeeder;
 use App\Department;
 use App\Municipality;
 
-class CandidatesTableSeeder extends CsvSeeder
+class MayorsTableSeeder extends CsvSeeder
 {
 
     /**
@@ -14,8 +14,8 @@ class CandidatesTableSeeder extends CsvSeeder
      */
     public function __construct()
     {
-        $this->table = 'candidates';
-        $this->filename = base_path() . '/database/seeds/csvs/candidatos.csv';
+        $this->table = 'mayors';
+        $this->filename = base_path() . '/database/seeds/csvs/alcaldes.csv';
         $this->csv_delimiter = ';';
         $this->should_trim = true;
         $this->timestamps = true;
@@ -43,15 +43,9 @@ class CandidatesTableSeeder extends CsvSeeder
             $new = [];
             foreach ($seedData as $key => $item) {
                 $new[$key] = $item;
-                $department = Department::where('name', '=', $new[$key]['department_id'])->first();
-                if (!$department) {
-                    $department = Department::create(['name' => $new[$key]['department_id']]);
-                }
-
-                $municipality = Municipality::where('name', '=', $new[$key]['municipality_id'])->first();
-                if (!$municipality) {
-                    $municipality = Municipality::create(['name' => $new[$key]['municipality_id']]);
-                }
+                $department = Department::whereName($new[$key]['department_id'])->first();
+                
+                $municipality = $department->municipalities()->whereName($new[$key]['municipality_id'])->first();
 
                 $new[$key]['name'] = ucwords(strtolower($new[$key]['name']));
 
