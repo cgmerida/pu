@@ -18,9 +18,9 @@ class CreateMunicipalitiesTable extends Migration
             $table->string('name');
             $table->boolean('prime')->default(false);
             $table->boolean('legal')->default(false);
+            
             $table->integer('department_id')->unsigned();
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

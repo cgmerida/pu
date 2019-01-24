@@ -16,7 +16,6 @@ class MunicipalitiesTableSeeder extends CsvSeeder
         $this->table = 'municipalities';
         $this->filename = base_path() . '/database/seeds/csvs/municipios.csv';
         $this->csv_delimiter = ';';
-        $this->timestamps = true;
     }
 
     /**
@@ -37,20 +36,16 @@ class MunicipalitiesTableSeeder extends CsvSeeder
 
     public function insert(array $seedData)
     {
-        if ($this->timestamps) {
-            $new = [];
-            foreach ($seedData as $key => $item) {
-                $new[$key] = $item;
-                $department = Department::where('name', '=', $new[$key]['department_id'])->first();
-                if (!$department) {
-                    $department = Department::create(['name' => $new[$key]['department_id']]);
-                }
-                $new[$key]['department_id'] = $department->id;
-                $new[$key]['created_at'] = \Carbon\Carbon::now();
-                $new[$key]['updated_at'] = \Carbon\Carbon::now();
+        $new = [];
+        foreach ($seedData as $key => $item) {
+            $new[$key] = $item;
+            $department = Department::whereName($new[$key]['department_id'])->first();
+            if (!$department) {
+                $department = Department::create(['name' => $new[$key]['department_id']]);
             }
-            $seedData = $new;
+            $new[$key]['department_id'] = $department->id;
         }
+        $seedData = $new;
         try {
             DB::table($this->table)->insert($seedData);
         } catch (\Exception $e) {
