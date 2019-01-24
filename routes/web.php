@@ -9,7 +9,7 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,7 +24,7 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('roles', 'RoleController');
     Route::resource('users', 'UserController');
-    
+
     Route::resource('departments', 'DepartmentController');
     Route::get('departments/{department}/municipalities', 'DepartmentController@municipalities');
     Route::resource('municipalities', 'MunicipalityController');
@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard/department/{department}/stadistics', 'DashboardController@deptoStadistics');
     Route::get('dashboard/stadistics', 'DashboardController@paisStadistics');
 
-    Route::get('mayors', 'CandidateController@mayors')->name('candidates.mayors');
-    Route::get('mayors/{department}/{muni_id}', 'CandidateController@getMayors')->where('depto_id', '[0-9]+')->where('muni_id', '[0-9]+');;
+    Route::resource('mayors', 'MayorController');
+    // Route::get('mayors', 'MayorController@mayors')->name('candidates.mayors');
+    Route::get('mayors/{department}/{muni_id}', 'MayorController@getMayors')
+        ->where('depto_id', '[0-9]+')->where('muni_id', '[0-9]+');
 });

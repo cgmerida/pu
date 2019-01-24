@@ -61,3 +61,14 @@
     </a>
 </li>
 @endcan
+
+@can('mayors.index')
+<li class="nav-item">
+    <a class='sidebar-link' href="{{ route('mayors.index') }}">
+        <span class="icon-holder">
+            <i class="c-brown-900 fa fa-user-o"></i>
+        </span>
+        <span class="title">Alcaldes</span>
+    </a>
+</li>
+@endcan
