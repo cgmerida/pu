@@ -1,10 +1,10 @@
 
 <ul class="list-inline">
-    @if ($candidate_id > 0)
+    @if ($mayor_id > 0)
         @can('mayors.edit')
         <li class="list-inline-item">
             <button title="{{ trans('app.edit_title') }}" data-toggle="tooltip"
-            class="btn btn-outline-primary btn-sm" onclick="editName({{ $candidate_id }})">
+            class="btn btn-outline-primary btn-sm" onclick="editName('{{ route('mayors.update', $mayor_id) }}')">
                 <span class="ti-pencil"></span>
             </button>
         </li>
@@ -12,18 +12,10 @@
         
         @can('mayors.destroy')
         <li class="list-inline-item">
-            {!! Form::open([
-                'class'=>'delete',
-                'route'  => ['mayors.destroy', $candidate_id], 
-                'method' => 'DELETE',
-                ]) 
-            !!}
-
-                <button class="btn btn-outline-danger btn-sm" title="{{ trans('app.delete_title') }}">
-                    <i class="ti-trash"></i>
-                </button>
-                
-            {!! Form::close() !!}
+            <button class="btn btn-outline-danger btn-sm" title="{{ trans('app.delete_title') }}"
+            onclick="deleteMayor('{{ route('mayors.destroy', $mayor_id) }}')">
+                <i class="ti-trash"></i>
+            </button>
         </li>
         @endcan
     @else

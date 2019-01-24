@@ -24,9 +24,13 @@
             <div class="bd bgc-white">
                 <div class="peers fxw-nw@lg+ ai-s">
                     <div class="peer peer-greed w-70p@lg+ w-100@lg- p-20">
-                        {!! Form::myRadio('tipo', 'legal', 'Mapa Legal', 'legals', true) !!}
+                        {!! Form::myRadio('tipo', 'legal', 'Mapa Organización', 'legals', true) !!}
                         
                         {!! Form::myRadio('tipo', 'prime', 'Mapa Prime', 'primes') !!}
+                        
+                        {!! Form::myRadio('tipo', 'camdodatos', 'Mapa Candidatos', 'camdodatos') !!}
+                        
+                        {!! Form::myRadio('tipo', 'giras', 'Mapa Giras', 'giras') !!}
                         <div class="layers">
                             <div class="layer w-100">
                                 <div id="mapa"></div>
