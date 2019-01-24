@@ -86,7 +86,7 @@
 					{data: 'name'},
 					{data: 'legal'},
 					{data: 'candidates.name'},
-					{data: 'actions'}
+					{data: 'actions', orderable: false, searchable: false}
 				]
 			});
 		}

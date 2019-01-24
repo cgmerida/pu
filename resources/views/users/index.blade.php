@@ -51,7 +51,7 @@
                 {data: 'name'},
                 {data: 'lastname'},
                 {data: 'email'},
-                {data: 'actions'}
+                {data: 'actions', orderable: false, searchable: false}
             ]
         });
     </script>

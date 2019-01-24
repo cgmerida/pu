@@ -54,7 +54,7 @@
                 {data: 'municipality.name'},
                 {data: 'name'},
                 {data: 'position'},
-                {data: 'actions'}
+                {data: 'actions', orderable: false, searchable: false}
             ]
         });
     </script>

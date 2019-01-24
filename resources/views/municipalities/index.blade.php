@@ -54,7 +54,7 @@
                 {data: 'name'},
                 {data: 'prime'},
                 {data: 'legal'},
-                {data: 'actions'}
+                {data: 'actions', orderable: false, searchable: false}
             ]
         });
     </script>

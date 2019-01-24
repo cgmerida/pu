@@ -51,7 +51,7 @@
                 {data: 'name'},
                 {data: 'slug'},
                 {data: 'description'},
-                {data: 'actions'}
+                {data: 'actions', orderable: false, searchable: false}
             ]
         });
     </script>
