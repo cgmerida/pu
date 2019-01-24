@@ -110,11 +110,19 @@ function crearPais(data) {
         tooltip: {
             useHTML: true,
             formatter: function () {
+                txt = "";
+                if (this.point.candidates_count != null) {
+                    txt = `Candidatos: <span class='fw-900'>
+                        ${(this.point.candidates_count ? this.point.candidates_count : 0)}
+                    </span>`;
+                } else {
+                    txt = `Candidato : <span class='fw-900'>
+                        ${(this.point.candidates.length > 0 ? this.point.candidates[0].name : 'Sin Candidato')}
+                    </span>`;
+                }
                 return `<div class=fsz-def><span style="color:${this.point.color}">\u25CF</span>
                     ${this.point.name}: <span class='fw-900'>${(this.point.value ? "Legal" : "No Legal")}</span>
-                    <br>
-                    Candidatos: <span class='fw-900'> ${(this.point.candidates_count ? this.point.candidates_count : 0)}</span>
-                    </div>`;
+                    <br>` + txt + `</div>`;
             }
         },
 

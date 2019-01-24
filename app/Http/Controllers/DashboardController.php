@@ -18,7 +18,10 @@ class DashboardController extends Controller
 
     public function municipalitiesLegal(Department $department)
     {
-        return $department->municipalities()->select('name', 'legal as value')->withCount('candidates')->get();
+
+        return $department->municipalities()->with(['candidates' => function ($query) {
+            $query->select('id', 'name', 'municipality_id');
+        }])->select(['id', 'name', 'legal as value'])->get();
     }
 
     public function departmentsLegal()
