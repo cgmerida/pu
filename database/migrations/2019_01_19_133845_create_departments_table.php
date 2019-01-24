@@ -16,8 +16,8 @@ class CreateDepartmentsTable extends Migration
         Schema::create('departments', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->boolean('prime')->default(false);
-            $table->boolean('legal')->default(false);
+            $table->boolean('prime')->default(false);;
+            $table->boolean('legal')->default(false);;
             $table->timestamps();
         });
     }

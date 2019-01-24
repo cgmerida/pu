@@ -1,23 +1,23 @@
-﻿name;legal
-Alta Verapaz;1
-Baja Verapaz;1
-Chimaltenango;0
-Chiquimula;0
-El Progreso;0
-Escuintla;1
-Guatemala;1
-Huehuetenango;1
-Izabal;1
-Jalapa;1
-Jutiapa;1
-Petén;0
-Quetzaltenango;0
-Quiché;0
-Retalhuleu;1
-Sacatepéquez;1
-San Marcos;1
-Santa Rosa;1
-Sololá;0
-Suchitepéquez;0
-Totonicapán;0
-Zacapa;1
+﻿name;prime;legal
+Alta Verapaz;1;1
+Baja Verapaz;0;1
+Chimaltenango;0;0
+Chiquimula;0;0
+El Progreso;0;0
+Escuintla;1;1
+Guatemala;1;1
+Huehuetenango;1;1
+Izabal;0;1
+Jalapa;0;1
+Jutiapa;0;1
+Petén;0;0
+Quetzaltenango;1;0
+Quiché;1;0
+Retalhuleu;0;1
+Sacatepéquez;0;1
+San Marcos;1;1
+Santa Rosa;0;1
+Sololá;0;0
+Suchitepéquez;0;0
+Totonicapán;0;0
+Zacapa;0;1
