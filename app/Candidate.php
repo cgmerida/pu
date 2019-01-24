@@ -49,6 +49,6 @@ class Candidate extends Model
 
     public function setNameAttribute($value = '')
     {
-        $this->attributes['name'] = ucwords($value);
+        $this->attributes['name'] = ucwords(strtolower($value));
     }
 }
