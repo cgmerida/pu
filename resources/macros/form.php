@@ -50,6 +50,16 @@ Form::macro('myCheckbox', function ($name, $id, $label="", $value='', $checked='
     ";
 });
 
+Form::macro('myRadio', function ($name, $id, $label="", $value='', $checked='', $options=[]) {
+    $label = ($label =='') ? '' : html_entity_decode(Form::label($id, $label, ['class' => 'custom-control-label']));
+    return "
+        <div class='custom-control custom-radio custom-control-inline'>" .
+            Form::radio($name, $value, $checked, array_merge(["class" => "custom-control-input", 'id' => $id], $options)).
+            $label . "
+        </div>
+    ";
+});
+
 Form::macro('myRange', function ($name, $start, $end, $selected='', $options=[]) {
     return "
         <div class='form-group'>
