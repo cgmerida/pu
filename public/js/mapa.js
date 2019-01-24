@@ -1,11 +1,12 @@
-function Mapainit() {
-    $.get("/dashboard/departments/legals", function (result) {
-        crearPais(result);
+function Mapainit(tipo = 'legals') {
+    let url = `/dashboard/departments/${tipo}`;
+    $.get(url, function (result) {
+        crearPais(tipo, result);
     });
 }
 
 // Crea el chart de Guatemala
-function crearPais(data) {
+function crearPais(tipo, data) {
     Highcharts.mapChart("mapa", {
         chart: {
             map: "countries/gt/gt-all",
@@ -19,7 +20,7 @@ function crearPais(data) {
                         chart.showLoading('<i class="fa fa-spinner fa-spin fa-3x"></i>');
 
                         $.getJSON("svg/departamentos/" + depto + ".json", function (json) {
-                            const link = `/dashboard/municipalities/${deptoID}/legals`;
+                            let link = `/dashboard/municipalities/${deptoID}/${tipo}`;
                             $.get(link).done(function (dataDepto) {
                                 if (!dataDepto.length || typeof dataDepto != "object") {
                                     chart.showLoading(`<i class="fa fa-frown-o"></i> No hay información de ${depto}`);
@@ -62,16 +63,13 @@ function crearPais(data) {
                             });
                         }).fail(function (d, textStatus, error) {
                             console.log(
-                                "getJSON failed, status: " +
-                                textStatus +
-                                ", error: " +
-                                error
+                                "getJSON failed, status: " + textStatus +
+                                ", error: " + error
                             );
 
                             chart.showLoading(
                                 '<h2><i class="fa fa-frown-o"></i> No hay información de ' +
-                                depto +
-                                "</h2>"
+                                depto + "</h2>"
                             );
                             setTimeout(function () {
                                 chart.hideLoading();
@@ -150,13 +148,13 @@ function crearPais(data) {
             dataClasses: [{
                     from: -1,
                     to: 0,
-                    name: "No Legal",
+                    name: `No ${(tipo == 'legals') ? 'Legal': 'Prime'}`,
                     color: "#ccc"
                 },
                 {
                     from: 1,
                     to: 2,
-                    name: "Legal",
+                    name: `${(tipo == 'legals') ? 'Legal': 'Prime'}`,
                     color: "#0E166B"
                 }
             ]
@@ -194,6 +192,18 @@ function changeCharts(tipo = "pais", id = null) {
     }
 
     $.get(url, function (res) {
+        $("#alcaldes-legal-titulo").html(`${res.alcaldesLegales} de ${res.municipiosLegales}`);
+        $("#alcaldes-legal-per").html(`${res.alcaldesLegales_per}%`);
+        $("#alcaldes-legal-bar")
+            .attr("aria-valuenow", `${res.alcaldesLegales_per}%`)
+            .css("width", `${res.alcaldesLegales_per}%`);
+
+        $("#alcaldes-no-legal-titulo").html(`${res.alcaldesNoLegales} de ${res.municipiosNoLegales}`);
+        $("#alcaldes-no-legal-per").html(`${res.alcaldesNoLegales_per}%`);
+        $("#alcaldes-no-legal-bar")
+            .attr("aria-valuenow", `${res.alcaldesNoLegales_per}%`)
+            .css("width", `${res.alcaldesNoLegales_per}%`);
+            
         $("#alcaldes-titulo").html(`${res.alcaldes} de ${res.municipios}`);
         $("#alcaldes-per").html(`${res.alcaldes_per}%`);
         $("#alcaldes-bar")

@@ -24,6 +24,9 @@
             <div class="bd bgc-white">
                 <div class="peers fxw-nw@lg+ ai-s">
                     <div class="peer peer-greed w-70p@lg+ w-100@lg- p-20">
+                        {!! Form::myRadio('tipo', 'legal', 'Mapa Legal', 'legals', true) !!}
+                        
+                        {!! Form::myRadio('tipo', 'prime', 'Mapa Prime', 'primes') !!}
                         <div class="layers">
                             <div class="layer w-100">
                                 <div id="mapa"></div>
@@ -35,8 +38,40 @@
                             <div class="layer w-100">
                                 <!-- Progress Bars -->
                                 <div class="layers">
+                                    <div class="layer w-100 mT-15">
+                                        <h5 class="mB-5">Alcaldes en Municipios Legales</h5>
+                                        <small class="fsz-sm fw-400 c-grey-700" id="alcaldes-legal-titulo">
+                                            {{ $e->alcaldesLegales }} de {{ $e->municipiosLegales }}
+                                        </small>
+                                        <span class="pull-right c-grey-600 fsz-sm" id="alcaldes-legal-per">
+                                            {{ $e->alcaldesLegales_per }}%
+                                        </span>
+                                        <div class="progress mT-10">
+                                            <div class="progress-bar bgc-blue-700" role="progressbar"
+                                            aria-valuenow="{{ $e->alcaldesLegales_per }}"
+                                            aria-valuemin="0" aria-valuemax="100"
+                                            style="width:{{ $e->alcaldesLegales_per }}%;"
+                                            id="alcaldes-legal-bar"></div>
+                                        </div>
+                                    </div>
                                     <div class="layer w-100">
-                                        <h5 class="mB-5">Candidatos a Alcalde</h5>
+                                        <h5 class="mB-5">Alcaldes en Municipios No Legales</h5>
+                                        <small class="fsz-sm fw-400 c-grey-700" id="alcaldes-no-legal-titulo">
+                                            {{ $e->alcaldesNoLegales }} de {{ $e->municipiosNoLegales }}
+                                        </small>
+                                        <span class="pull-right c-grey-600 fsz-sm" id="alcaldes-no-legal-per">
+                                            {{ $e->alcaldesNoLegales_per }}%
+                                        </span>
+                                        <div class="progress mT-10">
+                                            <div class="progress-bar bgc-brown-300" role="progressbar"
+                                            aria-valuemin="0" aria-valuemax="100"
+                                            aria-valuenow="{{ $e->alcaldesNoLegales_per }}"
+                                            style="width:{{ $e->alcaldesNoLegales_per }}%;"
+                                            id="alcaldes-no-legal-bar"></div>
+                                        </div>
+                                    </div>
+                                    <div class="layer w-100">
+                                        <h5 class="mB-5">Alcaldes General</h5>
                                         <small class="fsz-sm fw-400 c-grey-700" id="alcaldes-titulo">
                                             {{ $e->alcaldes }} de {{ $e->municipios }}
                                         </small>
@@ -116,6 +151,12 @@
     <script>
         $(function(){
             Mapainit();
+
+            $('input[type=radio]').change(function() {
+                const tipo = $('input[type=radio]:checked').val();
+                $("#mapa").highcharts().showLoading('<i class="fa fa-spinner fa-spin fa-3x"></i>');
+                Mapainit(tipo);
+            });
         });
     </script>
     

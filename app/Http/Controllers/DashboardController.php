@@ -16,14 +16,6 @@ class DashboardController extends Controller
         return view('admin.dashboard.index', compact('e'));
     }
 
-    public function municipalitiesLegal(Department $department)
-    {
-
-        return $department->municipalities()->with(['candidates' => function ($query) {
-            $query->select('id', 'name', 'municipality_id');
-        }])->select(['id', 'name', 'legal as value'])->get();
-    }
-
     public function departmentsLegal()
     {
         $departments = Department::select('id', 'name as drilldown', 'legal as value')->withCount('candidates')->get();
@@ -32,30 +24,79 @@ class DashboardController extends Controller
         return $departments;
     }
 
-    public function deptoStadistics(Department $department)
+    public function municipalitiesLegal(Department $department)
     {
-        $e = new \stdClass();
-        $e->alcaldes = $department->candidates()->count();
-        $e->municipios = $department->municipalities()->count();
-        $e->alcaldes_per = round(($e->alcaldes / $e->municipios) * 100, 2);
-        $e->municipiosLegales = $department->municipalities()->whereLegal(1)->count();
-        $e->municipiosLegales_per = round(($e->municipiosLegales / $e->municipios) * 100, 2);
 
-        return response()->json($e, 200);
+        return $department->municipalities()->with(['candidates' => function ($query) {
+            $query->select('id', 'name', 'municipality_id');
+        }])->select(['id', 'name', 'legal as value'])->get();
     }
+
+    public function departmentsPrime()
+    {
+        $departments = Department::select('id', 'name as drilldown', 'prime as value')->withCount('candidates')->get();
+        $departments[12]->drilldown = 'Quezaltenango';
+
+        return $departments;
+    }
+
+    public function municipalitiesPrime(Department $department)
+    {
+
+        return $department->municipalities()->with(['candidates' => function ($query) {
+            $query->select('id', 'name', 'municipality_id');
+        }])->select(['id', 'name', 'prime as value'])->get();
+    }
+
 
     public function paisStadistics($object = false)
     {
         $e = new \stdClass();
         $e->alcaldes = Candidate::count();
         $e->municipios = Municipality::count();
-        $e->alcaldes_per = round(($e->alcaldes / $e->municipios) * 100, 2);
+        $e->alcaldes_per = round(($e->alcaldes / max($e->municipios, 1)) * 100, 2);
+
         $e->municipiosLegales = Municipality::whereLegal(1)->count();
-        $e->municipiosLegales_per = round(($e->municipiosLegales / $e->municipios) * 100, 2);
+        $e->municipiosLegales_per = round(($e->municipiosLegales / max($e->municipios, 1)) * 100, 2);
+
+        $e->alcaldesLegales = Candidate::whereHas('municipality', function ($query) {
+            $query->whereLegal(1);
+        })->count();
+        $e->alcaldesLegales_per = round(($e->alcaldesLegales / max($e->municipiosLegales, 1)) * 100, 2);
+
+        $e->alcaldesNoLegales = Candidate::whereHas('municipality', function ($query) {
+            $query->whereLegal(0);
+        })->count();
+        $e->municipiosNoLegales = Municipality::whereLegal(0)->count();
+        $e->alcaldesNoLegales_per = round(($e->alcaldesNoLegales / max($e->municipiosNoLegales, 1)) * 100, 2);
 
         if ($object) {
             return $e;
         }
+        return response()->json($e, 200);
+    }
+
+    public function deptoStadistics(Department $department)
+    {
+        $e = new \stdClass();
+        $e->alcaldes = $department->candidates()->count();
+        $e->municipios = $department->municipalities()->count();
+        $e->alcaldes_per = round(($e->alcaldes / max($e->municipios, 1)) * 100, 2);
+
+        $e->municipiosLegales = $department->municipalities()->whereLegal(1)->count();
+        $e->municipiosLegales_per = round(($e->municipiosLegales / max($e->municipios, 1)) * 100, 2);
+
+        $e->alcaldesLegales = $department->candidates()->whereHas('municipality', function ($query) {
+            $query->whereLegal(1);
+        })->count();
+        $e->alcaldesLegales_per = round(($e->alcaldesLegales / max($e->municipiosLegales, 1)) * 100, 2);
+
+        $e->alcaldesNoLegales = $department->candidates()->whereHas('municipality', function ($query) {
+            $query->whereLegal(0);
+        })->count();
+        $e->municipiosNoLegales = $department->municipalities()->whereLegal(0)->count();
+        $e->alcaldesNoLegales_per = round(($e->alcaldesNoLegales / max($e->municipiosNoLegales, 1)) * 100, 2);
+
         return response()->json($e, 200);
     }
 }
