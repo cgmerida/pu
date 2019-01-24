@@ -14,6 +14,7 @@ class DepartmentsTableSeeder extends CsvSeeder
         $this->table = 'departments';
         $this->filename = base_path() . '/database/seeds/csvs/departamentos.csv';
         $this->csv_delimiter = ';';
+        $this->should_trim = true;
         $this->timestamps = true;
     }
 
