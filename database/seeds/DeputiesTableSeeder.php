@@ -44,11 +44,11 @@ class DeputiesTableSeeder extends CsvSeeder
                 $new[$key] = $item;
 
                 $department = Department::whereName($new[$key]['department_id'])->first();
-                // $new[$key]['name'] = ucwords(strtolower($new[$key]['name']));
+                $new[$key]['name'] = mb_convert_case($new[$key]['name'], MB_CASE_TITLE, "UTF-8");
 
                 $new[$key]['department_id'] = $department->id;
 
-                $new[$key]['created_at'] = \Carbon\Carbon ::now();
+                $new[$key]['created_at'] = \Carbon\Carbon::now();
                 $new[$key]['updated_at'] = \Carbon\Carbon::now();
             }
             $seedData = $new;

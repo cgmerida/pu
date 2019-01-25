@@ -47,7 +47,7 @@ class MayorsTableSeeder extends CsvSeeder
                 
                 $municipality = $department->municipalities()->whereName($new[$key]['municipality_id'])->first();
 
-                $new[$key]['name'] = ucwords(strtolower($new[$key]['name']));
+                $new[$key]['name'] = mb_convert_case($new[$key]['name'], MB_CASE_TITLE, "UTF-8");
 
                 $new[$key]['department_id'] = $department->id;
                 $new[$key]['municipality_id'] = $municipality->id;
