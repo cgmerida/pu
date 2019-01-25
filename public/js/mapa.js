@@ -172,8 +172,8 @@ function setDataClass(tipo, chart) {
             break;
 
         case 'tours':
-            name = "Parte de Gira";
-            name2 = "Sin Gira";
+            name = "Sin Gira";
+            name2 = "Con Gira";
             break;
     }
     chart.update({
