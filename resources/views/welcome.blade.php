@@ -1,96 +1,61 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+  <title>{{ config('app.name') }}</title>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+  <!-- Styles -->
+  <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 
-            .full-height {
-                height: 100vh;
-            }
+  <style>
+      a {
+          color: white;
+          font: 1.3em sans-serif;
+          margin: .5em;
+      }
+      
+      a:hover {
+          color: #f5ef18;
+      }
+  </style>
+</head>
+<body class="app">
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+    @include('admin.partials.spinner')
 
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
+    <div class="peers ai-s fxw-nw h-100vh">
+      <div class="peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv" style='background-color: #0E166B'>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
-                <div class="top-right links">
+                <ul class="nav justify-content-end">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/admin') }}">Inicio</a>
+                        </li>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">Iniciar Sesión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">Registrar</a>
+                        </li>
                     @endauth
-                </div>
+                </ul>
             @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
         </div>
-    </body>
+        <div class="pos-a centerXY">
+          <div class="bdrs-50p pos-r" style='width: 600px;'>
+            <img class="pos-a centerXY" src="/images/logo.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  
+</body>
 </html>
