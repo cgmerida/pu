@@ -16,8 +16,8 @@ class CreateMayorsTable extends Migration
         Schema::create('mayors', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('department_id')->unsigned()->nullable();
-            $table->integer('municipality_id')->unsigned()->nullable();
+            $table->integer('department_id')->unsigned();
+            $table->integer('municipality_id')->unsigned();
 
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
             $table->foreign('municipality_id')->references('id')->on('municipalities')->onDelete('cascade');
@@ -33,6 +33,6 @@ class CreateMayorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('candidates');
+        Schema::dropIfExists('mayors');
     }
 }
