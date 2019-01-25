@@ -20,7 +20,7 @@ class DashboardController extends Controller
     {
         $departments = Department::select('id', 'name as drilldown', 'legal as value')->withCount('mayors')->get();
         $departments[12]->drilldown = 'Quezaltenango';
-        
+
         return $departments;
     }
 
@@ -62,12 +62,12 @@ class DashboardController extends Controller
 
         return $department->municipalities()->with(['mayor' => function ($query) {
             $query->select('id', 'name', 'municipality_id');
-        }])->select(['id', 'name', 'prime as value'])->get();
+        }])->select(['id', 'name'])->withCount('mayor as value')->selectRaw('"muni"')->get();
     }
 
     public function departmentsDeputies()
     {
-        $departments = Department::select('id', 'name as drilldown', 'prime as value')->withCount('mayors')->get();
+        $departments = Department::select('id', 'name as drilldown')->withCount('deputies as value')->get();
         $departments[12]->drilldown = 'Quezaltenango';
 
         return $departments;
@@ -75,10 +75,10 @@ class DashboardController extends Controller
 
     public function municipalitiesDeputies(Department $department)
     {
-
-        return $department->municipalities()->with(['mayor' => function ($query) {
-            $query->select('id', 'name', 'municipality_id');
-        }])->select(['id', 'name', 'prime as value'])->get();
+        $count = $department->whereName($department->name)
+            ->withCount('deputies as value')->first();
+        return $department->municipalities()->select(['id', 'name'])
+            ->selectRaw($count->value . ' as value')->get();
     }
 
     public function departmentsTours()

@@ -105,7 +105,9 @@ function crearPais(tipo, data) {
 
         tooltip: {
             useHTML: true,
-            formatter: setTooltip(tipo, this.point)      
+            formatter: function () {
+                return setTooltip(tipo, this.point);
+            }     
         },
 
         drilldown: {
@@ -195,6 +197,50 @@ function setDataClass(tipo, chart) {
 
 function setTooltip(tipo, point){
     txt = "";
+    switch (tipo) {
+        case 'legals':
+        case 'primes':
+            if (point.mayors_count != null) {
+                txt = `Candidatos: <span class='fw-900'>
+                ${(point.mayors_count ? point.mayors_count : 0)}
+                </span>`;
+            } else {
+                txt = `Candidato : <span class='fw-900'>
+                ${(point.mayor != null ? point.mayor.name : 'Sin Candidato')}
+                </span>`;
+            }
+            return `<div class=fsz-def><span style="color:${point.color}">\u25CF</span>
+                ${point.name}: <span class='fw-900'>${(point.value ? "Legal" : "No Legal")}</span>
+                <br>` + txt + `</div>`;
+
+        case 'deputies':
+            return `<div class=fsz-def><span style="color:${point.color}">\u25CF</span>
+                ${point.name}<br>
+                Diputados: <span class='fw-900'>
+                    ${(point.value ? point.value : 0)}
+                </span></div>`;
+            break;
+
+        case 'mayors':
+            if (point.muni == null) {
+                txt = `Alcaldes: <span class='fw-900'>
+                    ${(point.value ? point.value : 0)}
+                    </span>`;
+            } else {
+                txt = `Alcalde : <span class='fw-900'>
+                    ${(point.mayor != null ? point.mayor.name : 'Sin Candidato')}
+                    </span>`;
+            }
+            return `<div class=fsz-def><span style="color:${point.color}">\u25CF</span>
+                ${point.name}
+                <br>` + txt + `</div>`;
+            break;
+
+        case 'tours':
+            name = "Parte de Gira";
+            name2 = "Sin Gira";
+            break;
+    }
     if (point.mayors_count != null) {
         txt = `Candidatos: <span class='fw-900'>
         ${(point.mayors_count ? point.mayors_count : 0)}
