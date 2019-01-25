@@ -43,4 +43,9 @@ class Department extends Model
     {
         return $this->hasMany(Mayor::class);
     }
+
+    public function deputies()
+    {
+        return $this->hasMany(Deputy::class);
+    }
 }

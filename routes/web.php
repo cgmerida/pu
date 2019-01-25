@@ -35,6 +35,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('mayors/{department}/{muni_id}', 'MayorController@getMayors')
         ->where('depto_id', '[0-9]+')->where('muni_id', '[0-9]+');
 
+    Route::resource('deputies', 'DeputyController');
+    Route::get('departments/{department}/deputies', 'DeputyController@getDeputies')
+        ->where('depto_id', '[0-9]+')->where('muni_id', '[0-9]+');
+
     Route::get('admin', 'DashboardController@index')->name('admin.dash');
     Route::get('dashboard/departments/legals', 'DashboardController@departmentsLegal');
     Route::get('dashboard/departments/primes', 'DashboardController@departmentsPrime');
