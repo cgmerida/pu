@@ -61,3 +61,14 @@
     </a>
 </li>
 @endcan
+
+@can('deputies.index')
+<li class="nav-item">
+    <a class='sidebar-link' href="{{ route('deputies.index') }}">
+        <span class="icon-holder">
+            <i class="c-red-300 fa fa-user-o"></i>
+        </span>
+        <span class="title">Diputados Distrito</span>
+    </a>
+</li>
+@endcan
