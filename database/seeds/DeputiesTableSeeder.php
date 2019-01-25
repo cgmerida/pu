@@ -3,7 +3,7 @@
 use Flynsarmy\CsvSeeder\CsvSeeder;
 use App\Department;
 
-class MunicipalitiesTableSeeder extends CsvSeeder
+class DeputiesTableSeeder extends CsvSeeder
 {
 
     /**
@@ -13,9 +13,11 @@ class MunicipalitiesTableSeeder extends CsvSeeder
      */
     public function __construct()
     {
-        $this->table = 'municipalities';
-        $this->filename = base_path() . '/database/seeds/csvs/municipios.csv';
+        $this->table = 'deputies';
+        $this->filename = base_path() . '/database/seeds/csvs/diputados.csv';
         $this->csv_delimiter = ';';
+        $this->should_trim = true;
+        $this->timestamps = true;
     }
 
     /**
@@ -36,16 +38,21 @@ class MunicipalitiesTableSeeder extends CsvSeeder
 
     public function insert(array $seedData)
     {
-        $new = [];
-        foreach ($seedData as $key => $item) {
-            $new[$key] = $item;
-            $department = Department::whereName($new[$key]['department_id'])->first();
-            if (!$department) {
-                $department = Department::create(['name' => $new[$key]['department_id']]);
+        if ($this->timestamps) {
+            $new = [];
+            foreach ($seedData as $key => $item) {
+                $new[$key] = $item;
+
+                $department = Department::whereName($new[$key]['department_id'])->first();
+                // $new[$key]['name'] = ucwords(strtolower($new[$key]['name']));
+
+                $new[$key]['department_id'] = $department->id;
+
+                $new[$key]['created_at'] = \Carbon\Carbon ::now();
+                $new[$key]['updated_at'] = \Carbon\Carbon::now();
             }
-            $new[$key]['department_id'] = $department->id;
+            $seedData = $new;
         }
-        $seedData = $new;
         try {
             DB::table($this->table)->insert($seedData);
         } catch (\Exception $e) {
