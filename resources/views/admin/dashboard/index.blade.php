@@ -27,10 +27,12 @@
                         {!! Form::myRadio('tipo', 'legal', 'Mapa Organización', 'legals', true) !!}
                         
                         {!! Form::myRadio('tipo', 'prime', 'Mapa Prime', 'primes') !!}
+
+                        {!! Form::myRadio('tipo', 'deputies', 'Mapa Diputados', 'deputies') !!}
                         
-                        {!! Form::myRadio('tipo', 'camdodatos', 'Mapa Candidatos', 'camdodatos') !!}
+                        {!! Form::myRadio('tipo', 'mayors', 'Mapa Alcaldes', 'mayors') !!}
                         
-                        {!! Form::myRadio('tipo', 'giras', 'Mapa Giras', 'giras') !!}
+                        {!! Form::myRadio('tipo', 'tours', 'Mapa Giras', 'tours') !!}
                         <div class="layers">
                             <div class="layer w-100">
                                 <div id="mapa"></div>

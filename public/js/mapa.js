@@ -11,6 +11,9 @@ function crearPais(tipo, data) {
         chart: {
             map: "countries/gt/gt-all",
             events: {
+                load: function(){
+                    setDataClass(tipo, this);
+                },
                 drilldown: function (e) {
                     if (!e.seriesOptions) {
                         const chart = this,
@@ -53,12 +56,7 @@ function crearPais(tipo, data) {
                                         format: "{point.name}"
                                     },
                                     cursor: "pointer",
-                                    borderColor: '#ffffff',
-                                    states: {
-                                        hover: {
-                                            color: "#f5ef18"
-                                        }
-                                    }
+                                    borderColor: '#ffffff'
                                 });
                             });
                         }).fail(function (d, textStatus, error) {
@@ -107,21 +105,7 @@ function crearPais(tipo, data) {
 
         tooltip: {
             useHTML: true,
-            formatter: function () {
-                txt = "";
-                if (this.point.mayors_count != null) {
-                    txt = `Candidatos: <span class='fw-900'>
-                        ${(this.point.mayors_count ? this.point.mayors_count : 0)}
-                    </span>`;
-                } else {
-                    txt = `Candidato : <span class='fw-900'>
-                        ${(this.point.mayor != null ? this.point.mayor.name : 'Sin Candidato')}
-                    </span>`;
-                }
-                return `<div class=fsz-def><span style="color:${this.point.color}">\u25CF</span>
-                    ${this.point.name}: <span class='fw-900'>${(this.point.value ? "Legal" : "No Legal")}</span>
-                    <br>` + txt + `</div>`;
-            }
+            formatter: setTooltip(tipo, this.point)      
         },
 
         drilldown: {
@@ -145,30 +129,13 @@ function crearPais(tipo, data) {
             }
         },
         colorAxis: {
-            dataClasses: [{
-                    from: -1,
-                    to: 0,
-                    name: `No ${(tipo == 'legals') ? 'Legal': 'Prime'}`,
-                    color: "#f5ef18"
-                },
-                {
-                    from: 1,
-                    to: 2,
-                    name: `${(tipo == 'legals') ? 'Legal': 'Prime'}`,
-                    color: "#0E166B"
-                }
-            ]
+            dataClasses: []
         },
         series: [{
             name: "Guatemala",
             data: data,
             joinBy: ["name", "drilldown"],
             nullColor: "#70e370",
-            states: {
-                hover: {
-                    color: "#f5ef18"
-                }
-            },
             borderColor: '#ffffff',
             dataLabels: {
                 enabled: true,
@@ -178,6 +145,69 @@ function crearPais(tipo, data) {
         }]
     });
 }
+
+function setDataClass(tipo, chart) {
+    let name, name2;
+    switch (tipo) {
+        case 'legals':
+            name = "No Legal";
+            name2 = "Legal";
+            break;
+            
+        case 'primes':
+            name = "No Prime";
+            name2 = "Prime";
+            break;
+        
+        case 'deputies':
+            name = "Sin Diputadoss";
+            name2 = "Con Diputados";
+            break;
+            
+        case 'mayors':
+            name = "Con Alcaldes";
+            name2 = "Sin Alcaldes";
+            break;
+
+        case 'tours':
+            name = "Parte de Gira";
+            name2 = "Sin Gira";
+            break;
+    }
+    chart.update({
+        colorAxis: {
+            dataClasses: [
+                {
+                    to: 0,
+                    name: name,
+                    color: "#f5ef18"
+                },
+                {
+                    from: 1,
+                    name: name2,
+                    color: "#0E166B"
+                }
+            ]
+        }
+    }, false);
+    chart.redraw(false);
+};
+
+function setTooltip(tipo, point){
+    txt = "";
+    if (point.mayors_count != null) {
+        txt = `Candidatos: <span class='fw-900'>
+        ${(point.mayors_count ? point.mayors_count : 0)}
+        </span>`;
+    } else {
+        txt = `Candidato : <span class='fw-900'>
+        ${(point.mayor != null ? point.mayor.name : 'Sin Candidato')}
+        </span>`;
+    }
+    return `<div class=fsz-def><span style="color:${point.color}">\u25CF</span>
+        ${point.name}: <span class='fw-900'>${(point.value ? "Legal" : "No Legal")}</span>
+        <br>` + txt + `</div>`;
+};
 
 function changeCharts(tipo = "pais", id = null) {
     let url;

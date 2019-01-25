@@ -40,10 +40,17 @@ Route::group(['middleware' => ['auth']], function () {
         ->where('depto_id', '[0-9]+')->where('muni_id', '[0-9]+');
 
     Route::get('admin', 'DashboardController@index')->name('admin.dash');
-    Route::get('dashboard/departments/legals', 'DashboardController@departmentsLegal');
-    Route::get('dashboard/departments/primes', 'DashboardController@departmentsPrime');
-    Route::get('dashboard/municipalities/{department}/legals', 'DashboardController@municipalitiesLegal');
-    Route::get('dashboard/municipalities/{department}/primes', 'DashboardController@municipalitiesPrime');
+    Route::get('dashboard/departments/legals', 'DashboardController@departmentsLegals');
+    Route::get('dashboard/departments/primes', 'DashboardController@departmentsPrimes');
+    Route::get('dashboard/departments/mayors', 'DashboardController@departmentsMayors');
+    Route::get('dashboard/departments/deputies', 'DashboardController@departmentsDeputies');
+    Route::get('dashboard/departments/tours', 'DashboardController@departmentsTours');
+        
+    Route::get('dashboard/municipalities/{department}/legals', 'DashboardController@municipalitiesLegals');
+    Route::get('dashboard/municipalities/{department}/primes', 'DashboardController@municipalitiesPrimes');
+    Route::get('dashboard/municipalities/{department}/mayors', 'DashboardController@municipalitiesMayors');
+    Route::get('dashboard/municipalities/{department}/deputies', 'DashboardController@municipalitiesDeputies');
+    Route::get('dashboard/municipalities/{department}/tours', 'DashboardController@municipalitiesTours');
 
     Route::get('dashboard/department/{department}/stadistics', 'DashboardController@deptoStadistics');
     Route::get('dashboard/stadistics', 'DashboardController@paisStadistics');

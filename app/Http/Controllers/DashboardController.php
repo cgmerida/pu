@@ -16,7 +16,7 @@ class DashboardController extends Controller
         return view('admin.dashboard.index', compact('e'));
     }
 
-    public function departmentsLegal()
+    public function departmentsLegals()
     {
         $departments = Department::select('id', 'name as drilldown', 'legal as value')->withCount('mayors')->get();
         $departments[12]->drilldown = 'Quezaltenango';
@@ -24,7 +24,7 @@ class DashboardController extends Controller
         return $departments;
     }
 
-    public function municipalitiesLegal(Department $department)
+    public function municipalitiesLegals(Department $department)
     {
 
         return $department->municipalities()->with(['mayor' => function ($query) {
@@ -32,7 +32,7 @@ class DashboardController extends Controller
         }])->select(['id', 'name', 'legal as value'])->get();
     }
 
-    public function departmentsPrime()
+    public function departmentsPrimes()
     {
         $departments = Department::select('id', 'name as drilldown', 'prime as value')->withCount('mayors')->get();
         $departments[12]->drilldown = 'Quezaltenango';
@@ -40,7 +40,7 @@ class DashboardController extends Controller
         return $departments;
     }
 
-    public function municipalitiesPrime(Department $department)
+    public function municipalitiesPrimes(Department $department)
     {
 
         return $department->municipalities()->with(['mayor' => function ($query) {
@@ -48,6 +48,54 @@ class DashboardController extends Controller
         }])->select(['id', 'name', 'prime as value'])->get();
     }
 
+
+    public function departmentsMayors()
+    {
+        $departments = Department::select('id', 'name as drilldown')->withCount('mayors as value')->get();
+        $departments[12]->drilldown = 'Quezaltenango';
+
+        return $departments;
+    }
+
+    public function municipalitiesMayors(Department $department)
+    {
+
+        return $department->municipalities()->with(['mayor' => function ($query) {
+            $query->select('id', 'name', 'municipality_id');
+        }])->select(['id', 'name', 'prime as value'])->get();
+    }
+
+    public function departmentsDeputies()
+    {
+        $departments = Department::select('id', 'name as drilldown', 'prime as value')->withCount('mayors')->get();
+        $departments[12]->drilldown = 'Quezaltenango';
+
+        return $departments;
+    }
+
+    public function municipalitiesDeputies(Department $department)
+    {
+
+        return $department->municipalities()->with(['mayor' => function ($query) {
+            $query->select('id', 'name', 'municipality_id');
+        }])->select(['id', 'name', 'prime as value'])->get();
+    }
+
+    public function departmentsTours()
+    {
+        $departments = Department::select("id", "name as drilldown")->selectRaw('0 as value')->get();
+        $departments[12]->drilldown = 'Quezaltenango';
+
+        return $departments;
+    }
+
+    public function municipalitiesTours(Department $department)
+    {
+
+        return $department->municipalities()->with(['mayor' => function ($query) {
+            $query->select('id', 'name', 'municipality_id');
+        }])->select('id', 'name', 'prime as value')->selectRaw('0 as value')->get();
+    }
 
     public function paisStadistics($object = false)
     {
