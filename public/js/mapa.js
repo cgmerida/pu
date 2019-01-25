@@ -167,8 +167,8 @@ function setDataClass(tipo, chart) {
             break;
             
         case 'mayors':
-            name = "Con Alcaldes";
-            name2 = "Sin Alcaldes";
+            name = "Sin Alcaldes";
+            name2 = "Con Alcaldes";
             break;
 
         case 'tours':
