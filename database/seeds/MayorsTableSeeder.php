@@ -61,6 +61,7 @@ class MayorsTableSeeder extends CsvSeeder
             DB::table($this->table)->insert($seedData);
         } catch (\Exception $e) {
             Log::error("Fallo la insercion en la base de datos: " . $e->getMessage() . " - CSV " . $this->filename);
+            $this->command->error($e->getMessage());
             return false;
         }
         return true;
