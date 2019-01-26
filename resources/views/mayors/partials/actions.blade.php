@@ -23,7 +23,7 @@
         <li class="list-inline-item">
             <button class="btn btn-outline-secondary btn-sm" 
             onclick="createMayor({{ $depto }}, {{ $muni }})">
-                <span class="ti-user-plus"></span>
+                <span class="fa fa-user-plus fa-fw"></span>
             </button>
         </li>
         @endcan
