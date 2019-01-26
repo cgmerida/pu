@@ -237,22 +237,9 @@ function setTooltip(tipo, point){
             break;
 
         case 'tours':
-            name = "Parte de Gira";
-            name2 = "Sin Gira";
+            return 'no data';
             break;
     }
-    if (point.mayors_count != null) {
-        txt = `Candidatos: <span class='fw-900'>
-        ${(point.mayors_count ? point.mayors_count : 0)}
-        </span>`;
-    } else {
-        txt = `Candidato : <span class='fw-900'>
-        ${(point.mayor != null ? point.mayor.name : 'Sin Candidato')}
-        </span>`;
-    }
-    return `<div class=fsz-def><span style="color:${point.color}">\u25CF</span>
-        ${point.name}: <span class='fw-900'>${(point.value ? "Legal" : "No Legal")}</span>
-        <br>` + txt + `</div>`;
 };
 
 function changeCharts(tipo = "pais", id = null) {
@@ -292,4 +279,28 @@ function changeCharts(tipo = "pais", id = null) {
             .attr("aria-valuenow", `${res.municipiosLegales_per}%`)
             .css("width", `${res.municipiosLegales_per}%`);
     });
+
+    progressBar('hola', 'Probando', 89);
+}
+
+function progressBar(titulo, subtitulo, porcentaje, color = 'bgc-blue-700') {
+    let template = `
+    <div class="layer w-100">
+        <h5 class="mB-5">${titulo}</h5>
+        <small class="fsz-sm fw-400 c-grey-700">
+            ${subtitulo}
+        </small>
+        <span class="pull-right c-grey-600 fsz-sm">
+            ${porcentaje}%
+        </span>
+        <div class="progress mT-10">
+            <div class="progress-bar ${color}" role="progressbar"
+            aria-valuenow="${porcentaje}"
+            aria-valuemin="0" aria-valuemax="100"
+            style="width:${porcentaje}%;"></div>
+        </div>
+    </div>`;
+
+    $('#progress-layer').append(template);
+
 }
