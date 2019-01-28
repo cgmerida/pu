@@ -246,7 +246,7 @@ function changeCharts(tipo = "pais", id = null) {
     let url;
     switch (tipo) {
         case "pais":
-            url = `/dashboard/stadistics`;
+            url = `/dashboard/stadistics/`;
             break;
 
         case "depto":

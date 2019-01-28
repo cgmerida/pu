@@ -19,7 +19,6 @@ class DashboardController extends Controller
     public function departmentsLegals()
     {
         $departments = Department::select('id', 'name as drilldown', 'legal as value')->withCount('mayors')->get();
-        $departments[12]->drilldown = 'Quezaltenango';
 
         return $departments;
     }
@@ -35,7 +34,6 @@ class DashboardController extends Controller
     public function departmentsPrimes()
     {
         $departments = Department::select('id', 'name as drilldown', 'prime as value')->withCount('mayors')->get();
-        $departments[12]->drilldown = 'Quezaltenango';
 
         return $departments;
     }
@@ -52,7 +50,6 @@ class DashboardController extends Controller
     public function departmentsMayors()
     {
         $departments = Department::select('id', 'name as drilldown')->withCount('mayors as value')->get();
-        $departments[12]->drilldown = 'Quezaltenango';
 
         return $departments;
     }
@@ -68,7 +65,6 @@ class DashboardController extends Controller
     public function departmentsDeputies()
     {
         $departments = Department::select('id', 'name as drilldown')->withCount('deputies as value')->get();
-        $departments[12]->drilldown = 'Quezaltenango';
 
         return $departments;
     }
@@ -84,7 +80,6 @@ class DashboardController extends Controller
     public function departmentsTours()
     {
         $departments = Department::select("id", "name as drilldown")->selectRaw('0 as value')->get();
-        $departments[12]->drilldown = 'Quezaltenango';
 
         return $departments;
     }

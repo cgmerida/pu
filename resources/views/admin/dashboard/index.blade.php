@@ -143,16 +143,23 @@
 
 @section('js')
 
-	<script src=https://code.highcharts.com/highcharts.js></script>
-	<script src=https://code.highcharts.com/maps/modules/map.js></script>
+	<script src={{ asset('js/highcharts/highcharts.js') }}></script>
+    <script src={{ asset('js/highcharts/map.js') }}></script>
+    <script src={{ asset('js/highcharts/exporting.js') }}></script>
+    <script src={{ asset('js/highcharts/data.js') }}></script>
+    <script src={{ asset('js/highcharts/drilldown.js') }}></script>
+    
 	<!-- <script src=https://code.highcharts.com/maps/modules/exporting.js></script> -->
-	<script src=https://code.highcharts.com/maps/modules/data.js></script>
-	<script src=https://code.highcharts.com/maps/modules/drilldown.js></script>
-    <!-- <script src=https://code.highcharts.com/highcharts-3d.js></script> -->
+	{{-- <script src=https://code.highcharts.com/maps/modules/data.js></script> --}}
+	{{-- <script src=https://code.highcharts.com/maps/modules/drilldown.js></script> --}}
         
-    <script src="https://code.highcharts.com/mapdata/countries/gt/gt-all.js"></script>
+    {{-- <script src="{{ asset('js/highcharts/gt-all.geo.json') }}"></script> --}}
 
-    <script src="js/mapa.js"></script>
+    <script src="{{ asset('js/highcharts/gt-all.js') }}"></script>
+
+    <script src="{{ asset('js/highcharts/dashboard-map.js') }}"></script>
+
+    
 
     <script>
         $(function(){
