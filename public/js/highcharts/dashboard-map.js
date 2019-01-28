@@ -13,6 +13,7 @@ function crearPais(tipo, data) {
             events: {
                 load: function(){
                     setDataClass(tipo, this);
+                    changeCharts(tipo);
                 },
                 drilldown: function (e) {
                     if (!e.seriesOptions) {
@@ -33,7 +34,7 @@ function crearPais(tipo, data) {
                                     return false;
                                 }
 
-                                changeCharts("depto", deptoID);
+                                changeCharts(tipo, "depto", deptoID);
 
                                 chart.hideLoading();
 
@@ -76,7 +77,7 @@ function crearPais(tipo, data) {
                     }
                 },
                 drillup: function () {
-                    changeCharts();
+                    changeCharts(tipo);
 
                     this.title.update({
                         text: "Guatemala"
@@ -201,12 +202,12 @@ function setTooltip(tipo, point){
         case 'legals':
         case 'primes':
             if (point.mayors_count != null) {
-                txt = `Candidatos: <span class='fw-900'>
+                txt = `Alcaldes: <span class='fw-900'>
                 ${(point.mayors_count ? point.mayors_count : 0)}
                 </span>`;
             } else {
-                txt = `Candidato : <span class='fw-900'>
-                ${(point.mayor != null ? point.mayor.name : 'Sin Candidato')}
+                txt = `Alcalde : <span class='fw-900'>
+                ${(point.mayor != null ? point.mayor.name : 'Sin Alcalde')}
                 </span>`;
             }
             return `<div class=fsz-def><span style="color:${point.color}">\u25CF</span>
@@ -242,45 +243,78 @@ function setTooltip(tipo, point){
     }
 };
 
-function changeCharts(tipo = "pais", id = null) {
+function changeCharts(tipo = 'legals', nivel = "pais", deptoID = null) {
     let url;
-    switch (tipo) {
+    switch (nivel) {
         case "pais":
-            url = `/dashboard/stadistics/`;
+            url = `/dashboard/stadistics/${tipo}`;
             break;
 
         case "depto":
-            url = `/dashboard/department/${id}/stadistics`;
+            url = `/dashboard/department/${deptoID}/stadistics/${tipo}`;
             break;
     }
 
     $.get(url, function (res) {
-        $("#alcaldes-legal-titulo").html(`${res.alcaldesLegales} de ${res.municipiosLegales}`);
-        $("#alcaldes-legal-per").html(`${res.alcaldesLegales_per}%`);
-        $("#alcaldes-legal-bar")
-            .attr("aria-valuenow", `${res.alcaldesLegales_per}%`)
-            .css("width", `${res.alcaldesLegales_per}%`);
+        $('#progress-layer').empty();
 
-        $("#alcaldes-no-legal-titulo").html(`${res.alcaldesNoLegales} de ${res.municipiosNoLegales}`);
-        $("#alcaldes-no-legal-per").html(`${res.alcaldesNoLegales_per}%`);
-        $("#alcaldes-no-legal-bar")
-            .attr("aria-valuenow", `${res.alcaldesNoLegales_per}%`)
-            .css("width", `${res.alcaldesNoLegales_per}%`);
+        switch (tipo) {
+            case "legals":
+                progressBar(
+                    `Municipios Legales`,
+                    `${res.municipiosLegales} de ${res.municipios}`,
+                    `${res.municipiosLegales_per}`
+                );
+
+                break;
+
+            case "primes":
+                progressBar(
+                    `${(nivel == 'pais')? 'Departamentos':'Municipios'} Prime`,
+                    `${res.municipiosPrimes} de ${res.municipios}`,
+                    `${res.municipiosPrimes_per}`
+                );
+                break;
+
+            case "deputies":
+                res.diputados.forEach(diputado => {
+                    console.log(diputado);
+                })
+                break;
+        }
+
+        // progressBar(
+        //     `${res.alcaldesNoLegales} de ${res.municipiosNoLegales}`,
+        //     `${res.alcaldesNoLegales_per}%`,
+        //     `${res.alcaldesNoLegales_per}`
+        // );
+
+
+
+        // $("#alcaldes-legal-titulo").html(`${res.alcaldesLegales} de ${res.municipiosLegales}`);
+        // $("#alcaldes-legal-per").html(`${res.alcaldesLegales_per}%`);
+        // $("#alcaldes-legal-bar")
+        //     .attr("aria-valuenow", `${res.alcaldesLegales_per}%`)
+        //     .css("width", `${res.alcaldesLegales_per}%`);
+
+        // $("#alcaldes-no-legal-titulo").html(`${res.alcaldesNoLegales} de ${res.municipiosNoLegales}`);
+        // $("#alcaldes-no-legal-per").html(`${res.alcaldesNoLegales_per}%`);
+        // $("#alcaldes-no-legal-bar")
+        //     .attr("aria-valuenow", `${res.alcaldesNoLegales_per}%`)
+        //     .css("width", `${res.alcaldesNoLegales_per}%`);
             
-        $("#alcaldes-titulo").html(`${res.alcaldes} de ${res.municipios}`);
-        $("#alcaldes-per").html(`${res.alcaldes_per}%`);
-        $("#alcaldes-bar")
-            .attr("aria-valuenow", `${res.alcaldes_per}%`)
-            .css("width", `${res.alcaldes_per}%`);
+        // $("#alcaldes-titulo").html(`${res.alcaldes} de ${res.municipios}`);
+        // $("#alcaldes-per").html(`${res.alcaldes_per}%`);
+        // $("#alcaldes-bar")
+        //     .attr("aria-valuenow", `${res.alcaldes_per}%`)
+            //     .css("width", `${res.alcaldes_per}%`);
 
-        $("#muni-titulo").html(`${res.municipiosLegales} de ${res.municipios}`);
-        $("#muni-per").html(`${res.municipiosLegales_per}%`);
-        $("#muni-bar")
-            .attr("aria-valuenow", `${res.municipiosLegales_per}%`)
-            .css("width", `${res.municipiosLegales_per}%`);
+            // $("#muni-titulo").html(`${res.municipiosLegales} de ${res.municipios}`);
+            // $("#muni-per").html(`${res.municipiosLegales_per}%`);
+            // $("#muni-bar")
+            //     .attr("aria-valuenow", `${res.municipiosLegales_per}%`)
+            //     .css("width", `${res.municipiosLegales_per}%`);
     });
-
-    progressBar('hola', 'Probando', 89);
 }
 
 function progressBar(titulo, subtitulo, porcentaje, color = 'bgc-blue-700') {

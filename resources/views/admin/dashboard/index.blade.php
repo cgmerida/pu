@@ -44,7 +44,10 @@
                             <div class="layer w-100">
                                 <!-- Progress Bars -->
                                 <div class="layers mB-15" id="progress-layer">
-                                    <div class="layer w-100 mT-15">
+
+                                    <i class="fa fa-loading fa-spin fa-lg"></i>
+
+                                    {{-- <div class="layer w-100 mT-15">
                                         <h5 class="mB-5">Alcaldes en Municipios Legales</h5>
                                         <small class="fsz-sm fw-400 c-grey-700" id="alcaldes-legal-titulo">
                                             {{ $e->alcaldesLegales }} de {{ $e->municipiosLegales }}
@@ -107,7 +110,7 @@
                                             style="width:{{ $e->municipiosLegales_per }}%;"
                                             id="muni-bar"></div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
 
                                 <!-- Pie Charts -->
