@@ -27,7 +27,7 @@ class Mayor extends Model
 
     public function setNameAttribute($value = '')
     {
-        $this->attributes['name'] = ucwords(strtolower($value));
+        $this->attributes['name'] = mb_convert_case($value, MB_CASE_TITLE, "UTF-8");
     }
 
     public function department()
