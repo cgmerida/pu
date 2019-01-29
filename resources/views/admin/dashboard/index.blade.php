@@ -24,15 +24,17 @@
             <div class="bd bgc-white">
                 <div class="peers fxw-nw@lg+ ai-s">
                     <div class="peer peer-greed w-70p@lg+ w-100@lg- p-20">
-                        {!! Form::myRadio('tipo', 'legal', 'Mapa Organización', 'legals', true) !!}
                         
-                        {!! Form::myRadio('tipo', 'prime', 'Mapa Prime', 'primes') !!}
+                        {!! Form::myRadio('tipo', 'prime', 'Mapa Prime', 'primes', ($tipo == 'primes' ) ? true:false) !!}
 
-                        {!! Form::myRadio('tipo', 'deputies', 'Mapa Diputados', 'deputies') !!}
+                        {!! Form::myRadio('tipo', 'legal', 'Mapa Organización', 'legals', ($tipo == 'legals') ? true:false) !!}
+
+                        {!! Form::myRadio('tipo', 'deputies', 'Mapa Diputados', 'deputies', ($tipo == 'deputies') ? true:false) !!}
                         
-                        {!! Form::myRadio('tipo', 'mayors', 'Mapa Alcaldes', 'mayors') !!}
+                        {!! Form::myRadio('tipo', 'mayors', 'Mapa Alcaldes', 'mayors', ($tipo == 'mayors') ? true:false) !!}
                         
-                        {!! Form::myRadio('tipo', 'tours', 'Mapa Giras', 'tours') !!}
+                        {!! Form::myRadio('tipo', 'tours', 'Mapa Giras', 'tours', ($tipo == 'tours') ? true:false) !!}
+
                         <div class="layers">
                             <div class="layer w-100">
                                 <div id="mapa"></div>
@@ -44,8 +46,11 @@
                             <div class="layer w-100">
                                 <!-- Progress Bars -->
                                 <div class="layers mB-15" id="progress-layer">
-
-                                    <i class="fa fa-loading fa-spin fa-lg"></i>
+                                    <div class="layer w-100 mT-15 c-grey-900">
+                                        <center>
+                                            <i class="fa fa-circle-o-notch fa-spin fa-5x"></i>
+                                        </center>
+                                    </div>
 
                                     {{-- <div class="layer w-100 mT-15">
                                         <h5 class="mB-5">Alcaldes en Municipios Legales</h5>

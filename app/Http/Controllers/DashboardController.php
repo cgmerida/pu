@@ -9,9 +9,11 @@ use App\Department;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.dashboard.index');
+        $tipo = ($request->tipo ?? 'legals');
+
+        return view('admin.dashboard.index', compact('tipo'));
     }
 
     public function departmentsLegals()
