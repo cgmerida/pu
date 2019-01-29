@@ -7,6 +7,7 @@ use App\Mayor;
 use App\Municipality;
 use App\Department;
 use App\National;
+use App\Central;
 
 class DashboardController extends Controller
 {
@@ -159,6 +160,11 @@ class DashboardController extends Controller
 
         $e->diputados = $department->deputies;
         $e->diputadosTotal = $department->deputies->count();
+
+        if ($department->name = "Guatemala") {
+            $e->diputadosCentral = Central::all();
+            $e->diputadosCentralTotal = Central::count();
+        }
 
         return response()->json($e, 200);
     }

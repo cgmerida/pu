@@ -290,9 +290,11 @@ function changeCharts(tipo = 'legals', nivel = "pais", deptoID = null) {
                 break;
 
             case "deputies":
-                if(nivel == "depto")
+                if(nivel == "depto") {
                     list('Listado Distrito', `Cantidad de diputados: ${res.diputadosTotal}`,res.diputados);
-                else
+                    if (res.diputadosCentral)
+                        list('Listado Distrito Central', `Cantidad de diputados: ${res.diputadosCentralTotal}`,res.diputadosCentral);
+                } else
                     list('Listado Nacional', `Cantidad de diputados: ${res.diputadosTotal}`,res.diputados);
                 break;
             
