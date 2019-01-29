@@ -3,9 +3,9 @@
 		<div class="bgc-white p-20 bd">
 			{!! Form::myInput('text', 'name', 'Nombre del Departamento', ['disabled']) !!}
 			
-			{!! Form::myCheckbox('prime', 'prime', '¿Prime?', true) !!}
-			<br>
-			{!! Form::myCheckbox('legal', 'legal', '¿Legal?', true) !!}
+			{!! Form::myCheckbox('prime', 'prime', '¿Prime?', 'Si', null) !!}
+
+			{!! Form::myCheckbox('legal', 'legal', '¿Es Legal?', 'Si', null) !!}
 		</div>  
 	</div>
 </div>

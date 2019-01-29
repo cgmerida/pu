@@ -5,9 +5,9 @@
 			
 			{!! Form::myInput('text', 'name', 'Nombre del Municipio') !!}
 			
-			{!! Form::myCheckbox('prime', 'prime', '¿Prime?', true) !!}
+			{!! Form::myCheckbox('prime', 'prime', '¿Prime?', 'Si', null) !!}
 
-			{!! Form::myCheckbox('legal', 'legal', '¿Es Legal?', true) !!}
+			{!! Form::myCheckbox('legal', 'legal', '¿Es Legal?', 'Si', null) !!}
 		</div>  
 	</div>
 </div>
