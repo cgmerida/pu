@@ -244,6 +244,8 @@ function setTooltip(tipo, point){
 };
 
 function changeCharts(tipo = 'legals', nivel = "pais", deptoID = null) {
+    $('#progress-layer').html(`<div class="layer w-100 mT-15 c-grey-900">
+        <center><i class="fa fa-circle-o-notch fa-spin fa-5x"></i></center></div>`);
     let url;
     switch (nivel) {
         case "pais":
