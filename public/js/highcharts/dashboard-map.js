@@ -200,19 +200,16 @@ function setTooltip(tipo, point){
     txt = "";
     switch (tipo) {
         case 'legals':
-        case 'primes':
-            if (point.mayors_count != null) {
-                txt = `Alcaldes: <span class='fw-900'>
-                ${(point.mayors_count ? point.mayors_count : 0)}
-                </span>`;
-            } else {
-                txt = `Alcalde : <span class='fw-900'>
-                ${(point.mayor != null ? point.mayor.name : 'Sin Alcalde')}
-                </span>`;
-            }
             return `<div class=fsz-def><span style="color:${point.color}">\u25CF</span>
                 ${point.name}: <span class='fw-900'>${(point.value ? "Legal" : "No Legal")}</span>
-                <br>` + txt + `</div>`;
+                <br></div>`;
+            break;
+
+        case 'primes':
+            return `<div class=fsz-def><span style="color:${point.color}">\u25CF</span>
+                ${point.name}: <span class='fw-900'>${(point.value ? "Prime" : "No Prime")}</span>
+                <br></div>`;
+                break;
 
         case 'deputies':
             return `<div class=fsz-def><span style="color:${point.color}">\u25CF</span>
@@ -262,6 +259,13 @@ function changeCharts(tipo = 'legals', nivel = "pais", deptoID = null) {
 
         switch (tipo) {
             case "legals":
+                if (res.departamentos) {
+                    progressBar(
+                        `Departamentos Legales`,
+                        `${res.departamentosLegales} de ${res.departamentos}`,
+                        `${res.departamentosLegales_per}`
+                    );
+                }
                 progressBar(
                     `Municipios Legales`,
                     `${res.municipiosLegales} de ${res.municipios}`,
@@ -271,51 +275,48 @@ function changeCharts(tipo = 'legals', nivel = "pais", deptoID = null) {
                 break;
 
             case "primes":
+                if (res.departamentos) {
+                    progressBar(
+                        `Departamentos Prime`,
+                        `${res.departamentosPrimes} de ${res.departamentos}`,
+                        `${res.departamentosPrimes_per}`
+                    );
+                }
                 progressBar(
-                    `${(nivel == 'pais')? 'Departamentos':'Municipios'} Prime`,
+                    `Municipios Prime`,
                     `${res.municipiosPrimes} de ${res.municipios}`,
                     `${res.municipiosPrimes_per}`
                 );
                 break;
 
             case "deputies":
-                res.diputados.forEach(diputado => {
-                    console.log(diputado);
-                })
+                if(nivel == "depto")
+                    list('Listado Distrito', `Cantidad de diputados: ${res.diputadosTotal}`,res.diputados);
+                else
+                    list('Listado Nacional', `Cantidad de diputados: ${res.diputadosTotal}`,res.diputados);
+                break;
+            
+
+            case "mayors":
+                progressBar(
+                    `Alcaldes en Municipios Legales`,
+                    `${res.alcaldesLegales} de ${res.municipiosLegales}`,
+                    `${res.alcaldesLegales_per}`
+                );
+                
+                progressBar(
+                    `Alcaldes en Municipios No Legales`,
+                    `${res.alcaldesNoLegales} de ${res.municipiosNoLegales}`,
+                    `${res.alcaldesNoLegales_per}`
+                );
+                
+                progressBar(
+                    `Alcaldes en Municipios Total`,
+                    `${res.alcaldes} de ${res.municipios}`,
+                    `${res.alcaldes_per}`
+                )
                 break;
         }
-
-        // progressBar(
-        //     `${res.alcaldesNoLegales} de ${res.municipiosNoLegales}`,
-        //     `${res.alcaldesNoLegales_per}%`,
-        //     `${res.alcaldesNoLegales_per}`
-        // );
-
-
-
-        // $("#alcaldes-legal-titulo").html(`${res.alcaldesLegales} de ${res.municipiosLegales}`);
-        // $("#alcaldes-legal-per").html(`${res.alcaldesLegales_per}%`);
-        // $("#alcaldes-legal-bar")
-        //     .attr("aria-valuenow", `${res.alcaldesLegales_per}%`)
-        //     .css("width", `${res.alcaldesLegales_per}%`);
-
-        // $("#alcaldes-no-legal-titulo").html(`${res.alcaldesNoLegales} de ${res.municipiosNoLegales}`);
-        // $("#alcaldes-no-legal-per").html(`${res.alcaldesNoLegales_per}%`);
-        // $("#alcaldes-no-legal-bar")
-        //     .attr("aria-valuenow", `${res.alcaldesNoLegales_per}%`)
-        //     .css("width", `${res.alcaldesNoLegales_per}%`);
-            
-        // $("#alcaldes-titulo").html(`${res.alcaldes} de ${res.municipios}`);
-        // $("#alcaldes-per").html(`${res.alcaldes_per}%`);
-        // $("#alcaldes-bar")
-        //     .attr("aria-valuenow", `${res.alcaldes_per}%`)
-            //     .css("width", `${res.alcaldes_per}%`);
-
-            // $("#muni-titulo").html(`${res.municipiosLegales} de ${res.municipios}`);
-            // $("#muni-per").html(`${res.municipiosLegales_per}%`);
-            // $("#muni-bar")
-            //     .attr("aria-valuenow", `${res.municipiosLegales_per}%`)
-            //     .css("width", `${res.municipiosLegales_per}%`);
     });
 }
 
@@ -336,6 +337,24 @@ function progressBar(titulo, subtitulo, porcentaje, color = 'bgc-blue-700') {
             style="width:${porcentaje}%;"></div>
         </div>
     </div>`;
+
+    $('#progress-layer').append(template);
+
+}
+
+function list(titulo, subtitulo, items) {
+    let list = "";
+    
+    items.forEach(item => {
+        list += `<li class="list-group-item">${item.name}</li>`;
+    });
+
+    let template = `
+    <h3 class=mt-3>${titulo}</h3>
+    <small class="fsz-sm mb-2">${subtitulo}</small>
+    <ul class="list-group list-group-flush">
+        ${list}
+    </ul>`;
 
     $('#progress-layer').append(template);
 
