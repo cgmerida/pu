@@ -5,12 +5,12 @@
 @stop
 
 @section('content')
-	{!! Form::model($deparment, [
+	{!! Form::model($department, [
             'id' => 'main-form'
 		])
 	!!}
 
-		@include('deparments.partials.form')
+		@include('departments.partials.form')
 		
         @include('admin.partials.back')
         
