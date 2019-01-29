@@ -89,7 +89,13 @@ class MunicipalityController extends Controller
     {
         $this->validate($request, Municipality::rules());
 
-        $municipality->update($request->all());
+        $data = $request->all();
+
+        $data['prime'] = isset($data['prime']) ? $data['prime']: false;
+
+        $data['legal'] = isset($data['legal']) ? $data['legal']: false; 
+
+        $municipality->update($data);
 
         return redirect()->route('municipalities.index')->withSuccess(trans('app.success_update'));
     }

@@ -96,7 +96,13 @@ class DepartmentController extends Controller
     {
         $this->validate($request, Department::rules());
 
-        $department->update($request->all());
+        $data = $request->all();
+
+        $data['prime'] = isset($data['prime']) ? $data['prime'] : false;
+
+        $data['legal'] = isset($data['legal']) ? $data['legal'] : false;
+
+        $department->update($data);
 
         return redirect()->route('departments.index')->withSuccess(trans('app.success_update'));
     }

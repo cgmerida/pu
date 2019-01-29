@@ -3,18 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Collective\Html\Eloquent\FormAccessible;
 
 class Department extends Model
 {
+    use FormAccessible;
+    
     protected $fillable = [
         'name', 'prime', 'legal'
     ];
-
-    protected $dates = [
-        'created_at',
-        'updated_at'
-    ];
-
+    
     public static function rules()
     {
         return [
@@ -33,6 +31,17 @@ class Department extends Model
     {
         return $value ? "Si" : "No";
     }
+
+    public function formPrimeAttribute($value)
+    {
+        return $value ? true: false;
+    }
+
+    public function formLegalAttribute($value)
+    {
+        return $value ? true: false;
+    }
+
 
     public function municipalities()
     {
