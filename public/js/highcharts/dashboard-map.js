@@ -104,6 +104,10 @@ function crearPais(tipo, data) {
             enabled: false
         },
 
+        reflow: false,
+        height: '100%',
+        width: '100%',
+
         tooltip: {
             useHTML: true,
             formatter: function () {
@@ -300,22 +304,57 @@ function changeCharts(tipo = 'legals', nivel = "pais", deptoID = null) {
             
 
             case "mayors":
+                $('#progress-layer').append(`<h4 class=mt-3>Candidatos</h4>`);
                 progressBar(
-                    `Alcaldes en Municipios Legales`,
+                    `Municipios Legales`,
                     `${res.alcaldesLegales} de ${res.municipiosLegales}`,
                     `${res.alcaldesLegales_per}`
                 );
-                
                 progressBar(
-                    `Alcaldes en Municipios No Legales`,
+                    `Municipios No Legales`,
                     `${res.alcaldesNoLegales} de ${res.municipiosNoLegales}`,
                     `${res.alcaldesNoLegales_per}`
                 );
-                
                 progressBar(
-                    `Alcaldes en Municipios Total`,
+                    `Total`,
                     `${res.alcaldes} de ${res.municipios}`,
                     `${res.alcaldes_per}`
+                )
+
+                
+                $('#progress-layer').append(`<h4 class=mt-3>Nominados</h4>`);
+                progressBar(
+                    `Municipios Legales`,
+                    `${res.nominadosLegales} de ${res.municipiosLegales}`,
+                    `${res.nominadosLegales_per}`
+                );
+                progressBar(
+                    `Municipios No Legales`,
+                    `${res.nominadosNoLegales} de ${res.municipiosNoLegales}`,
+                    `${res.nominadosNoLegales_per}`
+                );
+                progressBar(
+                    `Total`,
+                    `${res.nominados} de ${res.municipios}`,
+                    `${res.nominados_per}`
+                )
+
+                
+                $('#progress-layer').append(`<h4 class=mt-3>Inscritos</h4>`);
+                progressBar(
+                    `Municipios Legales`,
+                    `${res.inscritosLegales} de ${res.municipiosLegales}`,
+                    `${res.inscritosLegales_per}`
+                );
+                progressBar(
+                    `Municipios No Legales`,
+                    `${res.inscritosNoLegales} de ${res.municipiosNoLegales}`,
+                    `${res.inscritosNoLegales_per}`
+                );
+                progressBar(
+                    `Total`,
+                    `${res.inscritos} de ${res.municipios}`,
+                    `${res.inscritos_per}`
                 )
                 break;
         }
@@ -352,7 +391,7 @@ function list(titulo, subtitulo, items) {
     });
 
     let template = `
-    <h3 class=mt-3>${titulo}</h3>
+    <h4 class=mt-3>${titulo}</h4>
     <small class="fsz-sm mb-2">${subtitulo}</small>
     <ul class="list-group list-group-flush">
         ${list}

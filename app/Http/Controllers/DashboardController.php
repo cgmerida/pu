@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Central;
+use App\Department;
 use App\Mayor;
 use App\Municipality;
-use App\Department;
 use App\National;
-use App\Central;
+use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -47,7 +47,6 @@ class DashboardController extends Controller
             $query->select('id', 'name', 'municipality_id');
         }])->select(['id', 'name', 'prime as value'])->get();
     }
-
 
     public function departmentsMayors()
     {
@@ -168,28 +167,57 @@ class DashboardController extends Controller
 
         return response()->json($e, 200);
     }
-    
 
     public function paisStadisticsMayors()
     {
         $e = new \stdClass();
+        $e->municipios = Municipality::count();
+        $e->municipiosLegales = Municipality::whereLegal(1)->count();
+        $e->municipiosNoLegales = Municipality::whereLegal(0)->count();
 
+        // GRAFICAS DE CANDIDATOS
         $e->alcaldesLegales = Mayor::whereHas('municipality', function ($query) {
             $query->whereLegal(1);
         })->count();
-        
-        $e->municipiosLegales = Municipality::whereLegal(1)->count();
         $e->alcaldesLegales_per = round(($e->alcaldesLegales / max($e->municipiosLegales, 1)) * 100, 2);
 
         $e->alcaldesNoLegales = Mayor::whereHas('municipality', function ($query) {
             $query->whereLegal(0);
         })->count();
-        $e->municipiosNoLegales = Municipality::whereLegal(0)->count();
         $e->alcaldesNoLegales_per = round(($e->alcaldesNoLegales / max($e->municipiosNoLegales, 1)) * 100, 2);
 
         $e->alcaldes = Mayor::count();
-        $e->municipios = Municipality::count();
         $e->alcaldes_per = round(($e->alcaldes / max($e->municipios, 1)) * 100, 2);
+
+        // GRAFICAS DE NOMINADOS
+        $e->nominadosLegales = Mayor::whereNominated(1)->whereHas('municipality', function ($query) {
+            $query->whereLegal(1);
+        })->count();
+
+        $e->nominadosLegales_per = round(($e->nominadosLegales / max($e->municipiosLegales, 1)) * 100, 2);
+
+        $e->nominadosNoLegales = Mayor::whereNominated(1)->whereHas('municipality', function ($query) {
+            $query->whereLegal(0);
+        })->count();
+        $e->nominadosNoLegales_per = round(($e->nominadosNoLegales / max($e->municipiosNoLegales, 1)) * 100, 2);
+
+        $e->nominados = Mayor::whereNominated(1)->count();
+        $e->nominados_per = round(($e->nominados / max($e->municipios, 1)) * 100, 2);
+
+        // GRAFICAS DE INSCRITOS
+        $e->inscritosLegales = Mayor::whereSignedUp(1)->whereHas('municipality', function ($query) {
+            $query->whereLegal(1);
+        })->count();
+
+        $e->inscritosLegales_per = round(($e->inscritosLegales / max($e->municipiosLegales, 1)) * 100, 2);
+
+        $e->inscritosNoLegales = Mayor::whereSignedUp(1)->whereHas('municipality', function ($query) {
+            $query->whereLegal(0);
+        })->count();
+        $e->inscritosNoLegales_per = round(($e->inscritosNoLegales / max($e->municipiosNoLegales, 1)) * 100, 2);
+
+        $e->inscritos = Mayor::whereSignedUp(1)->count();
+        $e->inscritos_per = round(($e->inscritos / max($e->municipios, 1)) * 100, 2);
 
         return response()->json($e, 200);
     }
@@ -197,22 +225,52 @@ class DashboardController extends Controller
     public function deptoStadisticsMayors(Department $department)
     {
         $e = new \stdClass();
+        $e->municipiosLegales = $department->municipalities()->whereLegal(1)->count();
+        $e->municipiosNoLegales = $department->municipalities()->whereLegal(0)->count();
+        $e->municipios = $department->municipalities()->count();
 
+        // GRAFICAS DE CANDIDATOS
         $e->alcaldesLegales = $department->mayors()->whereHas('municipality', function ($query) {
             $query->whereLegal(1);
         })->count();
-        $e->municipiosLegales = $department->municipalities()->whereLegal(1)->count();
         $e->alcaldesLegales_per = round(($e->alcaldesLegales / max($e->municipiosLegales, 1)) * 100, 2);
 
         $e->alcaldesNoLegales = $department->mayors()->whereHas('municipality', function ($query) {
             $query->whereLegal(0);
         })->count();
-        $e->municipiosNoLegales = $department->municipalities()->whereLegal(0)->count();
         $e->alcaldesNoLegales_per = round(($e->alcaldesNoLegales / max($e->municipiosNoLegales, 1)) * 100, 2);
 
         $e->alcaldes = $department->mayors()->count();
-        $e->municipios = $department->municipalities()->count();
         $e->alcaldes_per = round(($e->alcaldes / max($e->municipios, 1)) * 100, 2);
+
+        // GRAFICAS DE NOMINADOS
+        $e->nominadosLegales = $department->mayors()->whereNominated(1)->whereHas('municipality', function ($query) {
+            $query->whereLegal(1);
+        })->count();
+        $e->nominadosLegales_per = round(($e->nominadosLegales / max($e->municipiosLegales, 1)) * 100, 2);
+
+        $e->nominadosNoLegales = $department->mayors()->whereNominated(1)->whereHas('municipality', function ($query) {
+            $query->whereLegal(0);
+        })->count();
+        $e->nominadosNoLegales_per = round(($e->nominadosNoLegales / max($e->municipiosNoLegales, 1)) * 100, 2);
+
+        $e->nominados = $department->mayors()->whereNominated(1)->count();
+        $e->nominados_per = round(($e->nominados / max($e->municipios, 1)) * 100, 2);
+
+        // GRAFICAS DE INSCRITOS
+        $e->inscritosLegales = $department->mayors()->whereSignedUp(1)->whereHas('municipality', function ($query) {
+            $query->whereLegal(1);
+        })->count();
+
+        $e->inscritosLegales_per = round(($e->inscritosLegales / max($e->municipiosLegales, 1)) * 100, 2);
+
+        $e->inscritosNoLegales = $department->mayors()->whereSignedUp(1)->whereHas('municipality', function ($query) {
+            $query->whereLegal(0);
+        })->count();
+        $e->inscritosNoLegales_per = round(($e->inscritosNoLegales / max($e->municipiosNoLegales, 1)) * 100, 2);
+
+        $e->inscritos = $department->mayors()->whereSignedUp(1)->count();
+        $e->inscritos_per = round(($e->inscritos / max($e->municipios, 1)) * 100, 2);
 
         return response()->json($e, 200);
     }
