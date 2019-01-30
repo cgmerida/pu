@@ -9,6 +9,15 @@ use Illuminate\Http\Request;
 
 class MayorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:mayors.index')->only('index');
+        $this->middleware('permission:mayors.create')->only(['create', 'store']);
+        $this->middleware('permission:mayors.edit')->only(['edit', 'update']);
+        $this->middleware('permission:mayors.show')->only('show');
+        $this->middleware('permission:mayors.destroy')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *

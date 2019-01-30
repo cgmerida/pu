@@ -10,6 +10,15 @@ use Illuminate\Http\Request;
 
 class DeputyController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:deputies.index')->only('index');
+        $this->middleware('permission:deputies.create')->only(['create', 'store']);
+        $this->middleware('permission:deputies.edit')->only(['edit', 'update']);
+        $this->middleware('permission:deputies.show')->only('show');
+        $this->middleware('permission:deputies.destroy')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *
