@@ -111,7 +111,7 @@
             
             $(window).resize(function() {
                 clearTimeout(this.id);
-                this.id = setTimeout(doneResizing, 500);
+                this.id = setTimeout(doneResizing, 300);
             });
 
             function doneResizing(){
