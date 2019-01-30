@@ -1,3 +1,16 @@
 echo off
-mysqldump -hlocalhost -uroot pu > c:/xampp/htdocs/pu/database/backups/backup_pu_%Date:~6,4%-%Date:~3,2%-%Date:~0,2%.sql
+for /f "tokens=1-4 delims=/ " %%i in ("%date%") do (
+     set dow=%%i
+     set d=%%j
+     set m=%%k
+     set y=%%l
+)
+set datestr=%d%_%m%_%y%
+
+set folder="c:/xampp/htdocs/pu/database/backups/"%m%-%y%
+
+if not exist %folder% mkdir %folder%
+
+mysqldump -hlocalhost -uroot pu > %folder%/backup_pu_%datestr%.sql
+
 exit

@@ -1,0 +1,1 @@
+mysql -u root pu < backup.sql
