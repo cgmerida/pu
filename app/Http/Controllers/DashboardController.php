@@ -160,7 +160,7 @@ class DashboardController extends Controller
         $e->diputados = $department->deputies;
         $e->diputadosTotal = $department->deputies->count();
 
-        if ($department->name = "Guatemala") {
+        if ($department->name == "Guatemala") {
             $e->diputadosCentral = Central::all();
             $e->diputadosCentralTotal = Central::count();
         }
