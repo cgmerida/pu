@@ -7,6 +7,10 @@
 			{!! Form::mySelect('municipality_id', 'Municipio', $municipalities) !!}
 			
 			{!! Form::myInput('text', 'name', 'Nombre Completo del candidato') !!}
+			
+			{!! Form::myCheckbox('nominated', 'nominated', '¿Está Nominado?', true, null) !!}
+
+			{!! Form::myCheckbox('signed_up', 'signed_up', '¿Está Inscrito?', true, null) !!}
 		</div>  
 	</div>
 </div>

@@ -3,12 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Collective\Html\Eloquent\FormAccessible;
 
 class Mayor extends Model
 {
+    use FormAccessible;
 
     protected $fillable = [
-        'name', 'department_id', 'municipality_id'
+        'name', 'department_id', 'municipality_id',
+        'nominated', 'signed_up',
     ];
 
     protected $dates = [
@@ -20,6 +23,8 @@ class Mayor extends Model
     {
         return [
             'name' => 'required|string|max:255',
+            'nominated' => 'boolean',
+            'signed_up' => 'boolean',
             'department_id' => 'required|numeric',
             'municipality_id' => 'required|numeric',
         ];
@@ -30,6 +35,26 @@ class Mayor extends Model
         $this->attributes['name'] = mb_convert_case($value, MB_CASE_TITLE, "UTF-8");
     }
 
+    public function getNominatedAttribute($value)
+    {
+        return $value ? "Si" : "No";
+    }
+
+    public function getSignedUpAttribute($value)
+    {
+        return $value ? "Si" : "No";
+    }
+
+    public function formNominatedAttribute($value)
+    {
+        return $value;
+    }
+
+    public function formSignedUpAttribute($value)
+    {
+        return $value;
+    }
+    
     public function department()
     {
         return $this->belongsTo(Department::class);

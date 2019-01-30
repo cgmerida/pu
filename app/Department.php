@@ -42,7 +42,6 @@ class Department extends Model
         return $value ? true: false;
     }
 
-
     public function municipalities()
     {
         return $this->hasMany(Municipality::class);

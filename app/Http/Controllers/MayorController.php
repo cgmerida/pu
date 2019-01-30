@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Mayor;
 use App\Department;
+use App\Mayor;
 use App\Municipality;
 use Illuminate\Http\Request;
-
 
 class MayorController extends Controller
 {
@@ -41,7 +40,7 @@ class MayorController extends Controller
         return response()->json([
             'status' => 'exito',
             'message' => 'Se creo correctamente',
-            'mayor' => $mayor
+            'mayor' => $mayor,
         ], 200);
     }
 
@@ -69,14 +68,18 @@ class MayorController extends Controller
      */
     public function update(Request $request, Mayor $mayor)
     {
-        $mayor->name = $request->name;
+        if ($request->name) {
+            $mayor->name = $request->name;
+        } else {
+            $mayor->{$request->attr} = ($request->option === 'true');
+        }
 
         $mayor->save();
 
         return response()->json([
             'status' => 'exito',
             'message' => 'Se actualizo correctamente',
-            'mayor' => $mayor
+            'mayor' => $mayor,
         ], 200);
     }
 
@@ -92,30 +95,34 @@ class MayorController extends Controller
 
         return response()->json([
             'status' => 'exito',
-            'message' => 'Se elimino correctamente'
+            'message' => 'Se elimino correctamente',
         ], 200);
     }
 
     public function getMayors(Department $department, $muni_id)
     {
-        $municipalities = (int)$muni_id === 0 ?
-            $department->municipalities()->with([
-            'department' => function ($query) {
-                $query->select('id', 'name');
-            },
-            'mayor',
-        ])->get() :
-            $department->municipalities()->where('id', $muni_id)->with([
-            'department' => function ($query) {
-                $query->select('id', 'name');
-            },
-            'mayor',
-        ])->get();
+        $municipalities = (int) $muni_id === 0 ?
+        $department->municipalities()
+            ->with('mayor')->get() :
+        $department->municipalities()->whereId($muni_id)
+            ->with('mayor')->get();
 
         return datatables($municipalities)
             ->editColumn('mayor.name', function ($municipalities) {
                 if ($municipalities->mayor) {
                     return $municipalities->mayor->name;
+                }
+                return 'Sin Candidato';
+            })
+            ->editColumn('mayor.nominated', function ($municipalities) {
+                if ($municipalities->mayor) {
+                    return $municipalities->mayor->nominated;
+                }
+                return 'Sin Candidato';
+            })
+            ->editColumn('mayor.signed_up', function ($municipalities) {
+                if ($municipalities->mayor) {
+                    return $municipalities->mayor->signed_up;
                 }
                 return 'Sin Candidato';
             })
