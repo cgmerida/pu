@@ -19,7 +19,7 @@
 
 @section('content')
 
-    <div class="row gap-20 masonry pos-r">
+    <div class="row gap-20 masonry pos-r mT-nv-50">
         <div class="masonry-item col-12">
             <!-- #Site Visits ==================== -->
             <div class="bd bgc-white">
