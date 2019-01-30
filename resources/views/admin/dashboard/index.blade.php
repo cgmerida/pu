@@ -101,7 +101,7 @@
 
     <script>
         $(function(){
-            Mapainit();
+            Mapainit($('input[type=radio]:checked').val());
 
             $('input[type=radio]').change(function() {
                 const tipo = $('input[type=radio]:checked').val();
