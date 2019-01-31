@@ -40,7 +40,7 @@
                         onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                             <i class="ti-power-off mR-10"></i>
-                            <span>Cerrar Sesión</span>
+                            <span>Salir</span>
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
