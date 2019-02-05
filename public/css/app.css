@@ -9696,6 +9696,8 @@ hr {
 }
 
 .sidebar-logo {
+  border-bottom: 1px solid transparent;
+  background-color: #0E166B;
   border-bottom: 1px solid rgba(0, 0, 0, 0.065);
   border-right: 1px solid rgba(0, 0, 0, 0.065);
   line-height: 0;
