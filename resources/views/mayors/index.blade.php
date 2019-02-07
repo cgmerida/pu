@@ -105,7 +105,7 @@
                 municipality_id: muni
             };
 
-            mySwall('Crear Nuevo Candidato', 'Crear', 'post', body, 'mayors/');
+            mySwall('Crear Nuevo Candidato', 'Crear', 'post', body, "{{ route('mayors.store') }}");
         }
 
         function editName(url) {
