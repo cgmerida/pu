@@ -34,8 +34,8 @@
             <thead>
                 <tr>
                     <th>Departamento</th>
-                    <th>Prime</th>
                     <th>Legal</th>
+                    <th>Prime</th>
                     <th>Nombre</th>
                     <th>Acciones</th>
                 </tr>
@@ -44,8 +44,8 @@
             <tfoot>
                 <tr>
                     <th>Departamento</th>
-                    <th>Prime</th>
                     <th>Legal</th>
+                    <th>Prime</th>
                     <th>Nombre</th>
                     <th>Acciones</th>
                 </tr>
@@ -105,7 +105,7 @@
             mySwall('Ingrese el nuevo Candidato', 'Actualizar', 'post', body, url);
         }
 
-        function deleteMayor(url) {
+        function deleteDeputy(url) {
             swal.fire({
                 title: "¿Estás Seguro?",
                 text: "¿Estás seguro de querer continuar?",

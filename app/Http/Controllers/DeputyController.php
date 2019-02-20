@@ -110,13 +110,13 @@ class DeputyController extends Controller
 
     public function getDeputies(Department $department)
     {
-        $deputies = $department->deputies()->with('department')
-            ->select('id', 'name', 'department_id')->get();
+        $deputies = $department->deputies()->with(['department' => function ($query) {
+            $query->select('id', 'prime', 'legal');
+        }])->select('id', 'name', 'department_id')->get();
 
         return datatables($deputies)
-            ->addColumn('actions', function ($deputies) use ($department) {
+            ->addColumn('actions', function ($deputies) {
                 $id = $deputies->id;
-                $depto = $department->id;
                 return view('deputies.partials.actions', compact('id'));
             })
             ->rawColumns(['actions'])
