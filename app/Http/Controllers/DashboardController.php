@@ -66,21 +66,59 @@ class DashboardController extends Controller
 
         return $department->municipalities()->with(['mayor' => function ($query) {
             $query->select('id', 'name', 'municipality_id');
-        }])->select(['id', 'name'])->withCount('mayor as value')->selectRaw('"muni"')->get();
+        }])->select(['id', 'name'])->withCount([
+            'mayor as a',
+            'mayor as b' => function ($query) {
+                $query->where('nominated', true);
+            },
+            'mayor as c' => function ($query) {
+                $query->where('signed_up', true);
+            }
+        ])
+            ->selectRaw('"muni"')->get()->each(function ($muni) {
+                $muni->value = $muni->a + $muni->b + $muni->c;
+            });
     }
 
     public function departmentsDeputies()
     {
-        $departments = Department::select('id', 'name as drilldown')->withCount('deputies as value')->get();
+        $departments = Department::select('id', 'name as drilldown')->withCount('deputies')->get();
+
+        $departments->each(function ($item) {
+            $deputy = $item->deputies->first();
+
+            $a = ($deputy) ? 1 : 0;
+            $b = $c = 0;
+
+            if ($deputy) {
+                $b = ($deputy->nominated) ? 1 : 0;
+                $c = ($deputy->signed_up) ? 1 : 0;
+            }
+
+            $item->value = $a + $b + $c;
+        });
 
         return $departments;
     }
 
     public function municipalitiesDeputies(Department $department)
     {
-        $count = $department->deputies()->count();
+        $deputy = $department->deputies()->first();
+
+        $a = ($deputy) ? 1 : 0;
+        $count = $b = $c = 0;
+
+        if ($deputy) {
+            $b = ($deputy->nominated) ? 1 : 0;
+            $c = ($deputy->signed_up) ? 1 : 0;
+        }
+
+        $count = $a + $b + $c;
+
         return $department->municipalities()->where('name', '!=', 'Guatemala')->select(['id', 'name'])
-            ->selectRaw($count . ' as value')->get();
+            ->selectRaw($count . ' as value')
+            ->selectRaw($department->deputies->count() . ' as deputies_count')
+            ->get();
     }
 
     public function departmentsTours()

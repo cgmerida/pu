@@ -35,6 +35,7 @@ function crearPais(tipo, data) {
                                 }
 
                                 changeCharts(tipo, "depto", deptoID);
+                                setDataClassDepto(tipo, chart);
 
                                 chart.hideLoading();
 
@@ -51,7 +52,7 @@ function crearPais(tipo, data) {
                                     data: dataDepto,
                                     mapData: json,
                                     joinBy: ["name", "name"],
-                                    nullColor: "#70e370",
+                                    nullColor: "#00D9D9",
                                     dataLabels: {
                                         enabled: true,
                                         format: "{point.name}"
@@ -76,7 +77,8 @@ function crearPais(tipo, data) {
                         });
                     }
                 },
-                drillup: function () {
+                drillupall: function () {
+                    setDataClass(tipo, this);
                     changeCharts(tipo);
 
                     this.title.update({
@@ -142,7 +144,7 @@ function crearPais(tipo, data) {
             name: "Guatemala",
             data: data,
             joinBy: ["name", "drilldown"],
-            nullColor: "#70e370",
+            nullColor: "#00D9D9",
             borderColor: '#ffffff',
             dataLabels: {
                 enabled: true,
@@ -155,49 +157,120 @@ function crearPais(tipo, data) {
 
 function setDataClass(tipo, chart) {
     let name, name2;
+
+    if (tipo == 'deputies') {
+        options = [{
+            to: 0,
+            name: 'Sin Candidatos',
+            color: "#f44336"
+        }, {
+            from: 1,
+            to: 2,
+            name: 'Candidato',
+            color: "#ffeb3b"
+        }, {
+            from: 2,
+            to: 3,
+            name: 'Nominado',
+            color: "#4caf50"
+        }, {
+            from: 3,
+            to: 4,
+            name: 'Inscrito',
+            color: "#0E166B"
+        }];
+        chart.update({
+            colorAxis: {
+                dataClasses: options
+            }
+        }, false);
+        chart.redraw(false);
+    } else {
+        switch (tipo) {
+            case 'legals':
+                name = "No Legal";
+                name2 = "Legal";
+                break;
+
+            case 'primes':
+                name = "No Prime";
+                name2 = "Prime";
+                break;
+
+            case 'mayors':
+                name = "Sin Alcaldes";
+                name2 = "Con Alcaldes";
+                break;
+
+            case 'tours':
+                name = "Sin Gira";
+                name2 = "Con Gira";
+                break;
+        }
+        chart.update({
+            colorAxis: {
+                dataClasses: [{
+                        to: 0,
+                        name: name,
+                        color: "#f5ef18"
+                    },
+                    {
+                        from: 1,
+                        name: name2,
+                        color: "#0E166B"
+                    }
+                ]
+            }
+        }, false);
+        chart.redraw(false);
+    }
+};
+
+function setDataClassDepto(tipo, chart) {
+    let options;
     switch (tipo) {
         case 'legals':
-            name = "No Legal";
-            name2 = "Legal";
             break;
-            
+
         case 'primes':
-            name = "No Prime";
-            name2 = "Prime";
             break;
-        
+
         case 'deputies':
-            name = "Sin Diputadoss";
-            name2 = "Con Diputados";
             break;
-            
+
         case 'mayors':
-            name = "Sin Alcaldes";
-            name2 = "Con Alcaldes";
+            options = [{
+                to: 0,
+                name: 'Sin Candidato',
+                color: "#f44336"
+            }, {
+                from: 1,
+                to: 2,
+                name: 'Candidato',
+                color: "#ffeb3b"
+            }, {
+                from: 2,
+                to: 3,
+                name: 'Nominado',
+                color: "#4caf50"
+            }, {
+                from: 3,
+                to: 4,
+                name: 'Inscrito',
+                color: "#0E166B"
+            }];
+            chart.update({
+                colorAxis: {
+                    dataClasses: options
+                }
+            }, false);
+            chart.redraw(false);
+
             break;
 
         case 'tours':
-            name = "Sin Gira";
-            name2 = "Con Gira";
             break;
     }
-    chart.update({
-        colorAxis: {
-            dataClasses: [
-                {
-                    to: 0,
-                    name: name,
-                    color: "#f5ef18"
-                },
-                {
-                    from: 1,
-                    name: name2,
-                    color: "#0E166B"
-                }
-            ]
-        }
-    }, false);
-    chart.redraw(false);
 };
 
 function setTooltip(tipo, point){
@@ -219,7 +292,7 @@ function setTooltip(tipo, point){
             return `<div class=fsz-def><span style="color:${point.color}">\u25CF</span>
                 ${point.name}<br>
                 Diputados: <span class='fw-900'>
-                    ${(point.value ? point.value : 0)}
+                    ${(point.deputies_count ? point.deputies_count : point.value)}
                 </span></div>`;
             break;
 
