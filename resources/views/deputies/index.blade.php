@@ -37,6 +37,8 @@
                     <th>Legal</th>
                     <th>Prime</th>
                     <th>Nombre</th>
+                    <th>Nominado</th>
+                    <th>Inscrito</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -47,6 +49,8 @@
                     <th>Legal</th>
                     <th>Prime</th>
                     <th>Nombre</th>
+                    <th>Nominado</th>
+                    <th>Inscrito</th>
                     <th>Acciones</th>
                 </tr>
             </tfoot>
@@ -57,6 +61,9 @@
 @endsection
 
 @section('js')
+
+    @include('deputies.partials.swals')
+    
     <script>
 		let dtable;
 
@@ -86,6 +93,8 @@
 					{data: 'department.legal'},
 					{data: 'department.prime'},
 					{data: 'name'},
+					{data: 'nominated'},
+					{data: 'signed_up'},
 					{data: 'actions', orderable: false, searchable: false}
                 ], 
                 order: [[ 1, "desc" ]]
@@ -105,96 +114,21 @@
             mySwall('Ingrese el nuevo Candidato', 'Actualizar', 'post', body, url);
         }
 
-        function deleteDeputy(url) {
-            swal.fire({
-                title: "¿Estás Seguro?",
-                text: "¿Estás seguro de querer continuar?",
-                type: "error",
-                showCancelButton: true,
-                confirmButtonClass: "btn btn-outline-danger",
-                cancelButtonClass: "btn btn-outline-primary",
-                confirmButtonText: "Si, estoy seguro",
-                cancelButtonText: "Cancelar",
-                showLoaderOnConfirm: true
-            }).then(res => {
-                if (res.value) {
-                    return fetch(url, {
-                        headers: {
-                            "Content-Type": "application/json",
-                            "Accept": "application/json",
-                            "X-Requested-With": "XMLHttpRequest",
-                            "X-CSRF-Token": $('meta[name="csrf-token"]').attr('content')
-                        },
-                        method: 'post',
-                        credentials: "same-origin",
-                        body: JSON.stringify({
-                            _method: "DELETE",
-                        })}
-                    )
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(response.statusText)
-                    console.log(response);
-                }
-                return response.json();
-            })
-            .then(result => {
-                if (result.status == 'exito'){
-                    searchDatatable();
-                    swal.fire(result.status, result.message,'success')
-                }
-            })
-            .catch(error => {
-                swal.showValidationMessage(`fallo la petición: ${error}`)
-            })
+        function nominateMayor(url) {
+            const body = {
+                _method: "PUT",
+                attr: 'nominated'
+            };
+            myRadioSwall('Diputado Nominado', 'Guardar', 'post', body, url);
         }
 
-        function mySwall(title, btn_txt, method, body, url){
-            swal.fire({
-                title: title,
-                input: 'text',
-                inputAttributes: {
-                    autocapitalize: 'off'
-                },
-                showCancelButton: true,
-                confirmButtonText: btn_txt,
-                showLoaderOnConfirm: true,
-                preConfirm: (name) => {
-                    body.name = name;
-                    return fetch(url, {
-                        headers: {
-                            "Content-Type": "application/json",
-                            "Accept": "application/json",
-                            "X-Requested-With": "XMLHttpRequest",
-                            "X-CSRF-Token": $('meta[name="csrf-token"]').attr('content')
-                        },
-                        method: method,
-                        credentials: "same-origin",
-                        body: JSON.stringify(body)
-                    })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error(response.statusText)
-                            console.log(response);
-                        }
-                        return response.json()
-                    })
-                    .catch(error => {
-                        swal.showValidationMessage(`fallo la petición: ${error}`)
-                    })
-                },
-                allowOutsideClick: () => !swal.isLoading()
-            })
-            .then((result) => {
-                if (result.value) {
-                    if (result.value.status == 'exito'){
-                        searchDatatable();
-                        swal.fire(result.value.status, result.value.message,'success')
-                    }
-                }
-            })
+        function signMayor(url) {
+            const body = {
+                _method: "PUT",
+                attr: 'signed_up'
+            };
+
+            myRadioSwall('Diputado Inscrito', 'Guardar', 'post', body, url);
         }
     </script>
     

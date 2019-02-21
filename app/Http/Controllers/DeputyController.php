@@ -81,7 +81,11 @@ class DeputyController extends Controller
      */
     public function update(Request $request, Deputy $deputy)
     {
-        $deputy->name = $request->name;
+        if ($request->name) {
+            $deputy->name = $request->name;
+        } else {
+            $deputy->{$request->attr} = ($request->option === 'true');
+        }
 
         $deputy->save();
 
@@ -112,7 +116,7 @@ class DeputyController extends Controller
     {
         $deputies = $department->deputies()->with(['department' => function ($query) {
             $query->select('id', 'name', 'prime', 'legal');
-        }])->select('id', 'name', 'department_id')->get();
+        }])->get();
 
         return datatables($deputies)
             ->addColumn('actions', function ($deputies) {

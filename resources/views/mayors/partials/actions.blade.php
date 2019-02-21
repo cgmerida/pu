@@ -1,7 +1,6 @@
 
 <ul class="list-inline">
     @if ($mayor_id > 0)
-
         @can('mayors.edit')
         <li class="list-inline-item">
             <button title="{{ trans('app.edit_title') }}" data-toggle="tooltip"
@@ -9,18 +8,14 @@
                 <span class="ti-pencil"></span>
             </button>
         </li>
-        @endcan
         
-        @can('mayors.edit')
         <li class="list-inline-item">
             <button class="btn btn-outline-dark btn-sm" title="Nominar"
             onclick="nominateMayor('{{ route('mayors.update', $mayor_id) }}')">
                 <i class="ti-thumb-up"></i>
             </button>
         </li>
-        @endcan
         
-        @can('mayors.edit')
         <li class="list-inline-item">
             <button class="btn btn-outline-success btn-sm" title="Inscribir"
             onclick="signMayor('{{ route('mayors.update', $mayor_id) }}')">
@@ -32,7 +27,7 @@
         @can('mayors.destroy')
         <li class="list-inline-item">
             <button class="btn btn-outline-danger btn-sm" title="{{ trans('app.delete_title') }}"
-            onclick="deleteMayor('{{ route('mayors.destroy', $mayor_id) }}')">
+            onclick="deleteCandidate('{{ route('mayors.destroy', $mayor_id) }}')">
                 <i class="ti-trash"></i>
             </button>
         </li>
