@@ -25,40 +25,48 @@ $.extend($.fn.dataTable.defaults, {
     serverSide: true,
     processing: true,
     fixedColumns: true,
-    columnDefs: [
-        { width: 200, targets: -1 }
-    ],
-    buttons: [
-        {
-            extend: "copy",
-            text: '<i class="fa fa-clipboard"></i> Copiar',
-            className: "btn btn-outline-primary",
-            exportOptions: {
-                columns: ':visible'
+    columnDefs: [{
+        width: 200,
+        targets: -1
+    }],
+    buttons: {
+        dom: {
+            button: {
+                tag: 'button',
+                className: ''
             }
         },
-        {
-            extend: "excel",
-            text: '<i class="fa fa-file-excel-o"></i> Excel',
-            className: "btn btn-outline-primary",
-            exportOptions: {
-                columns: ':visible'
+        buttons: [{
+                extend: "copy",
+                text: '<i class="fa fa-clipboard"></i> Copiar',
+                className: "btn btn-outline-primary",
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: "excel",
+                text: '<i class="fa fa-file-excel-o"></i> Excel',
+                className: "btn btn-outline-primary",
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: "pdf",
+                text: '<i class="fa fa-file-pdf-o"></i> PDF',
+                className: "btn btn-outline-primary",
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'colvis',
+                text: '<i class="fa fa-eye-slash"></i> Visibilidad',
+                className: "btn btn-outline-primary",
             }
-        },
-        {
-            extend: "pdf",
-            text: '<i class="fa fa-file-pdf-o"></i> PDF',
-            className: "btn btn-outline-primary",
-            exportOptions: {
-                columns: ':visible'
-            }
-        },
-        {
-            extend: 'colvis',
-            text: '<i class="fa fa-eye-slash"></i> Visibilidad',
-            className: "btn btn-outline-primary",
-        }
-    ],
+        ]
+    },
     language: {
         sProcessing: "<i class='fa fa-circle-o-notch fa-spin fa-5x fa-fw'></i>",
         sLengthMenu: "Mostrar _MENU_ registros",
@@ -82,7 +90,7 @@ $.extend($.fn.dataTable.defaults, {
             sSortAscending: ": Activar para ordenar la columna de manera ascendente",
             sSortDescending: ": Activar para ordenar la columna de manera descendente"
         },
-        
+
         buttons: {
             copyTitle: 'Copiado en el portapapeles',
             copySuccess: {
