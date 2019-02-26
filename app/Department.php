@@ -56,4 +56,9 @@ class Department extends Model
     {
         return $this->hasMany(Deputy::class);
     }
+
+    public function tours()
+    {
+        return $this->hasMany(Tour::class);
+    }
 }

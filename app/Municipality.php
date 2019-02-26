@@ -54,4 +54,9 @@ class Municipality extends Model
     {
         return $this->hasOne(Mayor::class);
     }
+
+    public function tours()
+    {
+        return $this->hasMany(Tour::class);
+    }
 }
