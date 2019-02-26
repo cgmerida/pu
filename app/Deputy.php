@@ -29,6 +29,18 @@ class Deputy extends Model
         $this->attributes['name'] = mb_convert_case($value, MB_CASE_TITLE, "UTF-8");
     }
 
+
+    public function getNominatedAttribute($value)
+    {
+        return $value ? "Si" : "No";
+    }
+
+    public function getSignedUpAttribute($value)
+    {
+        return $value ? "Si" : "No";
+    }
+
+
     public function department()
     {
         return $this->belongsTo(Department::class);

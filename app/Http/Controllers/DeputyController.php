@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Deputy;
 use App\Department;
-use App\Municipality;
 use Illuminate\Http\Request;
 
 

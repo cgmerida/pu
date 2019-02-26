@@ -44,10 +44,3 @@ Route::get('municipalities', function () {
         ->rawColumns(['actions'])
         ->toJson();
 });
-
-Route::get('candidates', function () {
-    return datatables(App\Candidate::with('department', 'municipality')->get())
-        ->addColumn('actions', 'candidates.partials.actions')
-        ->rawColumns(['actions'])
-        ->toJson();
-});
