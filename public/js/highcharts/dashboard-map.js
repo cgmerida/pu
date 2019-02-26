@@ -312,7 +312,9 @@ function setTooltip(tipo, point){
             break;
 
         case 'tours':
-            return 'no data';
+            return `<div class=fsz-def><span style="color:${point.color}">\u25CF</span>
+                ${point.name}
+                <br>Giras: ${point.value}</div>`;
             break;
     }
 };
@@ -430,6 +432,29 @@ function changeCharts(tipo = 'legals', nivel = "pais", deptoID = null) {
                     `${res.inscritos_per}`
                 )
                 break;
+
+
+            case "tours":
+                progressBar(
+                    `Municipios con Giras`,
+                    `${res.municipiosGira} de ${res.municipios}`,
+                    `${res.municipiosGira_per}`
+                );
+
+                progressBar(
+                    `Municipios con Giras Pendientes`,
+                    `${res.municipiosGiraPendiente} de ${res.municipios}`,
+                    `${res.municipiosGiraPendiente_per}`
+                );
+
+                progressBar(
+                    `Municipios con Giras Realizadas`,
+                    `${res.municipiosGiraRealizada} de ${res.municipios}`,
+                    `${res.municipiosGiraRealizada_per}`
+                );
+
+
+            break;
         }
     });
 }

@@ -123,7 +123,7 @@ class DashboardController extends Controller
 
     public function departmentsTours()
     {
-        $departments = Department::select("id", "name as drilldown")->selectRaw('0 as value')->get();
+        $departments = Department::select("id", "name as drilldown")->withCount('tours as value')->get();
 
         return $departments;
     }
@@ -131,9 +131,7 @@ class DashboardController extends Controller
     public function municipalitiesTours(Department $department)
     {
 
-        return $department->municipalities()->with(['mayor' => function ($query) {
-            $query->select('id', 'name', 'municipality_id');
-        }])->select('id', 'name', 'prime as value')->selectRaw('0 as value')->get();
+        return $department->municipalities()->select('id', 'name')->withCount('tours as value')->get();
     }
 
     public function paisStadisticsLegals()
@@ -315,6 +313,57 @@ class DashboardController extends Controller
 
         $e->inscritos = $department->mayors()->whereSignedUp(1)->count();
         $e->inscritos_per = round(($e->inscritos / max($e->municipios, 1)) * 100, 2);
+
+        return response()->json($e, 200);
+    }
+
+
+    public function paisStadisticsTours(){
+
+        $e = new \stdClass();
+        $e->municipios = Municipality::count();
+
+        // Municipiios con Gira
+        $e->municipiosGira = Municipality::has('tours')->count();
+        $e->municipiosGira_per = round(($e->municipiosGira / max($e->municipios, 1)) * 100, 2);
+        
+        // Municipios con gira Pendiente
+        $e->municipiosGiraPendiente = Municipality::whereHas('tours', function($query) {
+            $query->whereStatus('Pendiente');
+        })->count();
+        $e->municipiosGiraPendiente_per = round(($e->municipiosGiraPendiente / max($e->municipios, 1)) * 100, 2);
+
+        // Municipios con gira Realizada
+        $e->municipiosGiraRealizada = Municipality::whereHas('tours', function($query) {
+            $query->whereStatus('Realizada');
+        })->count();
+        $e->municipiosGiraRealizada_per = round(($e->municipiosGiraRealizada / max($e->municipios, 1)) * 100, 2);
+
+        return response()->json($e, 200);
+    }
+
+
+    public function deptoStadisticsTours(Department $department){
+
+        $e = new \stdClass();
+        $e->municipios = $department->municipalities()->count();
+
+        // Municipiios con Gira
+        $e->municipiosGira = $department->municipalities()->has('tours')->count();
+        $e->municipiosGira_per = round(($e->municipiosGira / max($e->municipios, 1)) * 100, 2);
+
+        // Municipios con gira Pendiente
+        $e->municipiosGiraPendiente = $department->municipalities()->whereHas('tours', function($query) {
+            $query->whereStatus('Pendiente');
+        })->count();
+        $e->municipiosGiraPendiente_per = round(($e->municipiosGiraPendiente / max($e->municipios, 1)) *100, 2);
+
+        // Municipios con gira Realizada
+        $e->municipiosGiraRealizada = $department->municipalities()->whereHas('tours', function($query) {
+             $query->whereStatus('Realizada');
+        })->count();
+        $e->municipiosGiraRealizada_per = round(($e->municipiosGiraRealizada / max($e->municipios, 1)) * 100, 2);
+
 
         return response()->json($e, 200);
     }
