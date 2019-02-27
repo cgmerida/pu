@@ -66,7 +66,7 @@
 <li class="nav-item">
     <a class='sidebar-link' href="{{ route('deputies.index') }}">
         <span class="icon-holder">
-            <i class="c-red-300 fa fa-male"></i>
+            <i class="c-red-800 fa fa-male"></i>
         </span>
         <span class="title">Diputados Distrito</span>
     </a>
