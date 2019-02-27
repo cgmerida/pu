@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Collective\Html\Eloquent\FormAccessible;
 
 class Deputy extends Model
 {
+
+    use FormAccessible;
 
     protected $fillable = [
         'name', 'department_id',
@@ -29,7 +32,6 @@ class Deputy extends Model
         $this->attributes['name'] = mb_convert_case($value, MB_CASE_TITLE, "UTF-8");
     }
 
-
     public function getNominatedAttribute($value)
     {
         return $value ? "Si" : "No";
@@ -40,7 +42,16 @@ class Deputy extends Model
         return $value ? "Si" : "No";
     }
 
+    public function formNominatedAttribute($value)
+    {
+        return $value;
+    }
 
+    public function formSignedUpAttribute($value)
+    {
+        return $value;
+    }
+    
     public function department()
     {
         return $this->belongsTo(Department::class);
