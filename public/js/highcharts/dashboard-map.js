@@ -185,6 +185,34 @@ function setDataClass(tipo, chart) {
             }
         }, false);
         chart.redraw(false);
+    } else if (tipo == 'mayors'){
+        options = [{
+            from : 0,
+            to: 24,
+            name: '0% - 24%',
+            color: "#f44336"
+        }, {
+            from: 25,
+            to: 49,
+            name: '25% - 49%',
+            color: "#ffeb3b"
+        }, {
+            from: 50,
+            to: 74,
+            name: '50% - 74%',
+            color: "#4caf50"
+        }, {
+            from: 75,
+            to: 100,
+            name: '75% - 100%',
+            color: "#0E166B"
+        }];
+        chart.update({
+            colorAxis: {
+                dataClasses: options
+            }
+        }, false);
+        chart.redraw(false);
     } else {
         switch (tipo) {
             case 'legals':
@@ -196,12 +224,6 @@ function setDataClass(tipo, chart) {
                 name = "No Prime";
                 name2 = "Prime";
                 break;
-
-            case 'mayors':
-                name = "Sin Alcaldes";
-                name2 = "Con Alcaldes";
-                break;
-
             case 'tours':
                 name = "Sin Gira";
                 name2 = "Con Gira";
@@ -299,7 +321,10 @@ function setTooltip(tipo, point){
         case 'mayors':
             if (point.muni == null) {
                 txt = `Alcaldes: <span class='fw-900'>
-                    ${(point.value ? point.value : 0)}
+                    ${(point.mayors_count ? point.mayors_count : 0)}
+                    </span><br>
+                    Municipios: <span class='fw-900'>
+                    ${(point.municipalities_count ? point.municipalities_count : 0)}
                     </span>`;
             } else {
                 txt = `Alcalde : <span class='fw-900'>
