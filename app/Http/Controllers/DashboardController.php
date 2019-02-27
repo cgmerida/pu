@@ -91,8 +91,8 @@ class DashboardController extends Controller
             $b = $c = 0;
 
             if ($deputy) {
-                $b = ($deputy->nominated) ? 1 : 0;
-                $c = ($deputy->signed_up) ? 1 : 0;
+                $b = ($deputy->nominated == "Si") ? 1 : 0;
+                $c = ($deputy->signed_up == "Si") ? 1 : 0;
             }
 
             $item->value = $a + $b + $c;
@@ -109,8 +109,8 @@ class DashboardController extends Controller
         $count = $b = $c = 0;
 
         if ($deputy) {
-            $b = ($deputy->nominated) ? 1 : 0;
-            $c = ($deputy->signed_up) ? 1 : 0;
+            $b = ($deputy->nominated == 'Si') ? 1 : 0;
+            $c = ($deputy->signed_up == 'Si') ? 1 : 0;
         }
 
         $count = $a + $b + $c;
