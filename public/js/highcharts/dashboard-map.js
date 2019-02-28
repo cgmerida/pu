@@ -54,7 +54,7 @@ function crearPais(tipo, data) {
                                     joinBy: ["name", "name"],
                                     nullColor: "#00D9D9",
                                     dataLabels: {
-                                        enabled: true,
+                                        enabled: false,
                                         format: "{point.name}"
                                     },
                                     cursor: "pointer",
