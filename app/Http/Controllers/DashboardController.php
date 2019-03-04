@@ -59,7 +59,7 @@ class DashboardController extends Controller
         $departments = Department::select('id', 'name as drilldown')
             ->withCount('mayors', 'municipalities')->get()
             ->each(function ($depto) {
-                $depto->value = round(($depto->mayors_count / $depto->municipalities_count) * 100); 
+                $depto->value = round(($depto->mayors_count / $depto->municipalities_count) * 100);
             });
 
         return $departments;
@@ -127,9 +127,22 @@ class DashboardController extends Controller
 
     public function departmentsTours()
     {
-        $departments = Department::select("id", "name as drilldown")->withCount('tours as value')->get();
+        $departments = \DB::table('departments')
+            ->leftJoin('tours', 'departments.id', '=', 'tours.department_id')
+            ->select( 'departments.id', 'name as drilldown')->selectRaw('COUNT(DISTINCT WEEK(date, 1)) as value')
+            ->groupBy('departments.id', 'name', \DB::raw('WEEK(date, 1)'))
+            ->get();
 
-        return $departments;
+        $data = collect([]);
+        $departments->each(function ($item) use ($data) {
+            if ($data->firstWhere('drilldown', $item->drilldown)) {
+                $data->firstWhere('drilldown', $item->drilldown)->value += $item->value;
+            } else {
+                $data->push($item);
+            }
+        });
+
+        return $data;
     }
 
     public function municipalitiesTours(Department $department)
