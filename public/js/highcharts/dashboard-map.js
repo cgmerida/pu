@@ -54,7 +54,7 @@ function crearPais(tipo, data) {
                                     joinBy: ["name", "name"],
                                     nullColor: "#00D9D9",
                                     dataLabels: {
-                                        enabled: false,
+                                        enabled: true,
                                         format: "{point.name}"
                                     },
                                     cursor: "pointer",
@@ -213,6 +213,34 @@ function setDataClass(tipo, chart) {
             }
         }, false);
         chart.redraw(false);
+    } else if (tipo == 'tours') {
+        options = [{
+            to: 0,
+            name: 'Sin Giras',
+            color: "#f44336"
+        }, {
+            from: 1,
+            to: 2,
+            name: '1 Giras',
+            color: "#ffeb3b"
+        }, {
+            from: 2,
+            to: 3,
+            name: '2 Giras',
+            color: "#4caf50"
+        }, {
+            from: 3,
+            to: 4,
+            name: '+ 3 Giras',
+            color: "#0E166B"
+        }];
+        chart.update({
+            colorAxis: {
+                dataClasses: options
+            }
+        }, false);
+        chart.redraw(false);
+
     } else {
         switch (tipo) {
             case 'legals':
@@ -223,10 +251,6 @@ function setDataClass(tipo, chart) {
             case 'primes':
                 name = "No Prime";
                 name2 = "Prime";
-                break;
-            case 'tours':
-                name = "Sin Gira";
-                name2 = "Con Gira";
                 break;
         }
         chart.update({
