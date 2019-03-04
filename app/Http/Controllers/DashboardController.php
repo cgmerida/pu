@@ -130,19 +130,10 @@ class DashboardController extends Controller
         $departments = \DB::table('departments')
             ->leftJoin('tours', 'departments.id', '=', 'tours.department_id')
             ->select( 'departments.id', 'name as drilldown')->selectRaw('COUNT(DISTINCT WEEK(date, 1)) as value')
-            ->groupBy('departments.id', 'name', \DB::raw('WEEK(date, 1)'))
+            ->groupBy('departments.id', 'name')
             ->get();
 
-        $data = collect([]);
-        $departments->each(function ($item) use ($data) {
-            if ($data->firstWhere('drilldown', $item->drilldown)) {
-                $data->firstWhere('drilldown', $item->drilldown)->value += $item->value;
-            } else {
-                $data->push($item);
-            }
-        });
-
-        return $data;
+        return $departments;
     }
 
     public function municipalitiesTours(Department $department)
