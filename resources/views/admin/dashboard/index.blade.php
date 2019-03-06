@@ -53,31 +53,19 @@
                                         </center>
                                     </div>
                                 </div>
-
-                                <!-- Pie Charts -->
-                                {{-- <div class="peers pT-20 mT-20 bdT fxw-nw@lg+ jc-sb ta-c gap-10">
-                                    <div class="peer">
-                                        <div class="easy-pie-chart" data-size='80' data-percent="75" data-bar-color='#f44336'>
-                                            <span></span>
-                                        </div>
-                                        <h6 class="fsz-sm">New Users</h6>
-                                    </div>
-                                    <div class="peer">
-                                        <div class="easy-pie-chart" data-size='80' data-percent="50" data-bar-color='#2196f3'>
-                                            <span></span>
-                                        </div>
-                                        <h6 class="fsz-sm">New Purchases</h6>
-                                    </div>
-                                    <div class="peer">
-                                        <div class="easy-pie-chart" data-size='80' data-percent="90" data-bar-color='#ff9800'>
-                                            <span></span>
-                                        </div>
-                                        <h6 class="fsz-sm">Bounce Rate</h6>
-                                    </div>
-                                </div> --}}
                             </div>
                         </div>
                     </div>
+                </div>  
+            </div>
+            <div class="bd bgc-white" id="mapa_alcaldes" style="display:none;">
+                <div class="peers">
+                        <div class="layer w-100">
+                            <center>
+                                <img src="{{ asset('/images/mapa_alcaldes.jpg') }}" 
+                                alt="Alcaldes Municipios" style="height:80vh;">
+                            </center>
+                        </div>
                 </div>
             </div>
         </div>
@@ -107,6 +95,11 @@
                 const tipo = $('input[type=radio]:checked').val();
                 $("#mapa").highcharts().showLoading('<i class="fa fa-spinner fa-spin fa-3x"></i>');
                 Mapainit(tipo);
+                if(tipo == 'mayors'){
+                    $('#mapa_alcaldes').show();
+                } else {
+                    $('#mapa_alcaldes').hide();
+                }
             });
             
             $(window).resize(function() {
