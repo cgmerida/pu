@@ -129,7 +129,7 @@ class DashboardController extends Controller
     {
         $departments = \DB::table('departments')
             ->leftJoin('tours', 'departments.id', '=', 'tours.department_id')
-            ->select( 'departments.id', 'name as drilldown')->selectRaw('COUNT(DISTINCT WEEK(date, 1)) as value')
+            ->select('departments.id', 'name as drilldown')->selectRaw('COUNT(DISTINCT WEEK(date, 1)) as value')
             ->groupBy('departments.id', 'name')
             ->get();
 
@@ -138,8 +138,25 @@ class DashboardController extends Controller
 
     public function municipalitiesTours(Department $department)
     {
+        $munis = $department->municipalities()->select('id', 'name')
+            ->with(['tours' => function ($query) {
+                $query->select('status', 'municipality_id');
+            }])->withCount(['tours'])->get();
 
-        return $department->municipalities()->select('id', 'name')->withCount('tours as value')->get();
+
+        $munis->each(function ($item) {
+            $tour = $item->tours->first();
+
+            $value = ($tour) ? 1 : 0;
+            
+            if ($tour) {
+                $value = ($tour->status == "Pendiente") ? 2 : 3;
+            }
+
+            $item->value = $value;
+        });
+
+        return $munis;
     }
 
     public function paisStadisticsLegals()

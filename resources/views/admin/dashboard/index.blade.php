@@ -34,7 +34,9 @@
                         
                         {!! Form::myRadio('tipo', 'mayors', 'Mapa Alcaldes', 'mayors', ($tipo == 'mayors') ? true:false) !!}
                         
-                        {!! Form::myRadio('tipo', 'tours', 'Mapa Giras', 'tours', ($tipo == 'tours') ? true:false) !!}
+                        {!! Form::myRadio('tipo', 'tours', 'Giras Capacitación', 'tours', ($tipo == 'tours') ? true:false) !!}
+
+                        {{-- {!! Form::myRadio('tipo', 'tours', 'Giras Campaña', 'tours', ($tipo == 'tours') ? true:false) !!} --}}
 
                         <div class="layers">
                             <div class="layer w-100">

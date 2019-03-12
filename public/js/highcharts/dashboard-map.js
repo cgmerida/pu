@@ -305,17 +305,35 @@ function setDataClassDepto(tipo, chart) {
                 name: 'Inscrito',
                 color: "#0E166B"
             }];
-            chart.update({
-                colorAxis: {
-                    dataClasses: options
-                }
-            }, false);
-            chart.redraw(false);
 
             break;
 
         case 'tours':
+            options = [{
+                to: 0,
+                name: 'Sin Gira',
+                color: "#f44336"
+            }, {
+                from: 1,
+                to: 2,
+                name: 'Gira Pendiente',
+                color: "#ffeb3b"
+            }, {
+                from: 3,
+                to: 4,
+                name: 'Gira Realizada',
+                color: "#0E166B"
+            }];
             break;
+    }
+    
+    if (options) {
+        chart.update({
+            colorAxis: {
+                dataClasses: options
+            }
+        }, false);
+        chart.redraw(false);
     }
 };
 
@@ -363,7 +381,7 @@ function setTooltip(tipo, point){
         case 'tours':
             return `<div class=fsz-def><span style="color:${point.color}">\u25CF</span>
                 ${point.name}
-                <br>Giras: ${point.value}</div>`;
+                <br>Giras: ${(point.tours_count != null ? point.tours_count: point.value)}</div>`;
             break;
     }
 };
