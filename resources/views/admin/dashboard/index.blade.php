@@ -36,7 +36,10 @@
                         
                         {!! Form::myRadio('tipo', 'tours', 'Giras Capacitación', 'tours', ($tipo == 'tours') ? true:false) !!}
 
-                        {{-- {!! Form::myRadio('tipo', 'tours', 'Giras Campaña', 'tours', ($tipo == 'tours') ? true:false) !!} --}}
+                        {!! Form::myRadio('tipo', 'campaign', 'Giras Campaña 1', 'campaign', ($tipo == 'campaign') ? true:false) !!}
+                        
+                        {!! Form::myRadio('tipo', 'campaign2', 'Giras Campaña 2', 'campaign2', ($tipo == 'campaign2') ? true:false) !!}
+
 
                         <div class="layers">
                             <div class="layer w-100">

@@ -79,7 +79,29 @@
         <span class="icon-holder">
             <i class="c-lime-900 ti-world"></i>
         </span>
-        <span class="title">Giras</span>
+        <span class="title">Capacitaciones</span>
+    </a>
+</li>
+@endcan
+
+@can('campaign.index')
+<li class="nav-item">
+    <a class='sidebar-link' href="{{ route('campaign.index') }}">
+        <span class="icon-holder">
+            <i class="c-lime-900 ti-world"></i>
+        </span>
+        <span class="title">Campaña 1</span>
+    </a>
+</li>
+@endcan
+
+@can('campaign.index')
+<li class="nav-item">
+    <a class='sidebar-link' href="{{ route('campaign2.index') }}">
+        <span class="icon-holder">
+            <i class="c-lime-900 ti-world"></i>
+        </span>
+        <span class="title">Campaña 2</span>
     </a>
 </li>
 @endcan
