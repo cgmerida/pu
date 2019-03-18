@@ -208,34 +208,65 @@ class PermissionsTableSeeder extends Seeder
         // ]);
 
         // PERMISOS DE GIRAS
+        // Permission::create([
+        //     'name' => 'Listar Giras',
+        //     'slug' => 'tours.index',
+        //     'description' => 'Permite listar todos los giras del sistema'
+        // ]);
+
+        // Permission::create([
+        //     'name' => 'Crear Giras',
+        //     'slug' => 'tours.create',
+        //     'description' => 'Permite crear giras en el sistema'
+        // ]);
+
+        // Permission::create([
+        //     'name' => 'Ver Giras',
+        //     'slug' => 'tours.show',
+        //     'description' => 'Permite ver la información de una gira'
+        // ]);
+
+        // Permission::create([
+        //     'name' => 'Editar Giras',
+        //     'slug' => 'tours.edit',
+        //     'description' => 'Permite editar giras en el sistema'
+        // ]);
+
+        // Permission::create([
+        //     'name' => 'Eliminar Giras',
+        //     'slug' => 'tours.destroy',
+        //     'description' => 'Permite eliminar giras en el sistema'
+        // ]);
+
+        // PERMISOS DE CAMPAÑA
         Permission::create([
             'name' => 'Listar Giras',
-            'slug' => 'tours.index',
-            'description' => 'Permite listar todos los giras del sistema'
+            'slug' => 'campaign.index',
+            'description' => 'Permite listar todos los campaña del sistema'
         ]);
 
         Permission::create([
             'name' => 'Crear Giras',
-            'slug' => 'tours.create',
-            'description' => 'Permite crear giras en el sistema'
+            'slug' => 'campaign.create',
+            'description' => 'Permite crear campaña en el sistema'
         ]);
 
         Permission::create([
             'name' => 'Ver Giras',
-            'slug' => 'tours.show',
-            'description' => 'Permite ver la información de una gira'
+            'slug' => 'campaign.show',
+            'description' => 'Permite ver la información de una campaña'
         ]);
 
         Permission::create([
             'name' => 'Editar Giras',
-            'slug' => 'tours.edit',
-            'description' => 'Permite editar giras en el sistema'
+            'slug' => 'campaign.edit',
+            'description' => 'Permite editar campaña en el sistema'
         ]);
 
         Permission::create([
             'name' => 'Eliminar Giras',
-            'slug' => 'tours.destroy',
-            'description' => 'Permite eliminar giras en el sistema'
+            'slug' => 'campaign.destroy',
+            'description' => 'Permite eliminar campaña en el sistema'
         ]);
     }
 }

@@ -84,7 +84,7 @@
 </li>
 @endcan
 
-{{-- @can('campaign.index') --}}
+@can('campaign.index')
 <li class="nav-item">
     <a class='sidebar-link' href="{{ route('campaign.index') }}">
         <span class="icon-holder">
@@ -93,9 +93,9 @@
         <span class="title">Campaña 1</span>
     </a>
 </li>
-{{-- @endcan
+@endcan
 
-@can('campaign.index') --}}
+@can('campaign.index')
 <li class="nav-item">
     <a class='sidebar-link' href="{{ route('campaign2.index') }}">
         <span class="icon-holder">
@@ -104,4 +104,4 @@
         <span class="title">Campaña 2</span>
     </a>
 </li>
-{{-- @endcan --}}
+@endcan
