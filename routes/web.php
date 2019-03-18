@@ -67,7 +67,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard/department/{department}/stadistics/tours', 'DashboardController@deptoStadisticsTours');
     Route::get('dashboard/stadistics/tours', 'DashboardController@paisStadisticsTours');
 
-
     Route::resource('tours', 'TourController');
     Route::put('tours/{tour}/close', 'TourController@close')->name('tours.close');
     Route::get('departments/{department}/tours', 'TourController@getTours')
