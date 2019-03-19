@@ -59,4 +59,9 @@ class Municipality extends Model
     {
         return $this->hasMany(Tour::class);
     }
+
+    public function campaigns()
+    {
+        return $this->hasMany(Campaign::class);
+    }
 }

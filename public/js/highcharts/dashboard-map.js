@@ -156,120 +156,135 @@ function crearPais(tipo, data) {
 }
 
 function setDataClass(tipo, chart) {
-    let name, name2;
+    let options;
 
-    if (tipo == 'deputies') {
-        options = [{
-            to: 0,
-            name: 'Sin Candidatos',
-            color: "#f44336"
-        }, {
-            from: 1,
-            to: 2,
-            name: 'Candidato',
-            color: "#ffeb3b"
-        }, {
-            from: 2,
-            to: 3,
-            name: 'Nominado',
-            color: "#4caf50"
-        }, {
-            from: 3,
-            to: 4,
-            name: 'Inscrito',
-            color: "#0E166B"
-        }];
-        chart.update({
-            colorAxis: {
-                dataClasses: options
-            }
-        }, false);
-        chart.redraw(false);
-    } else if (tipo == 'mayors'){
-        options = [{
-            from : 0,
-            to: 24,
-            name: '0% - 24%',
-            color: "#f44336"
-        }, {
-            from: 25,
-            to: 49,
-            name: '25% - 49%',
-            color: "#ffeb3b"
-        }, {
-            from: 50,
-            to: 74,
-            name: '50% - 74%',
-            color: "#4caf50"
-        }, {
-            from: 75,
-            to: 100,
-            name: '75% - 100%',
-            color: "#0E166B"
-        }];
-        chart.update({
-            colorAxis: {
-                dataClasses: options
-            }
-        }, false);
-        chart.redraw(false);
-    } else if (tipo == 'tours') {
-        options = [{
-            to: 0,
-            name: 'Sin Giras',
-            color: "#f44336"
-        }, {
-            from: 1,
-            to: 2,
-            name: '1 Giras',
-            color: "#ffeb3b"
-        }, {
-            from: 2,
-            to: 3,
-            name: '2 Giras',
-            color: "#4caf50"
-        }, {
-            from: 3,
-            to: 4,
-            name: '+ 3 Giras',
-            color: "#0E166B"
-        }];
-        chart.update({
-            colorAxis: {
-                dataClasses: options
-            }
-        }, false);
-        chart.redraw(false);
+    switch (tipo) {
+        case 'primes':
+            options = [{
+                to: 0,
+                name: "No Prime",
+                color: "#f5ef18"
+            }, {
+                from: 1,
+                name: "Prime",
+                color: "#0E166B"
+            }];
+            break;
 
-    } else {
-        switch (tipo) {
-            case 'legals':
-                name = "No Legal";
-                name2 = "Legal";
-                break;
+        case 'legals':
+            options = [{
+                to: 0,
+                name: "No Legal",
+                color: "#f5ef18"
+            }, {
+                from: 1,
+                name: "Legal",
+                color: "#0E166B"
+            }];
+            break;
 
-            case 'primes':
-                name = "No Prime";
-                name2 = "Prime";
-                break;
-        }
-        chart.update({
-            colorAxis: {
-                dataClasses: [{
-                        to: 0,
-                        name: name,
-                        color: "#f5ef18"
-                    },
-                    {
-                        from: 1,
-                        name: name2,
-                        color: "#0E166B"
-                    }
-                ]
-            }
-        }, false);
-        chart.redraw(false);
+        case 'deputies':
+            options = [{
+                to: 0,
+                name: 'Sin Candidatos',
+                color: "#f44336"
+            }, {
+                from: 1,
+                to: 2,
+                name: 'Candidato',
+                color: "#ffeb3b"
+            }, {
+                from: 2,
+                to: 3,
+                name: 'Nominado',
+                color: "#4caf50"
+            }, {
+                from: 3,
+                to: 4,
+                name: 'Inscrito',
+                color: "#0E166B"
+            }];
+            break;
+
+        case 'mayors':
+            options = [{
+                from: 0,
+                to: 24,
+                name: '0% - 24%',
+                color: "#f44336"
+            }, {
+                from: 25,
+                to: 49,
+                name: '25% - 49%',
+                color: "#ffeb3b"
+            }, {
+                from: 50,
+                to: 74,
+                name: '50% - 74%',
+                color: "#4caf50"
+            }, {
+                from: 75,
+                to: 100,
+                name: '75% - 100%',
+                color: "#0E166B"
+            }];
+            break;
+
+        case 'tours':
+            options = [{
+                to: 0,
+                name: 'Sin Giras',
+                color: "#f44336"
+            }, {
+                from: 1,
+                to: 2,
+                name: '1 Giras',
+                color: "#ffeb3b"
+            }, {
+                from: 2,
+                to: 3,
+                name: '2 Giras',
+                color: "#4caf50"
+            }, {
+                from: 3,
+                to: 4,
+                name: '+ 3 Giras',
+                color: "#0E166B"
+            }];
+            break;
+
+        case 'campaign':
+        case 'campaign2':
+            options = [{
+                to: 0,
+                name: 'Sin Gira Campaña',
+                color: "#f44336"
+            }, {
+                from: 1,
+                to: 2,
+                name: '1 Gira Campaña',
+                color: "#ffeb3b"
+            }, {
+                from: 2,
+                to: 3,
+                name: '2 Gira Campaña',
+                color: "#4caf50"
+            }, {
+                from: 3,
+                to: 4,
+                name: '+ 3 Gira Campaña',
+                color: "#0E166B"
+            }];
+            break;
     }
+
+    chart.update({
+        colorAxis: {
+            dataClasses: options
+        }
+    }, false);
+    chart.redraw(false);
+
 };
 
 function setDataClassDepto(tipo, chart) {
@@ -309,6 +324,8 @@ function setDataClassDepto(tipo, chart) {
             break;
 
         case 'tours':
+        case 'campaign':
+        case 'campaign2':
             options = [{
                 to: 0,
                 name: 'Sin Gira',
@@ -379,6 +396,8 @@ function setTooltip(tipo, point){
             break;
 
         case 'tours':
+        case 'campaign':
+        case 'campaign2':
             return `<div class=fsz-def><span style="color:${point.color}">\u25CF</span>
                 ${point.name}
                 <br>Giras: ${(point.tours_count != null ? point.tours_count: point.value)}</div>`;

@@ -39,18 +39,38 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('departments/{department}/deputies', 'DeputyController@getDeputies')
         ->where('depto_id', '[0-9]+')->where('muni_id', '[0-9]+');
 
+    Route::resource('tours', 'TourController');
+    Route::put('tours/{tour}/close', 'TourController@close')->name('tours.close');
+    Route::get('departments/{department}/tours', 'TourController@getTours')
+        ->where('department', '[0-9]+');
+
+    Route::resource('campaign', 'CampaignController');
+    Route::put('campaign/{tour}/close', 'CampaignController@close')->name('campaign.close');
+    Route::get('departments/{department}/campaign', 'CampaignController@getCampaigns')
+        ->where('department', '[0-9]+');
+
+    Route::get('campaign2', 'CampaignController@index2')->name('campaign2.index');
+    Route::get('departments/{department}/campaign2', 'CampaignController@getCampaigns2')
+        ->where('department', '[0-9]+');
+
+
+
     Route::get('admin', 'DashboardController@index')->name('admin.dash');
     Route::get('dashboard/departments/legals', 'DashboardController@departmentsLegals');
     Route::get('dashboard/departments/primes', 'DashboardController@departmentsPrimes');
     Route::get('dashboard/departments/mayors', 'DashboardController@departmentsMayors');
     Route::get('dashboard/departments/deputies', 'DashboardController@departmentsDeputies');
     Route::get('dashboard/departments/tours', 'DashboardController@departmentsTours');
-        
+    Route::get('dashboard/departments/campaign', 'DashboardController@departmentsCampaign');
+    Route::get('dashboard/departments/campaign2', 'DashboardController@departmentsCampaign2');
+
     Route::get('dashboard/municipalities/{department}/legals', 'DashboardController@municipalitiesLegals');
     Route::get('dashboard/municipalities/{department}/primes', 'DashboardController@municipalitiesPrimes');
     Route::get('dashboard/municipalities/{department}/mayors', 'DashboardController@municipalitiesMayors');
     Route::get('dashboard/municipalities/{department}/deputies', 'DashboardController@municipalitiesDeputies');
-    Route::get('dashboard/municipalities/{department}/tours', 'DashboardController@municipalitiesTours');
+    Route::get('dashboard/municipalities/{department}/tours','DashboardController@municipalitiesTours');
+    Route::get('dashboard/municipalities/{department}/campaign','DashboardController@municipalitiesCampaign');
+    Route::get('dashboard/municipalities/{department}/campaign2', 'DashboardController@municipalitiesCampaign2');
 
     Route::get('dashboard/department/{department}/stadistics/legals', 'DashboardController@deptoStadisticsLegals');
     Route::get('dashboard/stadistics/legals', 'DashboardController@paisStadisticsLegals');
@@ -67,19 +87,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard/department/{department}/stadistics/tours', 'DashboardController@deptoStadisticsTours');
     Route::get('dashboard/stadistics/tours', 'DashboardController@paisStadisticsTours');
 
-    Route::resource('tours', 'TourController');
-    Route::put('tours/{tour}/close', 'TourController@close')->name('tours.close');
-    Route::get('departments/{department}/tours', 'TourController@getTours')
-        ->where('department', '[0-9]+');
+    Route::get('dashboard/department/{department}/stadistics/campaign', 'DashboardController@deptoStadisticsCampaign');
+    Route::get('dashboard/stadistics/campaign', 'DashboardController@paisStadisticsCampaign');
 
-    Route::resource('campaign', 'CampaignController');
-    Route::put('campaign/{tour}/close', 'CampaignController@close')->name('campaign.close');
-    Route::get('departments/{department}/campaign', 'CampaignController@getCampaigns')
-        ->where('department', '[0-9]+');
-
-    Route::get('campaign2', 'CampaignController@index2')->name('campaign2.index');
-    Route::get('departments/{department}/campaign2', 'CampaignController@getCampaigns2')
-        ->where('department', '[0-9]+');
-
-
+    Route::get('dashboard/department/{department}/stadistics/campaign2', 'DashboardController@deptoStadisticsCampaign2');
+    Route::get('dashboard/stadistics/campaign2', 'DashboardController@paisStadisticsCampaign2');
 });

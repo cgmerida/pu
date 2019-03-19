@@ -148,9 +148,85 @@ class DashboardController extends Controller
             $tour = $item->tours->first();
 
             $value = ($tour) ? 1 : 0;
-            
+
             if ($tour) {
                 $value = ($tour->status == "Pendiente") ? 2 : 3;
+            }
+
+            $item->value = $value;
+        });
+
+        return $munis;
+    }
+
+    public function departmentsCampaign()
+    {
+        $departments = \DB::table('departments')
+            ->leftJoin('campaigns', function ($join) {
+                $join->on('departments.id', '=', 'campaigns.department_id');
+                $join->on('campaigns.number', '=', \DB::raw(1));
+            })
+            ->select('departments.id', 'name as drilldown')
+            ->selectRaw('COUNT(DISTINCT WEEK(date, 1)) as value')
+            ->groupBy('departments.id', 'name')
+            ->get();
+
+        return $departments;
+    }
+
+    public function municipalitiesCampaign(Department $department)
+    {
+        $munis = $department->municipalities()->select('id', 'name')
+            ->with(['campaigns' => function ($query) {
+                $query->select('status', 'municipality_id')->where('number', 1);
+            }])->withCount(['campaigns as tours_count'])->get();
+
+
+        $munis->each(function ($item) {
+            $campaign = $item->campaigns->first();
+
+            $value = ($campaign) ? 1 : 0;
+
+            if ($campaign) {
+                $value = ($campaign->status == "Pendiente") ? 2 : 3;
+            }
+
+            $item->value = $value;
+        });
+
+        return $munis;
+    }
+
+    public function departmentsCampaign2()
+    {
+        $departments = \DB::table('departments')
+            ->leftJoin('campaigns', function ($join) {
+                $join->on('departments.id', '=', 'campaigns.department_id');
+                $join->on('campaigns.number', '=', \DB::raw(2));
+            })
+            ->select('departments.id', 'name as drilldown')
+            ->selectRaw('COUNT(DISTINCT WEEK(date, 1)) as value')
+            ->groupBy('departments.id', 'name')
+            ->get();
+
+        return $departments;
+    }
+
+    public function municipalitiesCampaign2(Department $department)
+    {
+        $munis = $department->municipalities()->select('id', 'name')
+            ->with(['campaigns' => function ($query) {
+                $query->select('status', 'municipality_id')->where('number', 2);
+            }])->withCount(['campaigns as tours_count'])->get();
+
+
+        $munis->each(function ($item) {
+            $campaign = $item->campaigns->first();
+
+            $value = ($campaign) ? 1 : 0;
+
+            if ($campaign) {
+                $value = ($campaign->status == "Pendiente") ? 2 : 3;
             }
 
             $item->value = $value;

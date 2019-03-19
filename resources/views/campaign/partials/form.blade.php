@@ -5,7 +5,7 @@
 			
 			{!! Form::mySelect('municipality_id', 'Municipios', $municipalities) !!}
 
-			{!! Form::myInput('number','number', 'Número de Campaña', ['min' => 1, 'max' => 2]) !!}
+			{!! Form::mySelect('number', 'Número de Campaña', [1 => 'Campaña 1', 2 => 'Campaña 2']) !!}
 			
 			{!! Form::datePicker('date', 'Fecha', ['autocomplete' => 'off']) !!}
 		</div>  
