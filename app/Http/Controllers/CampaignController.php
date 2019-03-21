@@ -137,14 +137,14 @@ class CampaignController extends Controller
 
     public function getCampaigns(Department $department)
     {
-        $campaign = $department->campaign()->with([
+        $campaign = $department->campaigns()->with([
             'department' => function ($query) {
                 $query->select('id', 'name');
             },
             'municipality' => function ($query) {
                 $query->select('id', 'name');
             }
-        ])->get();
+        ])->where('number', 1)->get();
 
         return datatables($campaign)
             ->addColumn('actions', 'campaign.partials.actions')
@@ -154,7 +154,7 @@ class CampaignController extends Controller
 
     public function getCampaigns2(Department $department)
     {
-        $campaign = $department->campaign()->with([
+        $campaign = $department->campaigns()->with([
             'department' => function ($query) {
                 $query->select('id', 'name');
             },

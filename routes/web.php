@@ -45,7 +45,7 @@ Route::group(['middleware' => ['auth']], function () {
         ->where('department', '[0-9]+');
 
     Route::resource('campaign', 'CampaignController');
-    Route::put('campaign/{tour}/close', 'CampaignController@close')->name('campaign.close');
+    Route::put('campaign/{campaign}/close', 'CampaignController@close')->name('campaign.close');
     Route::get('departments/{department}/campaign', 'CampaignController@getCampaigns')
         ->where('department', '[0-9]+');
 
