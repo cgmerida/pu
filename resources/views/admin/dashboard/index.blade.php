@@ -38,7 +38,7 @@
                         
                         {!! Form::myRadio('tipo', 'department_campaign', 'Campaña Departamental', 'department_campaign', ($tipo == 'department_campaign') ? true:false) !!}
 
-                        {!! Form::myRadio('tipo', 'campaign', 'Giras Campaña 1', 'campaign', ($tipo == 'campaign') ? true:false) !!}
+                        {!! Form::myRadio('tipo', 'campaign', 'Giras Municipio', 'campaign', ($tipo == 'campaign') ? true:false) !!}
 
                         <div class="layers">
                             <div class="layer w-100">
