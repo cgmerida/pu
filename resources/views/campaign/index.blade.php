@@ -5,7 +5,7 @@
 @endsection
 
 @section('page-header')
-    Campaña 1 <small>{{ trans('app.manage') }}</small>
+    Campaña Municipio <small>{{ trans('app.manage') }}</small>
 @endsection
 
 @section('content')

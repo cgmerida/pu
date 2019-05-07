@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('page-header')
-	Gira <small>{{ trans('app.update_item') }}</small>
+	Campaña Municipio<small>{{ trans('app.update_item') }}</small>
 @stop
 
 @section('content')
