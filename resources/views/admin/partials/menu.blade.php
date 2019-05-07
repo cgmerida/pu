@@ -84,7 +84,7 @@
 </li>
 @endcan
 
-@can('department_campaign.index')
+@can('campaign.index')
 <li class="nav-item">
     <a class='sidebar-link' href="{{ route('department_campaign.index') }}">
         <span class="icon-holder">
