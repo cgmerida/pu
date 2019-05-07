@@ -101,7 +101,7 @@
         <span class="icon-holder">
             <i class="c-blue-900 ti-pin2"></i>
         </span>
-        <span class="title">Campaña Municipio</span>
+        <span class="title">Campaña Municipios</span>
     </a>
 </li>
 @endcan
