@@ -12,7 +12,7 @@
 
     <div class="mB-20">
         
-        @can('department_campaign.create')
+        @can('campaign.create')
         <a href="{{ route('department_campaign.create') }}" class="btn btn-secondary">
             <i class="fa fa-plus-circle fa-fw"></i> Crear Campaña Departamental
         </a>

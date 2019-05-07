@@ -35,11 +35,10 @@
                         {!! Form::myRadio('tipo', 'mayors', 'Mapa Alcaldes', 'mayors', ($tipo == 'mayors') ? true:false) !!}
                         
                         {!! Form::myRadio('tipo', 'tours', 'Giras Capacitación', 'tours', ($tipo == 'tours') ? true:false) !!}
-
-                        {!! Form::myRadio('tipo', 'campaign', 'Giras Campaña 1', 'campaign', ($tipo == 'campaign') ? true:false) !!}
                         
                         {!! Form::myRadio('tipo', 'department_campaign', 'Campaña Departamental', 'department_campaign', ($tipo == 'department_campaign') ? true:false) !!}
 
+                        {!! Form::myRadio('tipo', 'campaign', 'Giras Campaña 1', 'campaign', ($tipo == 'campaign') ? true:false) !!}
 
                         <div class="layers">
                             <div class="layer w-100">
