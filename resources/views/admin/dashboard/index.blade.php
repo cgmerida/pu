@@ -38,7 +38,7 @@
 
                         {!! Form::myRadio('tipo', 'campaign', 'Giras Campaña 1', 'campaign', ($tipo == 'campaign') ? true:false) !!}
                         
-                        {!! Form::myRadio('tipo', 'campaign2', 'Giras Campaña 2', 'campaign2', ($tipo == 'campaign2') ? true:false) !!}
+                        {!! Form::myRadio('tipo', 'department_campaign', 'Campaña Departamental', 'department_campaign', ($tipo == 'department_campaign') ? true:false) !!}
 
 
                         <div class="layers">
@@ -89,8 +89,6 @@
     <script src="{{ asset('js/highcharts/gt-all.js') }}"></script>
 
     <script src="{{ asset('js/highcharts/dashboard-map.js') }}"></script>
-
-    
 
     <script>
         $(function(){

@@ -66,4 +66,9 @@ class Department extends Model
     {
         return $this->hasMany(Campaign::class);
     }
+
+    public function departmentCampaigns()
+    {
+        return $this->hasMany(DepartmentCampaign::class);
+    }
 }

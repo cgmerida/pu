@@ -5,16 +5,16 @@
 @endsection
 
 @section('page-header')
-    Campaña 2 <small>{{ trans('app.manage') }}</small>
+    Campaña Departamental <small>{{ trans('app.manage') }}</small>
 @endsection
 
 @section('content')
 
     <div class="mB-20">
         
-        @can('campaign.create')
-        <a href="{{ route('campaign.create') }}" class="btn btn-secondary">
-            <i class="fa fa-plus-circle fa-fw"></i> Crear Gira Campaña
+        @can('department_campaign.create')
+        <a href="{{ route('department_campaign.create') }}" class="btn btn-secondary">
+            <i class="fa fa-plus-circle fa-fw"></i> Crear Campaña Departamental
         </a>
         @endcan
         <br><br>
@@ -34,9 +34,7 @@
             <thead>
                 <tr>
                     <th>Departamento</th>
-                    <th>Municipio</th>
                     <th>Fecha</th>
-                    <th>Estatus</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -44,9 +42,7 @@
             <tfoot>
                 <tr>
                     <th>Departamento</th>
-                    <th>Municipio</th>
                     <th>Fecha</th>
-                    <th>Estatus</th>
                     <th>Acciones</th>
                 </tr>
             </tfoot>
@@ -64,7 +60,7 @@
 		function searchDatatable() {
 
 			const depto = parseInt($('#department_id').val()),
-			url = `departments/${depto}/campaign2`;
+			url = `departments/${depto}/department_campaign`;
 
 			if(dtable) {
 				dtable.ajax.url(url).load();
@@ -84,9 +80,7 @@
 				},
 				columns: [
 					{data: 'department.name'},
-					{data: 'municipality.name'},
 					{data: 'date'},
-					{data: 'status'},
 					{data: 'actions', orderable: false, searchable: false}
                 ], 
                 order: [[ 1, "desc" ]]
@@ -136,7 +130,6 @@
                 swal.fire(status, message, 'success');
             });
         }
-
         
         function deleteTour(url) {
             swal.fire({

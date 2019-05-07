@@ -49,10 +49,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('departments/{department}/campaign', 'CampaignController@getCampaigns')
         ->where('department', '[0-9]+');
 
-    Route::get('campaign2', 'CampaignController@index2')->name('campaign2.index');
-    Route::get('departments/{department}/campaign2', 'CampaignController@getCampaigns2')
+    Route::resource('department_campaign', 'DepartmentCampaignController');
+    Route::get('departments/{department}/department_campaign', 'DepartmentCampaignController@getCampaigns')
         ->where('department', '[0-9]+');
-
 
 
     Route::get('admin', 'DashboardController@index')->name('admin.dash');
@@ -62,16 +61,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard/departments/deputies', 'DashboardController@departmentsDeputies');
     Route::get('dashboard/departments/tours', 'DashboardController@departmentsTours');
     Route::get('dashboard/departments/campaign', 'DashboardController@departmentsCampaign');
-    Route::get('dashboard/departments/campaign2', 'DashboardController@departmentsCampaign2');
+    Route::get('dashboard/departments/department_campaign', 'DashboardController@departmentsDepartmentCampaign');
 
     Route::get('dashboard/municipalities/{department}/legals', 'DashboardController@municipalitiesLegals');
     Route::get('dashboard/municipalities/{department}/primes', 'DashboardController@municipalitiesPrimes');
     Route::get('dashboard/municipalities/{department}/mayors', 'DashboardController@municipalitiesMayors');
     Route::get('dashboard/municipalities/{department}/deputies', 'DashboardController@municipalitiesDeputies');
-    Route::get('dashboard/municipalities/{department}/tours','DashboardController@municipalitiesTours');
-    Route::get('dashboard/municipalities/{department}/campaign','DashboardController@municipalitiesCampaign');
-    Route::get('dashboard/municipalities/{department}/campaign2', 'DashboardController@municipalitiesCampaign2');
-
+    Route::get('dashboard/municipalities/{department}/tours', 'DashboardController@municipalitiesTours');
+    Route::get('dashboard/municipalities/{department}/campaign', 'DashboardController@municipalitiesCampaign');
+    
     Route::get('dashboard/department/{department}/stadistics/legals', 'DashboardController@deptoStadisticsLegals');
     Route::get('dashboard/stadistics/legals', 'DashboardController@paisStadisticsLegals');
 
@@ -90,6 +88,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard/department/{department}/stadistics/campaign', 'DashboardController@deptoStadisticsCampaign');
     Route::get('dashboard/stadistics/campaign', 'DashboardController@paisStadisticsCampaign');
 
-    Route::get('dashboard/department/{department}/stadistics/campaign2', 'DashboardController@deptoStadisticsCampaign2');
-    Route::get('dashboard/stadistics/campaign2', 'DashboardController@paisStadisticsCampaign2');
+    Route::get('dashboard/department/{department}/stadistics/department_campaign', 'DashboardController@deptoStadisticsDepartmentCampaign');
+    Route::get('dashboard/stadistics/department_campaign', 'DashboardController@paisStadisticsDepartmentCampaign');
 });

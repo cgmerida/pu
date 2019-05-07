@@ -197,43 +197,17 @@ class DashboardController extends Controller
         return $munis;
     }
 
-    public function departmentsCampaign2()
+    public function departmentsDepartmentCampaign()
     {
         $departments = \DB::table('departments')
-            ->leftJoin('campaigns', function ($join) {
-                $join->on('departments.id', '=', 'campaigns.department_id');
-                $join->on('campaigns.number', '=', \DB::raw(2));
-            })
-            ->select('departments.id', 'name as drilldown')
-            ->selectRaw('COUNT(DISTINCT WEEK(date, 1)) as value')
+            ->leftJoin('department_campaigns', 'departments.id', '=', 'department_campaigns.department_id')
+            ->select('departments.id', 'name')->selectRaw('COUNT(DISTINCT WEEK(date, 1)) as value')
             ->groupBy('departments.id', 'name')
             ->get();
 
         return $departments;
     }
 
-    public function municipalitiesCampaign2(Department $department)
-    {
-        $munis = $department->municipalities()->select('id', 'name')
-            ->with(['campaigns' => function ($query) {
-                $query->select('status', 'municipality_id')->where('number', 2);
-            }])->withCount(['campaigns as tours_count'])->get();
-
-
-        $munis->each(function ($item) {
-            $campaign = $item->campaigns->first();
-
-            $value = ($campaign) ? 1 : 0;
-
-            if ($campaign) {
-                $value = ($campaign->status == "Pendiente") ? 2 : 3;
-            }
-
-            $item->value = $value;
-        });
-
-        return $munis;
-    }
 
     public function paisStadisticsLegals()
     {
@@ -467,6 +441,24 @@ class DashboardController extends Controller
         })->count();
         $e->municipiosGiraRealizada_per = round(($e->municipiosGiraRealizada / max($e->municipios, 1)) * 100, 2);
 
+
+        return response()->json($e, 200);
+    }
+
+    public function paisStadisticsDepartmentCampaign()
+    {
+        $e = new \stdClass();
+        // $e->dates = $department->departmentCampaigns()->select('id', 'department_id', 'date as name');
+
+        return response()->json($e, 200);
+    }
+
+    public function deptoStadisticsDepartmentCampaign(Department $department)
+    {
+
+        $e = new \stdClass();
+        // $e->name = $department->departmentCampaigns->select('date');
+        $e->dates = $department->departmentCampaigns()->select('date as name')->get();
 
         return response()->json($e, 200);
     }

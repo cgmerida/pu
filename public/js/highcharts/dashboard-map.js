@@ -1,5 +1,6 @@
 function Mapainit(tipo = 'legals') {
     let url = `/dashboard/departments/${tipo}`;
+    
     $.get(url, function (result) {
         crearPais(tipo, result);
     });
@@ -36,7 +37,6 @@ function crearPais(tipo, data) {
 
                                 changeCharts(tipo, "depto", deptoID);
                                 setDataClassDepto(tipo, chart);
-
                                 chart.hideLoading();
 
                                 chart.title.update({
@@ -143,7 +143,7 @@ function crearPais(tipo, data) {
         series: [{
             name: "Guatemala",
             data: data,
-            joinBy: ["name", "drilldown"],
+            joinBy: ["name", tipo == 'department_campaign' ? "name" : "drilldown"],
             nullColor: "#00D9D9",
             borderColor: '#ffffff',
             dataLabels: {
@@ -254,7 +254,17 @@ function setDataClass(tipo, chart) {
             break;
 
         case 'campaign':
-        case 'campaign2':
+            options = [{
+                to: 0,
+                name: 'Sin Gira',
+                color: "#f44336"
+            }, {
+                from: 1,
+                name: 'Con Gira',
+                color: "#ffeb3b"
+            }];
+            break;
+        case 'department_campaign':
             options = [{
                 to: 0,
                 name: 'Sin Gira Campaña',
@@ -275,6 +285,15 @@ function setDataClass(tipo, chart) {
                 name: '+ 3 Gira Campaña',
                 color: "#0E166B"
             }];
+            
+            chart.series[0].update({
+                cursor: "pointer",
+                point: {
+                    events: {
+                        click: DepartmentCampaingsDates
+                    }
+                }
+            });
             break;
     }
 
@@ -325,7 +344,7 @@ function setDataClassDepto(tipo, chart) {
 
         case 'tours':
         case 'campaign':
-        case 'campaign2':
+        case 'department_campaign':
             options = [{
                 to: 0,
                 name: 'Sin Gira',
@@ -397,7 +416,11 @@ function setTooltip(tipo, point){
 
         case 'tours':
         case 'campaign':
-        case 'campaign2':
+        return `<div class=fsz-def><span style="color:${point.color}">\u25CF</span>
+                ${point.name}
+                <br>Giras: ${(point.tours_count != null ? point.tours_count: point.value)}</div>`;
+        break;
+        case 'department_campaign':
             return `<div class=fsz-def><span style="color:${point.color}">\u25CF</span>
                 ${point.name}
                 <br>Giras: ${(point.tours_count != null ? point.tours_count: point.value)}</div>`;
@@ -583,4 +606,17 @@ function list(titulo, subtitulo, items) {
 
     $('#progress-layer').append(template);
 
+}
+
+function DepartmentCampaingsDates(e) {
+    const depto = e.point.name;
+
+    $.get(`dashboard/department/${e.point.id}/stadistics/department_campaign`, function (res) {
+        $('#progress-layer').empty();
+        
+        if(res.dates.length > 0){
+            list(`Giras en ${depto}`, '', res.dates);
+        }
+        console.log(res);
+    });
 }
