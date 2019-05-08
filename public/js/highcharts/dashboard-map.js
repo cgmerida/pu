@@ -281,7 +281,6 @@ function setDataClass(tipo, chart) {
                     color: "#ffeb3b"
             }, {
                 from: 3,
-                to: 4,
                 name: '+ 3 Gira Campaña',
                 color: "#0E166B"
             }];

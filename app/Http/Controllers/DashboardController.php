@@ -199,12 +199,14 @@ class DashboardController extends Controller
 
     public function departmentsDepartmentCampaign()
     {
-        $departments = \DB::table('departments')
-            ->leftJoin('department_campaigns', 'departments.id', '=', 'department_campaigns.department_id')
-            ->select('departments.id', 'name')->selectRaw('COUNT(DISTINCT WEEK(date, 1)) as value')
-            ->groupBy('departments.id', 'name')
-            ->get();
+        // $departments = \DB::table('departments')
+        //     ->leftJoin('department_campaigns', 'departments.id', '=', 'department_campaigns.department_id')
+        //     ->select('departments.id', 'name')->selectRaw('COUNT(DISTINCT WEEK(date, 1)) as value')
+        //     ->groupBy('departments.id', 'name')
+        //     ->get();
 
+        $departments = Department::select('id', 'name')->withCount('departmentCampaigns as value')->get();
+        
         return $departments;
     }
 
