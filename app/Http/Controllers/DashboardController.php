@@ -459,9 +459,9 @@ class DashboardController extends Controller
     {
         date_default_timezone_set('America/Guatemala');
         // Unix
-        // setlocale(LC_TIME, 'es_ES.UTF-8');
+        setlocale(LC_TIME, 'es_ES.UTF-8');
         
-        setlocale(LC_TIME, 'spanish');
+        // setlocale(LC_TIME, 'spanish');
 
         $e = new \stdClass();
         // $e->name = $department->departmentCampaigns->select('date');
