@@ -455,10 +455,21 @@ class DashboardController extends Controller
 
     public function deptoStadisticsDepartmentCampaign(Department $department)
     {
+        date_default_timezone_set('America/Guatemala');
+        // Unix
+        // setlocale(LC_TIME, 'es_ES.UTF-8');
+        setlocale(LC_TIME, 'spanish');
 
         $e = new \stdClass();
         // $e->name = $department->departmentCampaigns->select('date');
-        $e->dates = $department->departmentCampaigns()->select('date as name')->get();
+        $e->dates = $department->departmentCampaigns()->select('date as name')->get()
+        ->each(function ($depto) {
+            // \Carbon\Carbon::setLocale('es');
+            $depto->name = strftime("%A, %d de %B", strtotime($depto->name));
+            // \Carbon\Carbon::parse($depto->name)->formatLocalized('%A, %d. %B %Y');
+        });;
+
+        
 
         return response()->json($e, 200);
     }
