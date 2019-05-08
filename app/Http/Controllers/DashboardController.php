@@ -206,7 +206,7 @@ class DashboardController extends Controller
         //     ->get();
 
         $departments = Department::select('id', 'name')->withCount('departmentCampaigns as value')->get();
-        
+
         return $departments;
     }
 
@@ -460,6 +460,7 @@ class DashboardController extends Controller
         date_default_timezone_set('America/Guatemala');
         // Unix
         // setlocale(LC_TIME, 'es_ES.UTF-8');
+        
         setlocale(LC_TIME, 'spanish');
 
         $e = new \stdClass();
